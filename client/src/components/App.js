@@ -1,10 +1,11 @@
 import {Route, Switch} from 'react-router-dom';
+import SignInForm from './SignInForm';
 
 function App() {
   return (
     <>
       <Route path="/signin">
-        <h1>Hello, you're on the signin page!</h1>
+        <SignInForm />
       </Route>
       <Route exact path="/">
         <h1>Hello, you're on the homepage!</h1>
