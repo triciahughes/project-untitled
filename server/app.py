@@ -89,8 +89,13 @@ class Logout(Resource):
 
         return {'error': '401 Unauthorized'}, 401
 
-
-
+@app.errorhandler(NotFound)
+def handle_not_found(e):
+    response = make_response(
+        "Not Found: Sorry the resource you are lookiung for does not exist",
+        404
+    )
+    return response
 
 api.add_resource(Signup, '/signup')
 api.add_resource(AuthorizedSession, '/authorized')
