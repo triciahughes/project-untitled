@@ -1,37 +1,47 @@
-from flask import request, session
-from flask_restful import Resource
+from flask import Flask, request, session, make_response, jsonify
+from flask_migrate import Migrate
+from flask_restful import Api, Resource
 from sqlalchemy.exc import IntegrityError
-
+from werkzeug.exceptions import NotFound, Unauthorized
 from config import app, db, api
 from models import User
 
+migrate = Migrate(app, db)
+db.init_app(app)
+api = App(app)
+
 class Signup(Resource):
 
-    data = request.get_json()
+    def post(self):
 
-    first_name = data.get('first_name')
-    last_name = data.get('last_name')
-    email = data.get('email')
+        data = request.get_json()
 
-    user = User(
-        first_name=first_name,
-        last_name=last_name,
-        email=email
-    )
+        new_user = User(
+            first_name=data.get['first_name'],
+            last_name=data.get['last_name'],
+            email=data.get['email']
+        )
 
-    user.password_hash = password
+        new_user.password_hash = data['password']
 
-    try:
-        db.session.add(user)
-        db.session.commit()
+        try:
+            db.session.add(user)
+            db.session.commit()
 
-        session['user_id'] = user.id
+            session['user_id'] = user.id
 
-        return user.to_dict(), 201
+            return user.to_dict(), 201
 
-    except IntegrityError:
+            response = make_response(
+                new_user.to_dict(),
+                201
+            )
+            return response
 
-        return {'error': '422'}, 422
+        except IntegrityError:
+
+            return {'error': '422'}, 422
+
 
 class CheckSession(Resource):
 
