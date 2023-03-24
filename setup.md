@@ -125,7 +125,7 @@ $ honcho start -f Procfile.dev
 
 If you're doing a lot of debugging in the terminal, don't use this approach, because it can make reading the server logs more difficult.
 
-Configure Forms with Formik
+# Configure Forms with Formik
 ```javascript
 import {useFormik} from formik;
 ```
