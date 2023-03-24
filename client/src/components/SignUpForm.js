@@ -1,5 +1,7 @@
 import {useFormik} from 'formik';
 import * as yup from 'yup';
+import YupPassword from 'yup-password';
+YupPassword(yup)
 
 function SignUpForm(){
     
@@ -7,7 +9,7 @@ function SignUpForm(){
         "first_name": yup.string().required("Must enter first name."),
         "last_name": yup.string().required("Must enter last name."),
         "email": yup.string().required("Must enter email.").email("Invalid email"),
-        "password": yup.string().required("Must enter password.")
+        "password": yup.string().required("Must enter password."),
     });
 
     const formik = useFormik({
@@ -15,7 +17,8 @@ function SignUpForm(){
             "first_name": "",
             "last_name": "",
             "email": "",
-            "password": ""
+            "password": "",
+            "confirm_password": ""
         },
         validationSchema: formSchema,
         onSubmit: (values, {resetForm}) => {
@@ -62,6 +65,14 @@ function SignUpForm(){
                         type="password" 
                         name="password"
                         value={formik.values.password}
+                        onChange={formik.handleChange}/>
+                </label>
+                <label>
+                    Confirm Password:
+                    <input 
+                        type="password" 
+                        name="confirm_password"
+                        value={formik.values.confirm_password}
                         onChange={formik.handleChange}/>
                 </label>
                 <br/>
