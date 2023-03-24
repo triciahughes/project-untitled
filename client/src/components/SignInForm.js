@@ -1,7 +1,20 @@
 function SignInForm(){
+return (
 
-    return <h1>Hello, you're on the signin page!</h1>
+    <form>
+        <label>
+            Email:
+            <input type="text" name="name"/>
+        </label>
+        <label>
+            Password:
+            <input type="password" name="name"/>
+        </label>
+    </form>
 
+
+)
+    
 }
 
 export default SignInForm
