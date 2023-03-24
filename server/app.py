@@ -43,7 +43,7 @@ class Signup(Resource):
             return {'error': '422'}, 422
 
 
-class CheckSession(Resource):
+class AuthorizedSession(Resource):
 
     def get(self):
 
@@ -87,7 +87,7 @@ class Logout(Resource):
 
 
 api.add_resource(Signup, '/signup')
-api.add_resource(CheckSession, '/check_session')
+api.add_resource(AuthorizedSession, '/authorized')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 
