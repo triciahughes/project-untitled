@@ -51,7 +51,11 @@ class AuthorizedSession(Resource):
 
             user = User.query.filter(User.id == session['user_id']).first()
 
-            return user.to_dict(), 200
+            response = make_response(
+                user.to_dict(),
+                200
+            )
+            return response
 
         return {'error': '401 Unauthorized'}, 401
 
@@ -84,6 +88,8 @@ class Logout(Resource):
             return {}, 204
 
         return {'error': '401 Unauthorized'}, 401
+
+
 
 
 api.add_resource(Signup, '/signup')
