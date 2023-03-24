@@ -1,5 +1,15 @@
-function App() {
-  return <h1>Hello, I'm your homepage!</h1>
-}
+import {Route, Switch} from 'react-router-dom';
 
+function App() {
+  return (
+    <>
+      <Route path="/signin">
+        <h1>Hello, you're on the signin page!</h1>
+      </Route>
+      <Route exact path="/">
+        <h1>Hello, you're on the homepage!</h1>
+      </Route>
+    </>
+  )
+}
 export default App;
