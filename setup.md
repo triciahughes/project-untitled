@@ -125,3 +125,51 @@ $ honcho start -f Procfile.dev
 
 If you're doing a lot of debugging in the terminal, don't use this approach, because it can make reading the server logs more difficult.
 
+# Configure Forms with Formik
+```javascript
+import {useFormik} from formik;
+```
+
+The `useFormik` hook provides us with a hook where we can specify initial values to a form and write an `onSubmit` callback function to do something with the values.
+
+```javascript
+const formik = useFormik({
+	initialValues: {
+		"key_1": "value_1",
+		"key_2": "value_2",
+		"key_3": "value_3"
+	}, 
+	validationSchema: formSchema,
+	onSubmit: (values) => {
+		fetch('URL', {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(values)
+		})
+			.then(response => response.json())
+			.then(stateSetter(newStateValue))
+	}
+
+});
+
+```
+With Formik, we don't need to write our own handleChange functions or logic to handle validation errors.
+- You can access values using `formik.values`
+- You can access errors using `formik.errors`
+
+# Configure Validation with Yup
+Yup is a library that meshes well with Formik. You can use it to create a validation schema.
+
+```javascript
+import * as yup from 'yup';
+```
+
+```javascript
+  const formSchema = yup.object().shape({
+    email: yup.string().email("Invalid email"),
+    name: yup.string().required("Must enter a name").max(15),
+    age: yup.number().positive().integer().required("Must enter age").typeError('Please enter an Integer').max(125),
+  })
+```
