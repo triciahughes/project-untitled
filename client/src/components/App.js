@@ -1,6 +1,6 @@
-import {Route, Switch} from 'react-router-dom';
-import SignInForm from './SignInForm';
-import SignUpForm from './SignUpForm';
+import { Route, Switch } from "react-router-dom";
+import SignInForm from "./SignInForm";
+import SignUpForm from "./SignUpForm";
 
 function App() {
   return (
@@ -15,6 +15,6 @@ function App() {
         <h1>Hello, you're on the homepage!</h1>
       </Route>
     </>
-  )
+  );
 }
 export default App;
