@@ -23,6 +23,8 @@ function SignUpForm() {
       confirm_password: "",
     },
     validationSchema: formSchema,
+    validateOnChange: false,
+    validateOnBlur: false,
     onSubmit: (values, { resetForm }) => {
       fetch("/signup", {
         method: "POST",
