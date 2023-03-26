@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useHistory } from "react-router-dom";
+import img from "../welcome-logo.png";
 
 function SignInForm() {
   const history = useHistory();
@@ -33,7 +34,8 @@ function SignInForm() {
   return (
     <>
       <h1>Please Sign In:</h1>
-      <form onSubmit={formik.handleSubmit}>
+      <img className="box" src={img} alt="logo"></img>
+      <form onSubmit={formik.handleSubmit} className="box">
         <label>
           Email:
           <input

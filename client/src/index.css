@@ -1,3 +1,21 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.box {
+  animation: fade-in 2000ms;
+  opacity: 1;
+}
+img {
+  margin-left: 32%;
+  image-rendering: optimizeQuality;
+}
+
 body {
   background-color: #dec9bb;
   /* text-align: center; */
@@ -15,8 +33,13 @@ code {
 }
 
 form {
-  margin-top: 35%;
-  margin-left: 40%;
+  margin-top: 0%;
+  margin-left: 37%;
+}
+
+form.box {
+  animation: fade-in 1000ms;
+  opacity: 1;
 }
 
 input {
@@ -56,4 +79,13 @@ input[type="submit"]:hover {
 }
 h1 {
   text-align: center;
+}
+
+h1.signup {
+  text-align: center;
+  color: #57584c;
+}
+
+p.error {
+  color: #ac4022;
 }
