@@ -1,16 +1,17 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
-import YupPassword from "yup-password";
-import { useHistory } from "react-router-dom";
-YupPassword(yup);
+// import YupPassword from "yup-password";
+import { useHistory, Link } from "react-router-dom";
+// YupPassword(yup);
 
 function SignUpForm() {
   const history = useHistory();
   const formSchema = yup.object().shape({
     first_name: yup.string().required("Must enter first name."),
     last_name: yup.string().required("Must enter last name."),
-    email: yup.string().required("Must enter email.").email("Invalid email"),
+    email: yup.string().email("Must enter valid email address.").required("Must enter email.").email("Invalid email"),
     password: yup.string().required("Must enter password."),
+    confirm_password: yup.string().required("Must confirm password.").oneOf([yup.ref('password'), null], "Passwords must match.")
   });
 
   const formik = useFormik({
@@ -22,8 +23,9 @@ function SignUpForm() {
       confirm_password: "",
     },
     validationSchema: formSchema,
+    validateOnChange: false,
+    validateOnBlur: false,
     onSubmit: (values, { resetForm }) => {
-      debugger;
       fetch("/signup", {
         method: "POST",
         headers: {
@@ -40,7 +42,7 @@ function SignUpForm() {
 
   return (
     <>
-      <h1 className="signup">Please Sign Up:</h1>
+      <h1 className="signup">Sign Up for an Account</h1>
       <form onSubmit={formik.handleSubmit} className="box">
         <label>
           First Name:
@@ -50,6 +52,7 @@ function SignUpForm() {
             value={formik.values.first_name}
             onChange={formik.handleChange}
           />
+          {formik.errors['first_name'] ? <p style={{color: 'red'}}>{formik.errors['first_name']}</p>: null}
         </label>
         <label>
           Last Name:
@@ -59,6 +62,7 @@ function SignUpForm() {
             value={formik.values.last_name}
             onChange={formik.handleChange}
           />
+          {formik.errors['last_name'] ? <p style={{color: 'red'}}>{formik.errors['last_name']}</p>: null}
         </label>
         <label>
           Email:
@@ -68,8 +72,8 @@ function SignUpForm() {
             value={formik.values.email}
             onChange={formik.handleChange}
           />
+          {formik.errors['email'] ? <p style={{color: 'red'}}>{formik.errors['email']}</p>: null}
         </label>
-        <br />
         <label>
           Password:
           <input
@@ -78,6 +82,7 @@ function SignUpForm() {
             value={formik.values.password}
             onChange={formik.handleChange}
           />
+          {formik.errors['password'] ? <p style={{color: 'red'}}>{formik.errors['password']}</p>: null}
         </label>
         <label>
           Confirm Password:
@@ -87,10 +92,17 @@ function SignUpForm() {
             value={formik.values.confirm_password}
             onChange={formik.handleChange}
           />
+          {formik.errors['confirm_password'] ? <p style={{color: 'red'}}>{formik.errors['confirm_password']}</p>: null}
         </label>
         <br />
         <input type="submit" value="Sign Up" className="input-btn" />
       </form>
+      <div>
+        <h2>Already have an account?</h2>
+        <Link to='/signin'>
+          <button className="input-btn">Sign In</button>
+        </Link>
+      </div>
     </>
   );
 }
