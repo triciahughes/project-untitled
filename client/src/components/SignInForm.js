@@ -6,7 +6,7 @@ import img from "../welcome-logo.png";
 function SignInForm() {
   const history = useHistory();
   const formSchema = yup.object().shape({
-    email: yup.string().required("Must enter email.").email("Invalid email"),
+    email: yup.string().required("Must enter email.").email("Must enter valid email address."),
     password: yup.string().required("Must enter password."),
   });
 
@@ -16,6 +16,8 @@ function SignInForm() {
       password: "",
     },
     validationSchema: formSchema,
+    validateOnChange: false,
+    validateOnBlur: false,
     onSubmit: (values, { resetForm }) => {
       fetch("/login", {
         method: "POST",
@@ -44,6 +46,7 @@ function SignInForm() {
             value={formik.values.email}
             onChange={formik.handleChange}
           />
+          {formik.errors['email'] ? <p style={{color: 'red'}}>{formik.errors['email']}</p>: null}
         </label>
         <br />
         <label>
@@ -54,6 +57,7 @@ function SignInForm() {
             value={formik.values.password}
             onChange={formik.handleChange}
           />
+          {formik.errors['password'] ? <p style={{color: 'red'}}>{formik.errors['password']}</p>: null}
         </label>
         <br />
         <input type="submit" value="Sign In" className="input-btn" />
