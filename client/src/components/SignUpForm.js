@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 // import YupPassword from "yup-password";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 // YupPassword(yup);
 
 function SignUpForm() {
@@ -42,7 +42,7 @@ function SignUpForm() {
 
   return (
     <>
-      <h1 className="signup">Please Sign Up:</h1>
+      <h1 className="signup">Sign Up for an Account</h1>
       <form onSubmit={formik.handleSubmit} className="box">
         <label>
           First Name:
@@ -97,6 +97,12 @@ function SignUpForm() {
         <br />
         <input type="submit" value="Sign Up" className="input-btn" />
       </form>
+      <div>
+        <h2>Already have an account?</h2>
+        <Link to='/signin'>
+          <button className="input-btn">Sign In</button>
+        </Link>
+      </div>
     </>
   );
 }

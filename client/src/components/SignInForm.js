@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import img from "../welcome-logo.png";
 
 function SignInForm() {
@@ -35,7 +35,7 @@ function SignInForm() {
 
   return (
     <>
-      <h1>Please Sign In:</h1>
+      <h1>Please Sign In</h1>
       <img className="box" src={img} alt="logo"></img>
       <form onSubmit={formik.handleSubmit} className="box">
         <label>
@@ -62,6 +62,12 @@ function SignInForm() {
         <br />
         <input type="submit" value="Sign In" className="input-btn" />
       </form>
+      <div>
+        <h2>Don't have an account?</h2>
+        <Link to='/signup'>
+          <button className="input-btn">Sign Up</button>
+        </Link>
+      </div>
     </>
   );
 }
