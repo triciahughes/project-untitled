@@ -9,9 +9,16 @@ function SignUpForm() {
   const formSchema = yup.object().shape({
     first_name: yup.string().required("Must enter first name."),
     last_name: yup.string().required("Must enter last name."),
-    email: yup.string().email("Must enter valid email address.").required("Must enter email.").email("Invalid email"),
+    email: yup
+      .string()
+      .email("Must enter valid email address.")
+      .required("Must enter email.")
+      .email("Invalid email"),
     password: yup.string().required("Must enter password."),
-    confirm_password: yup.string().required("Must confirm password.").oneOf([yup.ref('password'), null], "Passwords must match.")
+    confirm_password: yup
+      .string()
+      .required("Must confirm password.")
+      .oneOf([yup.ref("password"), null], "Passwords must match."),
   });
 
   const formik = useFormik({
@@ -52,7 +59,9 @@ function SignUpForm() {
             value={formik.values.first_name}
             onChange={formik.handleChange}
           />
-          {formik.errors['first_name'] ? <p style={{color: 'red'}}>{formik.errors['first_name']}</p>: null}
+          {formik.errors["first_name"] ? (
+            <p className="error">{formik.errors["first_name"]}</p>
+          ) : null}
         </label>
         <label>
           Last Name:
@@ -62,7 +71,9 @@ function SignUpForm() {
             value={formik.values.last_name}
             onChange={formik.handleChange}
           />
-          {formik.errors['last_name'] ? <p style={{color: 'red'}}>{formik.errors['last_name']}</p>: null}
+          {formik.errors["last_name"] ? (
+            <p className="error">{formik.errors["last_name"]}</p>
+          ) : null}
         </label>
         <label>
           Email:
@@ -72,7 +83,9 @@ function SignUpForm() {
             value={formik.values.email}
             onChange={formik.handleChange}
           />
-          {formik.errors['email'] ? <p style={{color: 'red'}}>{formik.errors['email']}</p>: null}
+          {formik.errors["email"] ? (
+            <p className="error">{formik.errors["email"]}</p>
+          ) : null}
         </label>
         <label>
           Password:
@@ -82,7 +95,9 @@ function SignUpForm() {
             value={formik.values.password}
             onChange={formik.handleChange}
           />
-          {formik.errors['password'] ? <p style={{color: 'red'}}>{formik.errors['password']}</p>: null}
+          {formik.errors["password"] ? (
+            <p className="error">{formik.errors["password"]}</p>
+          ) : null}
         </label>
         <label>
           Confirm Password:
@@ -92,17 +107,19 @@ function SignUpForm() {
             value={formik.values.confirm_password}
             onChange={formik.handleChange}
           />
-          {formik.errors['confirm_password'] ? <p style={{color: 'red'}}>{formik.errors['confirm_password']}</p>: null}
+          {formik.errors["confirm_password"] ? (
+            <p className="error">{formik.errors["confirm_password"]}</p>
+          ) : null}
         </label>
         <br />
         <input type="submit" value="Sign Up" className="input-btn" />
+        <div className="button">
+          <h2 className="noaccount">Already have an account?</h2>
+          <Link to="/signin">
+            <button className="sign-up">Sign In</button>
+          </Link>
+        </div>
       </form>
-      <div>
-        <h2>Already have an account?</h2>
-        <Link to='/signin'>
-          <button className="input-btn">Sign In</button>
-        </Link>
-      </div>
     </>
   );
 }
