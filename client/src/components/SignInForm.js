@@ -14,7 +14,15 @@ function SignInForm() {
     },
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
+      fetch('/login', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data))
       resetForm({ values: "" });
     },
   });

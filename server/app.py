@@ -4,6 +4,11 @@ from sqlalchemy.exc import IntegrityError
 from werkzeug.exceptions import NotFound, Unauthorized
 from config import app, db, api
 from models import User
+from flask_cors import CORS
+
+
+CORS(app)
+
 
 class Signup(Resource):
 
@@ -12,28 +17,27 @@ class Signup(Resource):
         data = request.get_json()
 
         new_user = User(
-            first_name=data.get['first_name'],
-            last_name=data.get['last_name'],
-            email=data.get['email']
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            email=data['email']
         )
 
         new_user.password_hash = data['password']
 
-        try:
-            db.session.add(new_user)
-            db.session.commit()
+        
+        db.session.add(new_user)
+        db.session.commit()
 
-            session['user_id'] = user.id
+        # session['user_id'] = new_user.id
 
-            response = make_response(
-                new_user.to_dict(),
-                201
-            )
-            return response
+        # response_body = {'message': f'Hello, {new_user.first_name}'}
 
-        except IntegrityError:
+        response = make_response(
+            new_user.to_dict(),
+            201
+        )
+        return response
 
-            return {'error': '422'}, 422
 
 
 class AuthorizedSession(Resource):
