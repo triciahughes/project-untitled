@@ -1,9 +1,11 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 import YupPassword from "yup-password";
+import { useHistory } from "react-router-dom";
 YupPassword(yup);
 
 function SignUpForm() {
+  const history = useHistory();
   const formSchema = yup.object().shape({
     first_name: yup.string().required("Must enter first name."),
     last_name: yup.string().required("Must enter last name."),
@@ -22,16 +24,17 @@ function SignUpForm() {
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) => {
       debugger;
-      fetch('/signup', {
-        method: 'POST',
+      fetch("/signup", {
+        method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(values)
+        body: JSON.stringify(values),
       })
         .then((res) => res.json())
         .then((data) => console.log(data))
-      // resetForm({ values: "" });
+        .then(history.push("/"));
+      resetForm({ values: "" });
     },
   });
 
