@@ -1,7 +1,9 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useHistory } from "react-router-dom";
 
 function SignInForm() {
+  const history = useHistory();
   const formSchema = yup.object().shape({
     email: yup.string().required("Must enter email.").email("Invalid email"),
     password: yup.string().required("Must enter password."),
@@ -14,15 +16,16 @@ function SignInForm() {
     },
     validationSchema: formSchema,
     onSubmit: (values, { resetForm }) => {
-      fetch('/login', {
-        method: 'POST',
+      fetch("/login", {
+        method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(values)
+        body: JSON.stringify(values),
       })
         .then((res) => res.json())
         .then((data) => console.log(data))
+        .then(history.push("/"));
       resetForm({ values: "" });
     },
   });
