@@ -75,8 +75,31 @@ input[type="password"]:hover {
   background-color: #d9d9d9;
 }
 input[type="submit"]:hover {
-  background-color: #ac4022;
+  background-color: #8c8d7b;
 }
+
+div.button {
+  margin-top: -55px;
+  margin-left: 30%;
+}
+
+button.sign-up {
+  border: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  width: 95px;
+  height: 35px;
+  color: #dec9bb;
+  background: #795645;
+  border-radius: 6px;
+}
+
+button:hover {
+  background-color: #a88575;
+}
+
 h1 {
   text-align: center;
 }
@@ -85,7 +108,14 @@ h1.signup {
   text-align: center;
   color: #57584c;
 }
+h2.noaccount {
+  margin-top: 5%;
+  margin-left: -95%;
+  font-size: 15px;
+  text-align: center;
+  color: #57584c;
+}
 
 p.error {
-  color: #ac4022;
+  color: #e55730;
 }
