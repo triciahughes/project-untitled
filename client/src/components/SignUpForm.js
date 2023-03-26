@@ -40,7 +40,7 @@ function SignUpForm() {
 
   return (
     <>
-      <h1>Please Sign Up:</h1>
+      <h1 className="signup">Please Sign Up:</h1>
       <form onSubmit={formik.handleSubmit}>
         <label>
           First Name:
