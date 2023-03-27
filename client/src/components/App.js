@@ -2,14 +2,20 @@ import { useEffect } from "react";
 import { Route } from "react-router-dom";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
+import Groups from "./Groups";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [groups, setGroups] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
+    fetch("/groups")
+      .then((res) => res.json())
+      .then((data) => setGroups(data.results));
+
     fetch("/authorized").then((res) => {
       if (res.ok) {
         res
@@ -42,10 +48,11 @@ function App() {
         <SignUpForm />
       </Route>
       <Route exact path="/">
-        <h1>Hello, you're on the homepage!</h1>
+        <h1>Hello, you're on the homepage!!!!</h1>
         <button className="input-btn" onClick={handleLogout}>
           Log Out
         </button>
+        <Groups groups={groups} participants={groups} />
       </Route>
     </>
   );

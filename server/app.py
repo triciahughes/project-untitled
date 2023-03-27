@@ -8,8 +8,8 @@ from flask_cors import CORS
 
 # import os
 
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 
 CORS(app)
