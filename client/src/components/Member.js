@@ -1,5 +1,5 @@
-function Participant() {
+function Member() {
   return <></>;
 }
 
-export default Participant;
+export default Member;

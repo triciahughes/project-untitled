@@ -8,14 +8,9 @@ import { useState } from "react";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [groups, setGroups] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
-    fetch("/groups")
-      .then((res) => res.json())
-      .then((data) => setGroups(data.results));
-
     fetch("/authorized").then((res) => {
       if (res.ok) {
         res
@@ -52,7 +47,7 @@ function App() {
         <button className="input-btn" onClick={handleLogout}>
           Log Out
         </button>
-        <Groups groups={groups} participants={groups} />
+        <Groups user={user} />
       </Route>
     </>
   );
