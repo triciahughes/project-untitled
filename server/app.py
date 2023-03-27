@@ -53,12 +53,15 @@ class AuthorizedSession(Resource):
         if session.get('user_id'):
 
             user = User.query.filter(User.id == session['user_id']).first()
+            print(user)
 
             response = make_response(
                 user.to_dict(),
                 200
             )
             return response
+        
+        print("Did not find user.")
 
         return {'error': '401 Unauthorized'}, 401
 

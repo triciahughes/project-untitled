@@ -1,8 +1,8 @@
-function Host({ key, name }) {
+function Host({ name }) {
   return (
     <>
       <div>
-        <li key={key}>{name}</li>
+        <li>{name}</li>
       </div>
     </>
   );

@@ -5,13 +5,15 @@ import { useState, useEffect } from "react";
 function Groups({ user }) {
   const [groups, setGroups] = useState([]);
 
+  console.log(user)
+
   useEffect(() => {
     fetch(`/host/9`)
       .then((res) => res.json())
-      .then((data) => setGroups(data));
+      .then((data) => setGroups(data))
   }, []);
 
-  console.log(groups);
+  console.log(groups)
 
   const groupsList = groups.map((groupObj) => (
     <Host key={groupObj.id} name={groupObj.name} />
