@@ -1,12 +1,12 @@
 import Host from "./Host";
-import Participant from "./Participant";
-function Groups({ groups, participants }) {
+import Member from "./Member";
+function Groups({ groups, members }) {
   const groupsList = groups.map((groupObj) => (
     <Host key={groupObj.id} name={groupObj.name} />
   ));
 
-  const participantList = participants.map((partObj) => (
-    <Participant
+  const memberList = members.map((partObj) => (
+    <Member
       key={partObj.id}
       first_name={partObj.first_name}
       last_name={partObj.last_name}
@@ -21,7 +21,7 @@ function Groups({ groups, participants }) {
       </div>
       <div>
         <h1>Here's groups you're a member of:</h1>
-        <ul>{participantList}</ul>
+        <ul>{memberList}</ul>
       </div>
     </>
   );
