@@ -2,8 +2,8 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.ext.associationproxy import association_proxy
 from config import db, bcrypt
-
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
@@ -16,6 +16,10 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String)
     _password_hash = db.Column(db.String)
 
+    groups = db.relationship('Group', backref='user')
+
+    # groups = association_proxy('members', 'group')
+    # memberships = db.relationship('Member', backref='user', cascade="all, delete, delete-orphan")
 
     @hybrid_property
     def password_hash(self):
@@ -35,3 +39,26 @@ class User(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<User: {self.first_name} {self.last_name}>'
+    
+# class Member(db.Model, SerializerMixin):
+#     __tablename__ = 'members'
+
+#     id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+#     group_id = db.Column(db.Integer, db.ForeignKey('groups.id'))
+
+class Group(db.Model, SerializerMixin):
+    __tablename__ = 'groups'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    host_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    # users = association_proxy('members', 'user')
+    # memberships = db.relationship('Member', backref='group', cascade="all, delete, delete-orphan")
+    
+    def __repr__(self):
+        return f'<Group: {self.name} Host ID: {self.host_id}>'
+
+
+
