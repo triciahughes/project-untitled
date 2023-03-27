@@ -17,14 +17,14 @@ function App() {
           .json()
           .then(
             (user) => setUser(user),
-            console.log("session working").then(console.log(user))
+            console.log(user)
           );
       } else {
         setUser(null);
         history.push("/signin");
       }
     });
-  }, [history, user]);
+  }, []);
 
   function handleLogout() {
     fetch("/logout", {
@@ -37,7 +37,7 @@ function App() {
   return (
     <>
       <Route path="/signin">
-        <SignInForm />
+        <SignInForm setUser={setUser}/>
       </Route>
       <Route path="/signup">
         <SignUpForm />
