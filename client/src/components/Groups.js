@@ -1,19 +1,20 @@
 import Host from "./Host";
 import Member from "./Member";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
-function Groups({ user }) {
-  const [groups, setGroups] = useState([]);
+function Groups({ user, groups }) {
+  // const [groups, setGroups] = useState([]);
 
-  console.log(user)
+  // console.log(user);
+  // console.log(groups);
 
-  useEffect(() => {
-    fetch(`/host/9`)
-      .then((res) => res.json())
-      .then((data) => setGroups(data))
-  }, []);
+  // useEffect(() => {
+  //   fetch(`/host/9`)
+  //     .then((res) => res.json())
+  //     .then((data) => setGroups(data))
+  // }, []);
 
-  console.log(groups)
+  // console.log(groups)
 
   const groupsList = groups.map((groupObj) => (
     <Host key={groupObj.id} name={groupObj.name} />
