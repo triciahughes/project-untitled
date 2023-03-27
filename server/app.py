@@ -1,4 +1,4 @@
-from flask import Flask, request, session, make_response, jsonify
+from flask import Flask, request, session, make_response, jsonify, abort
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from werkzeug.exceptions import NotFound, Unauthorized
@@ -28,9 +28,7 @@ class Signup(Resource):
         db.session.add(new_user)
         db.session.commit()
 
-        # session['user_id'] = new_user.id
-
-        # response_body = {'message': f'Hello, {new_user.first_name}'}
+        session['user_id'] = new_user.id
 
         response = make_response(
             new_user.to_dict(),
@@ -66,13 +64,19 @@ class Login(Resource):
 
         user = User.query.filter(User.email == email).first()
 
-        if user:
-            if user.authenticate(password):
+            
+        if user.authenticate(data['password']):
 
-                session['user_id'] = user.id
-                return user.to_dict()
+            session['user_id'] = user.id
 
-            return {'error': '401 Unauthorized'}, 401
+            response = make_response(
+                user.to_dict(),
+                200
+            )
+            return response
+        return {'error' : "Invalid Username or Password"}, 401
+                
+
 
 class Logout(Resource):
 
