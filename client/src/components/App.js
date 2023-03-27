@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
@@ -22,6 +22,14 @@ function App() {
     });
   }, []);
 
+  function handleLogout() {
+    fetch('/logout', {
+      method: 'DELETE'
+    })
+    .then(setUser(null))
+    .then(history.push('/signin'))
+  }
+
   return (
     <>
       <Route path="/signin">
@@ -32,6 +40,7 @@ function App() {
       </Route>
       <Route exact path="/">
         <h1>Hello, you're on the homepage!</h1>
+        <button className='input-btn' onClick={handleLogout}>Log Out</button>
       </Route>
     </>
   );
