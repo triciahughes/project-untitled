@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Route } from "react-router-dom";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
+import Groups from "./Groups";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
@@ -42,10 +43,11 @@ function App() {
         <SignUpForm />
       </Route>
       <Route exact path="/">
-        <h1>Hello, you're on the homepage!</h1>
+        <h1>Hello, you're on the homepage!!!!</h1>
         <button className="input-btn" onClick={handleLogout}>
           Log Out
         </button>
+        <Groups user={user} />
       </Route>
     </>
   );
