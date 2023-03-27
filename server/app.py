@@ -1,4 +1,4 @@
-from flask import Flask, request, session, make_response, jsonify, abort
+from flask import Flask, request, session, make_response, jsonify, abort, render_template
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from werkzeug.exceptions import NotFound, Unauthorized
@@ -6,8 +6,19 @@ from config import app, db, api
 from models import User
 from flask_cors import CORS
 
+# import os
+
+from dotenv import load_dotenv
+load_dotenv()
+
 
 CORS(app)
+
+@app.route('/')
+@app.route('/<int:id>')
+def index(id=0):
+    return render_template("index.html")
+
 
 
 class Signup(Resource):
@@ -102,6 +113,7 @@ api.add_resource(Signup, '/signup')
 api.add_resource(AuthorizedSession, '/authorized')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
