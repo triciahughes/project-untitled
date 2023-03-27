@@ -2,8 +2,10 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useHistory, Link } from "react-router-dom";
 import img from "../welcome-logo.png";
+import { useState } from "react";
 
 function SignInForm() {
+  const [error, setError] = useState(false);
   const history = useHistory();
   const formSchema = yup.object().shape({
     email: yup
@@ -21,18 +23,23 @@ function SignInForm() {
     validationSchema: formSchema,
     validateOnChange: false,
     validateOnBlur: false,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
       fetch("/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data))
-        .then(history.push("/"));
-      resetForm({ values: "" });
+      }).then((res) => {
+        if (res.ok) {
+          res
+            .json()
+            .then((data) => console.log(data))
+            .then(history.push("/"));
+        } else {
+          res.json().then((error) => setError(error));
+        }
+      });
     },
   });
 
@@ -40,6 +47,7 @@ function SignInForm() {
     <>
       <h1>Please Sign In</h1>
       <img className="box" src={img} alt="logo"></img>
+      {error["error"] ? <p className="error">{error["error"]}</p> : null}
       <form onSubmit={formik.handleSubmit} className="box">
         <label>
           Email:
