@@ -8,7 +8,7 @@ from config import db, bcrypt
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    serialize_rules = ('-_password_hash', '-groups')
+    serialize_rules = ('-_password_hash', '-host_groups', '-member_groups', '-memberships')
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String, nullable=False)
@@ -16,10 +16,11 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String)
     _password_hash = db.Column(db.String)
 
-    groups = db.relationship('Group', backref='user')
+    host_groups = db.relationship('Group', backref='user')
+    member_groups = association_proxy('memberships', 'group')
 
-    # groups = association_proxy('members', 'group')
-    # memberships = db.relationship('Member', backref='user', cascade="all, delete, delete-orphan")
+    # Set up relationship between users and groups
+    memberships = db.relationship('Member', backref='user', cascade="all, delete, delete-orphan")
 
     @hybrid_property
     def password_hash(self):
@@ -40,22 +41,29 @@ class User(db.Model, SerializerMixin):
     def __repr__(self):
         return f'<User: {self.first_name} {self.last_name}>'
     
-# class Member(db.Model, SerializerMixin):
-#     __tablename__ = 'members'
+class Member(db.Model, SerializerMixin):
+    __tablename__ = 'members'
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     group_id = db.Column(db.Integer, db.ForeignKey('groups.id'))
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    group_id = db.Column(db.Integer, db.ForeignKey('groups.id'))
+
+    def __repr__(self):
+        return f'<User ID: {self.user_id} Group ID: {self.group_id}>'
 
 class Group(db.Model, SerializerMixin):
     __tablename__ = 'groups'
+
+    serialize_rules = ('-member_details', '-memberships', '-user')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     host_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    # users = association_proxy('members', 'user')
-    # memberships = db.relationship('Member', backref='group', cascade="all, delete, delete-orphan")
+    member_details = association_proxy('memberships', 'user')
+
+    # Set up relationship between users and groups
+    memberships = db.relationship('Member', backref='group', cascade="all, delete, delete-orphan")
     
     def __repr__(self):
         return f'<Group: {self.name} Host ID: {self.host_id}>'

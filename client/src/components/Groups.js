@@ -5,19 +5,18 @@ import memberimg from "../member.png";
 import Member from "./Member";
 import { useState, useEffect } from "react";
 
-function Groups({ groups }) {
+function Groups({ hostGroups, memberGroups }) {
   return (
     <>
       <img alt="host symbol" src={hostimg} className="hostimg"></img>
       <div>
-        <Host groups={groups} />
+        <Host groups={hostGroups} />
       </div>
+      <img alt="host symbol" src={memberimg} className="memberimg"></img>
       <div>
-        <img alt="host symbol" src={memberimg} className="memberimg"></img>
-        <ul>memberList</ul>
+        <Member groups={memberGroups} />
       </div>
     </>
   );
 }
-
 export default Groups;

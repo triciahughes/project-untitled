@@ -50,7 +50,7 @@ class AuthorizedSession(Resource):
         if user:
 
             response = make_response(
-                jsonify(user.to_dict()),
+                jsonify(user.to_dict(rules = ('host_groups', 'member_groups'))),
                 200
             )
             return response
@@ -75,7 +75,7 @@ class Login(Resource):
             session['user_id'] = user.id
 
             response = make_response(
-                user.to_dict(),
+                user.to_dict(rules = ('host_groups', 'member_groups')),
                 200
             )
             return response
@@ -108,7 +108,20 @@ class HostGroups(Resource):
         )
 
         return response
+    
+class MemberGroups(Resource):
+    def get(self, id):
 
+        user = User.query.filter(User.id == id).first()
+        groups = [group.to_dict() for group in user.member_groups]
+
+        response = make_response(
+            groups,
+            200
+        )
+
+        return response
+        
 @app.errorhandler(NotFound)
 def handle_not_found(e):
     response = make_response(
@@ -122,6 +135,7 @@ api.add_resource(AuthorizedSession, '/authorized')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 api.add_resource(HostGroups, '/host/<int:id>')
+api.add_resource(MemberGroups, '/membership/<int:id>')
 
 
 if __name__ == '__main__':

@@ -1,9 +1,10 @@
 from app import app
-from models import db, User, Group
+from models import db, User, Group, Member
 
 with app.app_context():
     Group.query.delete()
     User.query.delete()
+    Member.query.delete()
     db.session.commit()
 
     print("Seeding users...")
@@ -29,5 +30,16 @@ with app.app_context():
     db.session.add_all([group1, group2, group3, group4, group5, group6])
     db.session.commit()
 
+    print("Seeding members...")
+    member1 = Member(user_id=user2.id, group_id=group1.id)
+    member2 = Member(user_id=user2.id, group_id=group2.id)
+    member3 = Member(user_id=user2.id, group_id=group3.id)
+    member4 = Member(user_id=user2.id, group_id=group4.id)
+    member5 = Member(user_id=user1.id, group_id=group5.id)
+    member6 = Member(user_id=user1.id, group_id=group6.id)
+
+    db.session.add_all([member1, member2, member3, member4, member5, member6])
+    db.session.commit()
+    
     print("Seeding done!")
 
