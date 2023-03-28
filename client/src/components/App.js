@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     fetchUser();
-  }, [setUser]);
+  }, []);
 
   function fetchUser() {
     fetch("/authorized").then((res) => {
@@ -65,7 +65,7 @@ function App() {
         <button className="sign-out" onClick={handleLogout}>
           Log Out
         </button>
-        <h1>Hello, you're on the homepage!!!!</h1>
+        <h1>Welcome, {user.first_name}!</h1>
         <Groups hostGroups={hostGroups} memberGroups={memberGroups} />
       </Route>
     </>
