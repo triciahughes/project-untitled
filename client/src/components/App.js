@@ -7,64 +7,56 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState([]);
   const [groups, setGroups] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
     fetchUser();
-    console.log("test");
     // fetchGroups();
   }, []);
 
-  const fetchUser = () => {
-    console.log("Fetch User happening");
+  function fetchUser() {
     fetch("/authorized").then((res) => {
       if (res.ok) {
-        res
-          .json()
-          .then(
-            (user) => setUser(user),
-            console.log(user.id),
-            fetchGroups(user.id)
-          );
+        res.json().then((userData) => {
+          setUser(userData);
+          fetchGroups(userData);
+        });
       } else {
-        setUser(null);
+        setUser([]);
         history.push("/signin");
       }
     });
-  };
+  }
 
-  const fetchGroups = () => {
-    console.log("Fetch Groups happening");
-    fetch(`/host/9`)
+  function fetchGroups(userData) {
+    fetch(`/host/${userData.id}`)
       .then((res) => res.json())
-      .then((groupData) => setGroups(groupData), console.log(groups));
-  };
+      .then((groupData) => setGroups(groupData));
+  }
 
+  ///////// keep ///////
   // useEffect(() => {
+  //   // history.push("/");
+
   //   fetch("/authorized").then((res) => {
   //     if (res.ok) {
   //       res.json().then((user) => setUser(user), console.log(user));
   //     } else {
-  //       setUser(null);
+  //       setUser([]);
   //       history.push("/signin");
   //     }
   //   });
   // }, []);
 
-  // useEffect(() => {
-  //   fetch(`/host/${user.id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setGroups(data));
-  // }, []);
-
   function handleLogout() {
     fetch("/logout", {
       method: "DELETE",
-    })
-      .then(setUser(null))
-      .then(history.push("/signin"));
+    }).then(() => {
+      setUser([]);
+      history.push("/signin");
+    });
   }
 
   return (
@@ -80,7 +72,7 @@ function App() {
         <button className="input-btn" onClick={handleLogout}>
           Log Out
         </button>
-        <Groups user={user} groups={groups} />
+        <Groups groups={groups} />
       </Route>
     </>
   );

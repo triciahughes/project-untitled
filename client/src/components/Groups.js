@@ -1,37 +1,35 @@
 import Host from "./Host";
 import Member from "./Member";
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-function Groups({ user, groups }) {
+function Groups({ groups }) {
   // const [groups, setGroups] = useState([]);
 
-  // console.log(user);
-  // console.log(groups);
+  // const userId = user.id;
 
   // useEffect(() => {
-  //   fetch(`/host/9`)
+  //   fetch(`/host/${userId}`)
   //     .then((res) => res.json())
-  //     .then((data) => setGroups(data))
+  //     .then((data) => setGroups(data), console.log(`inside fetch: ${groups}`));
   // }, []);
 
-  // console.log(groups)
+  // console.dir(groups);
 
-  const groupsList = groups.map((groupObj) => (
-    <Host key={groupObj.id} name={groupObj.name} />
-  ));
+  // const groupMap = groups.map((element) => {
+  //   return element.id && element.name;
+  // });
 
-  // const memberList = members.map((partObj) => (
-  //   <Member
-  //     key={partObj.id}
-  //     first_name={partObj.first_name}
-  //     last_name={partObj.last_name}
-  //   />
-  // ));
+  // console.log(groupMap);
+
+  // const groupForEach = groupMap.forEach((element) => {
+  //   <Host key={element.id} name={element} />;
+  // });
+
   return (
     <>
       <div>
         <h1>Here's groups you host:</h1>
-        <ul>{groupsList}</ul>
+        <Host groups={groups} />
       </div>
       <div>
         <h1>Here's groups you're a member of:</h1>
