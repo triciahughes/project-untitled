@@ -50,7 +50,7 @@ class AuthorizedSession(Resource):
         if user:
 
             response = make_response(
-                jsonify(user.to_dict()),
+                jsonify(user.to_dict(rules = ('host_groups', 'member_groups'))),
                 200
             )
             return response
@@ -75,7 +75,7 @@ class Login(Resource):
             session['user_id'] = user.id
 
             response = make_response(
-                user.to_dict(),
+                user.to_dict(rules = ('host_groups', 'member_groups')),
                 200
             )
             return response
