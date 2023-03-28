@@ -1,20 +1,22 @@
 import Host from "./Host";
+import hostimg from "../host.png";
+import memberimg from "../member.png";
+
 import Member from "./Member";
 import { useState, useEffect } from "react";
 
 function Groups({ hostGroups, memberGroups }) {
   return (
     <>
+      <img alt="host symbol" src={hostimg} className="hostimg"></img>
       <div>
-        <h1>Here's groups you host:</h1>
         <Host groups={hostGroups} />
       </div>
+      <img alt="host symbol" src={memberimg} className="memberimg"></img>
       <div>
-        <h1>Here's groups you're a member of:</h1>
         <Member groups={memberGroups} />
       </div>
     </>
   );
 }
-
 export default Groups;
