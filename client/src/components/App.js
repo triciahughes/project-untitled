@@ -1,10 +1,9 @@
-import { useEffect } from "react";
 import { Route } from "react-router-dom";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import Groups from "./Groups";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 function App() {
   const [user, setUser] = useState([]);
@@ -12,9 +11,11 @@ function App() {
   const [memberGroups, setMemberGroups] = useState([])
   const history = useHistory();
 
+  const userFetch = useCallback(fetchUser, [history])
+
   useEffect(() => {
-    fetchUser();
-  }, []);
+    userFetch()
+  }, [userFetch]);
 
   function fetchUser() {
     fetch("/authorized").then((res) => {
