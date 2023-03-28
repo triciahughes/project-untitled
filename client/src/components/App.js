@@ -13,7 +13,6 @@ function App() {
 
   useEffect(() => {
     fetchUser();
-    // fetchGroups();
   }, [setUser]);
 
   function fetchUser() {
@@ -36,20 +35,6 @@ function App() {
       .then((res) => res.json())
       .then((groupData) => setGroups(groupData));
   }
-
-  ///////// keep ///////
-  // useEffect(() => {
-  //   // history.push("/");
-
-  //   fetch("/authorized").then((res) => {
-  //     if (res.ok) {
-  //       res.json().then((user) => setUser(user), console.log(user));
-  //     } else {
-  //       setUser([]);
-  //       history.push("/signin");
-  //     }
-  //   });
-  // }, []);
 
   function handleLogout() {
     fetch("/logout", {

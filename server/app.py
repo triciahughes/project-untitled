@@ -6,11 +6,6 @@ from config import app, db, api
 from models import User, Group
 from flask_cors import CORS
 
-# import os
-
-# from dotenv import load_dotenv
-# load_dotenv()
-
 CORS(app)
 
 @app.route('/')

@@ -37,7 +37,6 @@ function SignInForm({ setUser, fetchUser }) {
             fetchUser();
             history.push("/");
           });
-          // .then(history.push("/"));
         } else {
           res.json().then((error) => setError(error));
         }
