@@ -3,14 +3,8 @@ from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from werkzeug.exceptions import NotFound, Unauthorized
 from config import app, db, api
-from models import User
+from models import User, Group
 from flask_cors import CORS
-
-# import os
-
-from dotenv import load_dotenv
-load_dotenv()
-
 
 CORS(app)
 
@@ -18,8 +12,6 @@ CORS(app)
 @app.route('/<int:id>')
 def index(id=0):
     return render_template("index.html")
-
-
 
 class Signup(Resource):
 
@@ -53,15 +45,17 @@ class AuthorizedSession(Resource):
 
     def get(self):
 
-        if session.get('user_id'):
+        user = User.query.filter(User.id == session.get('user_id')).first()
 
-            user = User.query.filter(User.id == session['user_id']).first()
+        if user:
 
             response = make_response(
-                user.to_dict(),
+                jsonify(user.to_dict(rules = ('host_groups', 'member_groups'))),
                 200
             )
             return response
+        
+        print("Did not find user.")
 
         return {'error': '401 Unauthorized'}, 401
 
@@ -81,7 +75,7 @@ class Login(Resource):
             session['user_id'] = user.id
 
             response = make_response(
-                user.to_dict(),
+                user.to_dict(rules = ('host_groups', 'member_groups')),
                 200
             )
             return response
@@ -100,7 +94,34 @@ class Logout(Resource):
             return {}, 204
 
         return {'error': '401 Unauthorized'}, 401
+    
+class HostGroups(Resource):
+    def get(self, id):
+        groups = [group.to_dict() for group in Group.query.filter(Group.host_id == id).all()]
 
+        if not groups:
+            pass
+
+        response = make_response(
+            groups, 
+            200
+        )
+
+        return response
+    
+class MemberGroups(Resource):
+    def get(self, id):
+
+        user = User.query.filter(User.id == id).first()
+        groups = [group.to_dict() for group in user.member_groups]
+
+        response = make_response(
+            groups,
+            200
+        )
+
+        return response
+        
 @app.errorhandler(NotFound)
 def handle_not_found(e):
     response = make_response(
@@ -113,6 +134,8 @@ api.add_resource(Signup, '/signup')
 api.add_resource(AuthorizedSession, '/authorized')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
+api.add_resource(HostGroups, '/host/<int:id>')
+api.add_resource(MemberGroups, '/membership/<int:id>')
 
 
 if __name__ == '__main__':

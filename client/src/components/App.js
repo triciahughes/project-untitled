@@ -2,50 +2,71 @@ import { useEffect } from "react";
 import { Route } from "react-router-dom";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
+import Groups from "./Groups";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState([]);
+  const [hostGroups, setHostGroups] = useState([]);
+  const [memberGroups, setMemberGroups] = useState([])
   const history = useHistory();
 
   useEffect(() => {
+    fetchUser();
+  }, []);
+
+  function fetchUser() {
     fetch("/authorized").then((res) => {
       if (res.ok) {
-        res
-          .json()
-          .then(
-            (user) => setUser(user),
-            console.log("session working").then(console.log(user))
-          );
+        res.json().then((userData) => {
+          setUser(userData);
+          fetchGroups(userData);
+          history.push("/");
+        });
       } else {
-        setUser(null);
+        setUser([]);
         history.push("/signin");
       }
     });
-  }, [history, user]);
+  }
+
+  function fetchGroups(userData) {
+    fetch(`/host/${userData.id}`)
+      .then((res) => res.json())
+      .then((groupData) => setHostGroups(groupData));
+    
+    fetch(`/membership/${userData.id}`)
+      .then((res) => res.json())
+      .then((groupData) => setMemberGroups(groupData))
+  }
 
   function handleLogout() {
     fetch("/logout", {
       method: "DELETE",
-    })
-      .then(setUser(null))
-      .then(history.push("/signin"));
+    }).then(() => {
+      setUser([]);
+      setHostGroups([]);
+      setMemberGroups([])
+      fetchUser();
+      history.push("/signin");
+    });
   }
 
   return (
     <>
       <Route path="/signin">
-        <SignInForm />
+        <SignInForm setUser={setUser} fetchUser={fetchUser} />
       </Route>
       <Route path="/signup">
         <SignUpForm />
       </Route>
       <Route exact path="/">
-        <h1>Hello, you're on the homepage!</h1>
-        <button className="input-btn" onClick={handleLogout}>
+        <button className="sign-out" onClick={handleLogout}>
           Log Out
         </button>
+        <h1>Welcome, {user.first_name}!</h1>
+        <Groups hostGroups={hostGroups} memberGroups={memberGroups} />
       </Route>
     </>
   );

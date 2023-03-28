@@ -4,7 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import img from "../welcome-logo.png";
 import { useState } from "react";
 
-function SignInForm() {
+function SignInForm({ setUser, fetchUser }) {
   const [error, setError] = useState(false);
   const history = useHistory();
   const formSchema = yup.object().shape({
@@ -32,10 +32,11 @@ function SignInForm() {
         body: JSON.stringify(values),
       }).then((res) => {
         if (res.ok) {
-          res
-            .json()
-            .then((data) => console.log(data))
-            .then(history.push("/"));
+          res.json().then((user) => {
+            setUser(user);
+            fetchUser();
+            history.push("/");
+          });
         } else {
           res.json().then((error) => setError(error));
         }
