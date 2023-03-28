@@ -7,37 +7,50 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState([]);
+  const [groups, setGroups] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
+    fetchUser();
+  }, [setUser]);
+
+  function fetchUser() {
     fetch("/authorized").then((res) => {
       if (res.ok) {
-        res
-          .json()
-          .then(
-            (user) => setUser(user),
-            console.log(user)
-          );
+        res.json().then((userData) => {
+          setUser(userData);
+          fetchGroups(userData);
+          history.push("/");
+        });
       } else {
-        setUser(null);
+        setUser([]);
         history.push("/signin");
       }
     });
-  }, []);
+  }
+
+  function fetchGroups(userData) {
+    fetch(`/host/${userData.id}`)
+      .then((res) => res.json())
+      .then((groupData) => setGroups(groupData));
+  }
 
   function handleLogout() {
     fetch("/logout", {
       method: "DELETE",
-    })
-      .then(setUser(null))
-      .then(history.push("/signin"));
+    }).then(() => {
+      setUser([]);
+      setGroups([]);
+      fetchUser();
+      history.push("/signin");
+    });
   }
 
   return (
     <>
       <Route path="/signin">
-        <SignInForm setUser={setUser}/>
+        <SignInForm setUser={setUser} fetchUser={fetchUser} />
       </Route>
       <Route path="/signup">
         <SignUpForm />
@@ -47,7 +60,7 @@ function App() {
         <button className="input-btn" onClick={handleLogout}>
           Log Out
         </button>
-        <Groups user={user} />
+        <Groups groups={groups} />
       </Route>
     </>
   );

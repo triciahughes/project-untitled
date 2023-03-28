@@ -6,11 +6,6 @@ from config import app, db, api
 from models import User, Group
 from flask_cors import CORS
 
-# import os
-
-# from dotenv import load_dotenv
-# load_dotenv()
-
 CORS(app)
 
 @app.route('/')
@@ -50,13 +45,12 @@ class AuthorizedSession(Resource):
 
     def get(self):
 
-        if session.get('user_id'):
+        user = User.query.filter(User.id == session.get('user_id')).first()
 
-            user = User.query.filter(User.id == session['user_id']).first()
-            print(user)
+        if user:
 
             response = make_response(
-                user.to_dict(),
+                jsonify(user.to_dict()),
                 200
             )
             return response
