@@ -114,14 +114,8 @@ class MemberGroups(Resource):
 
         user = User.query.filter(User.id == id).first()
 
-        groups = [group.to_dict(rules=('-user',)) for group in user.member_groups]
-        print(groups)
-
-        if not groups:
-            pass
-
         response = make_response(
-            groups,
+            user.to_dict(rules = ('host_groups', 'member_groups')),
             200
         )
 
