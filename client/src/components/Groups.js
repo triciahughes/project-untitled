@@ -3,7 +3,6 @@ import hostimg from "../host.png";
 import memberimg from "../member.png";
 
 import Member from "./Member";
-import { useState, useEffect } from "react";
 
 function Groups({ hostGroups, memberGroups }) {
   return (
