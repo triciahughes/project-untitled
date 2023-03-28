@@ -16,6 +16,31 @@ img {
   image-rendering: optimizeQuality;
 }
 
+.hostimg {
+  /* display: inline-block; */
+  display: block;
+  flex-flow: row wrap;
+  image-rendering: optimizeQuality;
+  height: 200px;
+  width: 400px;
+  position: relative;
+  margin: 0 auto;
+  animation: fade-in 2000ms;
+  opacity: 1;
+}
+.memberimg {
+  /* display: inline-block; */
+  display: block;
+  flex-flow: row wrap;
+  image-rendering: optimizeQuality;
+  height: 200px;
+  width: 450px;
+  position: relative;
+  margin: 0 auto;
+  animation: fade-in 2000ms;
+  opacity: 1;
+}
+
 body {
   background-color: #dec9bb;
   /* text-align: center; */
@@ -95,12 +120,35 @@ button.sign-up {
   background: #795645;
   border-radius: 6px;
 }
+button.sign-out {
+  border: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  bottom: 1;
+  width: 95px;
+  height: 35px;
+  color: #dec9bb;
+  background: #795645;
+  border-radius: 6px;
+}
+
+button.sign-out:hover {
+  background-color: #e55730;
+}
 
 button:hover {
   background-color: #a88575;
 }
 
 h1 {
+  text-align: center;
+}
+
+h3 {
+  color: #44453c;
   text-align: center;
 }
 
@@ -118,4 +166,35 @@ h2.noaccount {
 
 p.error {
   color: #e55730;
+}
+
+.grid {
+  column-count: 4;
+  column-gap: 5%;
+  flex-flow: row wrap;
+  -webkit-column-width: 150px;
+  -moz-column-width: 150px;
+  column-width: 150px;
+}
+.grid > * {
+  margin: 0 0 1rem;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 10px;
+  animation: fade-in 2000ms;
+}
+
+p.host {
+  text-align: center;
+  font-size: large;
+  text-transform: auto;
+  width: 100%;
+  padding: 10px;
+  text-size-adjust: auto;
+}
+
+p.host:hover {
+  background-color: #e7e4e4;
+  color: #57584c;
+  font-weight: bold;
 }

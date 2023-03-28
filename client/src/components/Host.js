@@ -1,12 +1,18 @@
 function Host({ groups }) {
   const groupMap = groups.map((element) => {
-    return <li key={element.id}>{element.name}</li>;
+    return (
+      <p key={element.id} className="host">
+        {element.name}
+      </p>
+    );
   });
 
   return (
     <>
       <div>
-        <ul>{groupMap}</ul>
+        <div>
+          <div className="grid">{groupMap}</div>
+        </div>
       </div>
     </>
   );

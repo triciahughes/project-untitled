@@ -56,10 +56,10 @@ function App() {
         <SignUpForm />
       </Route>
       <Route exact path="/">
-        <h1>Hello, you're on the homepage!!!!</h1>
-        <button className="input-btn" onClick={handleLogout}>
+        <button className="sign-out" onClick={handleLogout}>
           Log Out
         </button>
+        <h1>Hello, you're on the homepage!!!!</h1>
         <Groups groups={groups} />
       </Route>
     </>
