@@ -113,9 +113,10 @@ class MemberGroups(Resource):
     def get(self, id):
 
         user = User.query.filter(User.id == id).first()
+        groups = [group.to_dict() for group in user.member_groups]
 
         response = make_response(
-            user.to_dict(rules = ('host_groups', 'member_groups')),
+            groups,
             200
         )
 

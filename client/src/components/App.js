@@ -8,7 +8,8 @@ import { useState } from "react";
 
 function App() {
   const [user, setUser] = useState([]);
-  const [groups, setGroups] = useState([]);
+  const [hostGroups, setHostGroups] = useState([]);
+  const [memberGroups, setMemberGroups] = useState([])
   const history = useHistory();
 
   useEffect(() => {
@@ -33,7 +34,11 @@ function App() {
   function fetchGroups(userData) {
     fetch(`/host/${userData.id}`)
       .then((res) => res.json())
-      .then((groupData) => setGroups(groupData));
+      .then((groupData) => setHostGroups(groupData));
+    
+    fetch(`/membership/${userData.id}`)
+      .then((res) => res.json())
+      .then((groupData) => setMemberGroups(groupData))
   }
 
   function handleLogout() {
@@ -41,7 +46,8 @@ function App() {
       method: "DELETE",
     }).then(() => {
       setUser([]);
-      setGroups([]);
+      setHostGroups([]);
+      setMemberGroups([])
       fetchUser();
       history.push("/signin");
     });
@@ -60,7 +66,7 @@ function App() {
         <button className="input-btn" onClick={handleLogout}>
           Log Out
         </button>
-        <Groups groups={groups} />
+        <Groups hostGroups={hostGroups} memberGroups={memberGroups} />
       </Route>
     </>
   );
