@@ -46,8 +46,8 @@ function SignInForm({ setUser, fetchUser }) {
 
   return (
     <>
-      <h1>Please Sign In</h1>
       <img className="box" src={img} alt="logo"></img>
+      <h3>Please Sign In</h3>
       {error["error"] ? <p className="error">{error["error"]}</p> : null}
       <form onSubmit={formik.handleSubmit} className="box">
         <label>

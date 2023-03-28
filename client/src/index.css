@@ -154,6 +154,8 @@ h1 {
 h3 {
   color: #44453c;
   text-align: center;
+  font-size: xx-large;
+  animation: fade-in 2000ms;
 }
 
 h1.signup {
