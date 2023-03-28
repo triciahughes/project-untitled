@@ -25,6 +25,8 @@ img {
   width: 400px;
   position: relative;
   margin: 0 auto;
+  margin-top: 5%;
+  margin-bottom: 2%;
   animation: fade-in 2000ms;
   opacity: 1;
 }
@@ -34,9 +36,11 @@ img {
   flex-flow: row wrap;
   image-rendering: optimizeQuality;
   height: 200px;
-  width: 450px;
+  width: 470px;
   position: relative;
   margin: 0 auto;
+  margin-top: 5%;
+  margin-bottom: 3%;
   animation: fade-in 2000ms;
   opacity: 1;
 }
