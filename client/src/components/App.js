@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     fetchUser();
     // fetchGroups();
-  }, []);
+  }, [setUser]);
 
   function fetchUser() {
     fetch("/authorized").then((res) => {
@@ -22,6 +22,7 @@ function App() {
         res.json().then((userData) => {
           setUser(userData);
           fetchGroups(userData);
+          history.push("/");
         });
       } else {
         setUser([]);
@@ -55,6 +56,8 @@ function App() {
       method: "DELETE",
     }).then(() => {
       setUser([]);
+      setGroups([]);
+      fetchUser();
       history.push("/signin");
     });
   }
@@ -62,7 +65,7 @@ function App() {
   return (
     <>
       <Route path="/signin">
-        <SignInForm setUser={setUser} />
+        <SignInForm setUser={setUser} fetchUser={fetchUser} />
       </Route>
       <Route path="/signup">
         <SignUpForm />
