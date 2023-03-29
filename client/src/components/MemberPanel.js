@@ -1,25 +1,23 @@
+import memberPanelImg from "../memberspanel.png";
 function MemberPanel({ members }) {
+  const memberNames = members.map((member) => {
+    const first_name = member.first_name;
+    const last_initial = member.last_name[0] + ".";
+    const memberName = first_name + " " + last_initial;
+    return <p key={member.id}>{memberName}</p>;
+  });
 
-    const memberNames = members.map((member) => {
-        const first_name = member.first_name
-        const last_initial = member.last_name[0] + "."
-        const memberName = first_name + " " + last_initial
-        return (
-            <li key={member.id}>{memberName}</li>
-        )
-    })
-    
-    return (
-        <div id="memberPanel">
-            <h2>Members</h2>
-            <ul>{memberNames}</ul>
-            <button>Add Member</button>
-            <button>New Prompt</button>
-            <button>Choose Book</button>
-        </div>
-    
-    )
-
+  return (
+    <div id="memberPanel">
+      <img alt="members" src={memberPanelImg} className="memberPanel"></img>
+      <p className="memberName">{memberNames}</p>
+      <div className="memberPanel">
+        <button className="memberPanel">Add Member</button>
+        <button className="memberPanel">New Prompt</button>
+        <button className="memberPanel">Choose Book</button>
+      </div>
+    </div>
+  );
 }
 
-export default MemberPanel
+export default MemberPanel;
