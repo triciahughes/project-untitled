@@ -1,12 +1,15 @@
 import MemberPanel from "./MemberPanel";
 import BookPanel from "./BookPanel";
 import DiscussionPanel from "./DiscussionPanel";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function HostGroup() {
   const params = useParams();
-  console.log(params);
+  console.log(params)
+  const groupId = params['groupId']
+
+  
 
   const groupDetails = {
     host_id: 15,
@@ -35,14 +38,22 @@ function HostGroup() {
     featured: true,
   };
 
-  const [selectedGroup, setSelectedGroup] = useState(groupDetails);
-  const [featuredBook, setFeaturedBook] = useState(bookDetails);
+  const [selectedGroup, setSelectedGroup] = useState([]);
+  const [featuredBook, setFeaturedBook] = useState([]);
+
+  useEffect( () => {
+    fetch(`/host_group/${groupId}`)
+        .then(res => res.json())
+        .then(groupData => setSelectedGroup(groupData) && setFeaturedBook(groupData.books[0]))
+    }, [groupId])
 
   return (
     <>
       <h1>{selectedGroup.name}</h1>
       <div className="hostPanels">
-        <MemberPanel members={selectedGroup.member_details} />
+        { (selectedGroup) 
+        ? <MemberPanel members={groupDetails.member_details} />
+        : null}
         <BookPanel book={featuredBook} />
         <DiscussionPanel />
       </div>
