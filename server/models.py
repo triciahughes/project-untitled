@@ -75,6 +75,7 @@ class Group(db.Model, SerializerMixin):
 class Book(db.Model, SerializerMixin):
 
     __tablename__ = 'books'
+    serialize_rules = ('-prompts',)
 
     id = db.Column(db.Integer, primary_key=True)
     group_id = db.Column(db.Integer, db.ForeignKey('groups.id'))
