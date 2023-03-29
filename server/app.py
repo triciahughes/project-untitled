@@ -50,7 +50,7 @@ class AuthorizedSession(Resource):
         if user:
 
             response = make_response(
-                jsonify(user.to_dict(rules = ('host_groups', 'member_groups'))),
+                jsonify(user.to_dict()),
                 200
             )
             return response
@@ -75,7 +75,7 @@ class Login(Resource):
             session['user_id'] = user.id
 
             response = make_response(
-                user.to_dict(rules = ('host_groups', 'member_groups')),
+                user.to_dict(),
                 200
             )
             return response
@@ -97,7 +97,10 @@ class Logout(Resource):
     
 class HostGroups(Resource):
     def get(self, id):
-        groups = [group.to_dict() for group in Group.query.filter(Group.host_id == id).all()]
+        
+        user = User.query.filter(User.id == id).first()
+        
+        groups = [group.to_dict(rules=('member_details',)) for group in user.host_groups]
 
         if not groups:
             pass

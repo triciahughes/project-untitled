@@ -54,7 +54,7 @@ class Member(db.Model, SerializerMixin):
 class Group(db.Model, SerializerMixin):
     __tablename__ = 'groups'
 
-    serialize_rules = ('-member_details', '-memberships', '-user')
+    serialize_rules = ('-member_details', '-memberships', '-user', '-books')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
