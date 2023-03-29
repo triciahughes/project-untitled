@@ -177,7 +177,7 @@ class MemberEdit(Resource):
         db.session.commit()
 
         response = make_response(
-            new_member.to_dict(), 
+            new_member.user.to_dict(),
             201
         )
 

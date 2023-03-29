@@ -35,7 +35,10 @@ function NewMemberForm({ members, setMembers }) {
                 body: JSON.stringify(submission)
             })
                 .then((res) => res.json())
-                .then(newMember => setMembers([...members, newMember]))
+                .then(newMember => {
+                    const updatedArray = [...members, newMember]
+                    setMembers(updatedArray)
+                })
         }
     })
     return (
