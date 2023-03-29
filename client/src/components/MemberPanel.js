@@ -3,7 +3,7 @@ import NewMemberForm from "./NewMemberForm";
 import NewPromptForm from "./NewPromptForm";
 import { useState } from 'react';
 
-function MemberPanel({ members }) {
+function MemberPanel({ members, setMembers }) {
 
   const [addMember, setAddMember] = useState(false)
   const [addPrompt, setAddPrompt] = useState(false)
@@ -33,7 +33,7 @@ function MemberPanel({ members }) {
         <button className="memberPanel" onClick={handleAddMemberClick}>{ (addMember) ? "Close" : "Add Member" }</button>
         <button className="memberPanel"onClick={handleAddPromptClick}>{ (addPrompt) ? "Close" : "New Prompt" }</button>
         <button className="memberPanel">Choose Book</button>
-        { addMember ? <NewMemberForm /> : null}
+        { addMember ? <NewMemberForm members={members} setMembers={setMembers}/> : null}
         { addPrompt ? <NewPromptForm /> : null}
       </div>
     </div>

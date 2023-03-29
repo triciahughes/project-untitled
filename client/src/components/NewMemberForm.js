@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useParams } from "react-router-dom";
 
-function NewMemberForm() {
+function NewMemberForm({ members, setMembers }) {
 
     const params = useParams();
     const groupId = params['groupId']
@@ -35,7 +35,7 @@ function NewMemberForm() {
                 body: JSON.stringify(submission)
             })
                 .then((res) => res.json())
-                .then(data => console.log(data))
+                .then(newMember => setMembers([...members, newMember]))
         }
     })
     return (

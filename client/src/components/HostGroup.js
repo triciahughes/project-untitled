@@ -35,7 +35,7 @@ function HostGroup() {
     <>
       <h1>{selectedGroup.name}</h1>
       <div className="hostPanels">
-        <MemberPanel members={members}/>
+        <MemberPanel members={members} setMembers={setMembers}/>
         <BookPanel book={featuredBook} />
         <DiscussionPanel />
       </div>
