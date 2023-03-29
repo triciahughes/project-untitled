@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 
 function HostGroup() {
   const params = useParams();
-  console.log(params)
   const groupId = params['groupId']
 
   const [selectedGroup, setSelectedGroup] = useState([]);
@@ -36,7 +35,7 @@ function HostGroup() {
     <>
       <h1>{selectedGroup.name}</h1>
       <div className="hostPanels">
-        <MemberPanel members={members} />
+        <MemberPanel members={members}/>
         <BookPanel book={featuredBook} />
         <DiscussionPanel />
       </div>

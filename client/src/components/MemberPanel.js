@@ -1,10 +1,28 @@
 import memberPanelImg from "../memberspanel.png";
+import NewMemberForm from "./NewMemberForm";
+import NewPromptForm from "./NewPromptForm";
+import { useState } from 'react';
+
 function MemberPanel({ members }) {
+
+  const [addMember, setAddMember] = useState(false)
+  const [addPrompt, setAddPrompt] = useState(false)
+
+  function handleAddMemberClick() {
+    setAddMember(!addMember)
+    setAddPrompt(false)
+  }
+
+  function handleAddPromptClick() {
+    setAddPrompt(!addPrompt)
+    setAddMember(false)
+  }
+
   const memberNames = members.map((member) => {
     const first_name = member.first_name;
     const last_initial = member.last_name[0] + ".";
     const memberName = first_name + " " + last_initial;
-    return <p key={member.id}>{memberName}</p>;
+    return <p key={member.id}>{memberName}  <button>x</button></p>;
   });
 
   return (
@@ -12,9 +30,11 @@ function MemberPanel({ members }) {
       <img alt="members" src={memberPanelImg} className="memberPanel"></img>
       <p className="memberName">{memberNames}</p>
       <div className="memberPanel">
-        <button className="memberPanel">Add Member</button>
-        <button className="memberPanel">New Prompt</button>
+        <button className="memberPanel" onClick={handleAddMemberClick}>{ (addMember) ? "Close" : "Add Member" }</button>
+        <button className="memberPanel"onClick={handleAddPromptClick}>{ (addPrompt) ? "Close" : "New Prompt" }</button>
         <button className="memberPanel">Choose Book</button>
+        { addMember ? <NewMemberForm /> : null}
+        { addPrompt ? <NewPromptForm /> : null}
       </div>
     </div>
   );
