@@ -1,4 +1,5 @@
 import MemberPanel from "./MemberPanel";
+import BookPanel from "./BookPanel";
 import { useState} from "react";
 
 function HostGroup() {
@@ -36,6 +37,7 @@ function HostGroup() {
     <>
     <h1>Host Group Rendering!</h1>
     <MemberPanel members={selectedGroup.member_details}/>
+    <BookPanel book={featuredBook}/>
     </>
     ) 
 }
