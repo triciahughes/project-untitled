@@ -121,6 +121,41 @@ class MemberGroups(Resource):
         )
 
         return response
+
+class HostGroupDetails(Resource):
+
+    def get(self, id):
+
+        group = Group.query.filter(Group.id == id).first()
+
+      
+
+        group_dict = group.to_dict()
+
+        response = make_response(
+            group_dict,
+            200
+        )
+
+        return response
+
+class MemberGroupDetails(Resource):
+
+    def get(self, id):
+
+        group = Group.query.filter(Group.id == id).first()
+
+        group_dict = group.to_dict()
+
+        response = make_response(
+            group_dict,
+            200
+        )
+
+        return response
+      
+
+
         
 @app.errorhandler(NotFound)
 def handle_not_found(e):
@@ -136,6 +171,9 @@ api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 api.add_resource(HostGroups, '/host/<int:id>')
 api.add_resource(MemberGroups, '/membership/<int:id>')
+api.add_resource(HostGroupDetails, '/host_group/<int:id>')
+api.add_resource(MemberGroupDetails, '/member_group/<int:id>')
+
 
 
 if __name__ == '__main__':
