@@ -241,7 +241,6 @@ button.memberPanel {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  /* margin-top: 5%; */
   margin-bottom: 15%;
   width: 95px;
   height: 35px;
@@ -260,12 +259,14 @@ div.memberPanel {
 }
 
 div #bookPanel {
-  /* border: 1px solid #8c8d7b; */
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  position: center;
+  gap: 10px;
   width: 600px;
   overflow-x: auto;
   white-space: normal;
-  margin-left: auto;
-  margin-right: 32%;
   animation: fade-in 2000ms;
 }
 
@@ -293,6 +294,14 @@ img.currentlyReading {
 }
 
 div #discussionPanel {
-  animation: fade-in 2000ms;
+  display: grid;
+  justify-content: center;
+  align-content: right;
   float: right;
+
+  width: 20%;
+  border: 1px solid #57584c;
+  text-align: center;
+  font-size: large;
+  animation: fade-in 2000ms;
 }
