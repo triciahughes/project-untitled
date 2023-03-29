@@ -1,36 +1,24 @@
 import MemberPanel from "./MemberPanel";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 
 function HostGroup() {
 
-    const [selectedGroup, setSelectedGroup] = useState({})
-
-    useEffect(() => {
-
-        function fetchDetails() {
-            const groupDetails = {
-                "host_id": 15,
-                "id": 11,
-                "member_details": [
-                {
-                "email": "hughes.a.tricia@gmail.com",
-                "first_name": "Tricia",
-                "id": 14,
-                "last_name": "Hughes"
-                }
-                ],
-                "name": "Book Bees"
-                }
-
-            setSelectedGroup(groupDetails)
+    const groupDetails = {
+        "host_id": 15,
+        "id": 11,
+        "member_details": [
+        {
+        "email": "hughes.a.tricia@gmail.com",
+        "first_name": "Tricia",
+        "id": 14,
+        "last_name": "Hughes"
         }
-        fetchDetails()
+        ],
+        "name": "Book Bees"
+        }
 
-    }, [])
+        const [selectedGroup, setSelectedGroup] = useState(groupDetails)
 
-    console.log(selectedGroup)
-
-    
     return(
     <>
     <h1>Host Group Rendering!</h1>
