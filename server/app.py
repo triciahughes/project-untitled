@@ -3,7 +3,7 @@ from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from werkzeug.exceptions import NotFound, Unauthorized
 from config import app, db, api
-from models import User, Group
+from models import User, Group, Member
 from flask_cors import CORS
 
 CORS(app)
@@ -156,10 +156,33 @@ class MemberGroupDetails(Resource):
         )
 
         return response
+    
+class MemberEdit(Resource):
+
+    def post(self):
+
+        email = request.get_json()['email']
+        group_id = request.get_json()['group_id']
+        user = User.query.filter(User.email == email).first()
+
+        if not user: 
+            pass
+
+        new_member = Member(
+            user_id = user.id,
+            group_id = group_id
+        )
+
+        db.session.add(new_member)
+        db.session.commit()
+
+        response = make_response(
+            new_member.to_dict(), 
+            201
+        )
+
+        return response
       
-
-
-        
 @app.errorhandler(NotFound)
 def handle_not_found(e):
     response = make_response(
@@ -176,7 +199,7 @@ api.add_resource(HostGroups, '/host/<int:id>')
 api.add_resource(MemberGroups, '/membership/<int:id>')
 api.add_resource(HostGroupDetails, '/host_group/<int:id>')
 api.add_resource(MemberGroupDetails, '/member_group/<int:id>')
-
+api.add_resource(MemberEdit, '/member')
 
 
 if __name__ == '__main__':

@@ -1,7 +1,13 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { useParams } from "react-router-dom";
 
 function NewMemberForm() {
+
+    const params = useParams();
+    const groupId = params['groupId']
+
+    console.log(groupId)
 
     const formSchema = yup.object().shape({
         email: yup
@@ -18,8 +24,18 @@ function NewMemberForm() {
         validateOnChange: false,
         validateOnBlur: false,
         onSubmit: (values, { resetForm }) => {
-            console.log(values)
+            const submission = {...values, group_id: groupId}
+            console.log(submission)
             resetForm({values: ""})
+            fetch(`/member`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(submission)
+            })
+                .then((res) => res.json())
+                .then(data => console.log(data))
         }
     })
     return (
