@@ -21,6 +21,8 @@ class User(db.Model, SerializerMixin):
 
     # Set up relationship between users and groups
     memberships = db.relationship('Member', backref='user', cascade="all, delete, delete-orphan")
+    # Set up relationship between users and comments
+    comments = db.relationship('Comment', backref='user')
 
     @hybrid_property
     def password_hash(self):
@@ -64,6 +66,7 @@ class Group(db.Model, SerializerMixin):
 
     # Set up relationship between users and groups
     memberships = db.relationship('Member', backref='group', cascade="all, delete, delete-orphan")
+    # Set up relationship between users and books
     books = db.relationship('Book', backref='group', cascade="all, delete, delete-orphan")
     
     def __repr__(self):
@@ -84,8 +87,38 @@ class Book(db.Model, SerializerMixin):
     votes = db.Column(db.Integer)
     featured = db.Column(db.Boolean)
 
+    # Set up relationship between prompts and books
+    prompts = db.relationship('Prompt', backref='book')
+
 
     def __repr__(self):
         return f'<Title: {self.title} Author: {self.author} Genre: {self.genre} Votes: {self.votes} Featured: {self.featured}>'
 
+class Prompt(db.Model, SerializerMixin):
 
+    __tablename__ = 'prompts'
+
+    id = db.Column(db.Integer, primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey('books.id'))
+    prompt = db.Column(db.String)
+
+    # Set up relationship between comments and prompts
+    comments = db.relationship('Comment', backref='prompt')
+
+
+    def __repr__(self):
+        return f'<Title: {self.title} Author: {self.author} Genre: {self.genre} Votes: {self.votes} Featured: {self.featured}>'
+
+class Comment(db.Model, SerializerMixin):
+
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    prompt_id = db.Column(db.Integer, db.ForeignKey('prompts.id'))
+    comment = db.Column(db.String)
+
+
+
+    def __repr__(self):
+        return f'<Title: {self.title} Author: {self.author} Genre: {self.genre} Votes: {self.votes} Featured: {self.featured}>'
