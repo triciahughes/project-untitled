@@ -1,6 +1,24 @@
-function MemberPanel() {
+function MemberPanel({ members }) {
+
+    const memberNames = members.map((member) => {
+        const first_name = member.first_name
+        const last_initial = member.last_name[0] + "."
+        const memberName = first_name + " " + last_initial
+        return (
+            <li key={member.id}>{memberName}</li>
+        )
+    })
     
-    return <h1>Member Panel Rendering!</h1>
+    return (
+        <div>
+            <h1>Members</h1>
+            <ul>{memberNames}</ul>
+            <button>Add Member</button>
+            <button>New Prompt</button>
+            <button>Choose Book</button>
+        </div>
+    
+    )
 
 }
 

@@ -24,7 +24,7 @@ function App() {
         res.json().then((userData) => {
           setUser(userData);
           fetchGroups(userData);
-          // history.push("/");
+          // history.push("/"); -- Had to remove this or else it would push back to the main page even when you went to a different link.
         });
       } else {
         setUser([]);
