@@ -17,7 +17,20 @@ function HostGroup() {
         "name": "Book Bees"
         }
 
-        const [selectedGroup, setSelectedGroup] = useState(groupDetails)
+    const bookDetails = {
+        id: 6,
+        group_id: 12,
+        title: "The Hitchhiker's Guide to the Galaxy",
+        author: "Douglas Adams",
+        image: "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/51+qSD6UwfL._SX312_BO1,204,203,200_.jpg",
+        publication_year: 1979,
+        genre: "Science Fiction",
+        votes: 5,
+        featured: true
+    }
+
+    const [selectedGroup, setSelectedGroup] = useState(groupDetails)
+    const [featuredBook, setFeaturedBook] = useState(bookDetails)
 
     return(
     <>
