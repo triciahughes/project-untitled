@@ -133,7 +133,7 @@ class HostGroupDetails(Resource):
 
       
 
-        group_dict = group.to_dict()
+        group_dict = group.to_dict(rules=('member_details', 'books'))
 
         response = make_response(
             group_dict,

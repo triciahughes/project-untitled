@@ -70,7 +70,7 @@ function App() {
         <h1>Welcome, {user.first_name}!</h1>
         <Groups hostGroups={hostGroups} memberGroups={memberGroups} />
       </Route>
-      <Route path="/host_group">
+      <Route path="/host_group/:groupId">
         <HostGroup/>
       </Route>
     </>
