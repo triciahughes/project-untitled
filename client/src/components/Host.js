@@ -4,7 +4,7 @@ function Host({ groups }) {
   const groupMap = groups.map((element) => {
     return (
         <p key={element.id} className="host" groups={groups}>
-        <Link to='/host_group'>
+        <Link to={`/host_group/${element.id}`}>
         {element.name}
         </Link>
         </p>

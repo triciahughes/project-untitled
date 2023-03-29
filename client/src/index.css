@@ -204,3 +204,15 @@ p.host:hover {
   color: #57584c;
   font-weight: bold;
 }
+
+div #memberPanel {
+  float: left;
+}
+
+div #bookPanel {
+  float: right;
+}
+
+div #discussionPanel {
+  float: right;
+}

@@ -2,8 +2,12 @@ import MemberPanel from "./MemberPanel";
 import BookPanel from "./BookPanel";
 import DiscussionPanel from "./DiscussionPanel";
 import { useState} from "react";
+import { useParams } from 'react-router-dom'
 
 function HostGroup() {
+
+    const params = useParams()
+    console.log(params)
 
     const groupDetails = {
         "host_id": 15,

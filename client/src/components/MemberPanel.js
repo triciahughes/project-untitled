@@ -10,7 +10,7 @@ function MemberPanel({ members }) {
     })
     
     return (
-        <div>
+        <div id="memberPanel">
             <h2>Members</h2>
             <ul>{memberNames}</ul>
             <button>Add Member</button>

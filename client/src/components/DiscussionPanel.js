@@ -1,5 +1,9 @@
 function DiscussionPanel() {
-    return <h2>Discussion Questions</h2>
+    return (
+        <div>
+            <h2 id="discussionPanel">Discussion Questions</h2>
+        </div>
+    )
 }
 
 export default DiscussionPanel
