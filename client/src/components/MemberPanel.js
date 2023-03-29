@@ -20,7 +20,7 @@ function MemberPanel({ members, setMembers }) {
 
   const memberNames = members.map((member) => {
     const first_name = member.first_name;
-    const last_initial = member.last_name[0] + ".";
+    const last_initial = member.last_name[0].toUpperCase() + ".";
     const memberName = first_name + " " + last_initial;
     return <p key={member.id}>{memberName}  <button>x</button></p>;
   });
