@@ -158,6 +158,11 @@ h3 {
   animation: fade-in 2000ms;
 }
 
+h3.book {
+  max-width: 412px;
+  text-overflow: wrap;
+}
+
 h1.signup {
   text-align: center;
   color: #57584c;
@@ -205,14 +210,95 @@ p.host:hover {
   font-weight: bold;
 }
 
+.hostPanels {
+  column-count: 3;
+  column-gap: 0;
+}
+
 div #memberPanel {
-  float: left;
+  margin-left: 10%;
+  width: 300px;
+  border: 1px solid #57584c;
+  text-align: center;
+  font-size: large;
+  animation: fade-in 2000ms;
+}
+
+img.memberPanel {
+  display: block;
+  width: 60%;
+  margin-top: 4%;
+  margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p.memberName {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+button.memberPanel {
+  border: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3%;
+  width: 95px;
+  height: 35px;
+  color: #dec9bb;
+  background: #795645;
+  border-radius: 6px;
+}
+button.memberPanel:hover {
+  background-color: #a88575;
+  color: white;
+}
+
+div.memberPanel {
+  margin-top: 0px;
 }
 
 div #bookPanel {
-  float: right;
+  width: 600px;
+  overflow-x: auto;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fade-in 2000ms;
+}
+
+h4.bookPanel {
+  text-align: center;
+  width: 70%;
+  font-size: 25px;
+}
+
+img.bookPanel {
+  width: 60%;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img.currentlyReading {
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 div #discussionPanel {
-  float: right;
+  /* display: grid; */
+  /* justify-content: center; */
+  /* align-content: right; */
+  /* float: right; */
+  margin-right: 10%;
+  width: 400px;
+  border: 1px solid #57584c;
+  text-align: center;
+  font-size: large;
+  animation: fade-in 2000ms;
 }
