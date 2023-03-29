@@ -8,7 +8,7 @@ from config import db, bcrypt
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    serialize_rules = ('-_password_hash', '-host_groups', '-member_groups', '-memberships')
+    serialize_rules = ('-_password_hash', '-host_groups', '-member_groups', '-memberships', '-comments')
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String, nullable=False)
@@ -97,6 +97,7 @@ class Book(db.Model, SerializerMixin):
 class Prompt(db.Model, SerializerMixin):
 
     __tablename__ = 'prompts'
+    serialize_rules = ('-comments',)
 
     id = db.Column(db.Integer, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.id'))
