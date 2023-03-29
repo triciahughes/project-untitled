@@ -1,10 +1,11 @@
 from app import app
-from models import db, User, Group, Member
+from models import db, User, Group, Member, Book
 
 with app.app_context():
     Member.query.delete()
     Group.query.delete()
     User.query.delete()
+    Book.query.delete()
 
     db.session.commit()
 
@@ -96,6 +97,75 @@ with app.app_context():
 
     db.session.add_all([member1, member2, member3, member4, member5, member6])
     db.session.commit()
+
+    print("Seeding books...")
+    
+    book1 = Book(
+        group_id=group1.id,
+        title="The Great Railroad Revolution:...",
+        author="Christian Wolmar",
+        image="https://books.google.com/books/content?id=h7i0fXplIJEC&pg=PP1&img=1&zoom=3&hl=en&bul=1&sig=ACfU3U10zYAt_9W7rOsUpmCORU-GHlCSjQ&w=1280",
+        publication_year=2012,
+        genre="History",
+        votes=3,
+        featured=True
+    )
+    book2 = Book(
+        group_id=group2.id,
+        title="The Old Man and The Sea",
+        author="Ernest Hemingway",
+        image="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9780684801223/old-man-and-the-sea-9780684801223_hr.jpg",
+        publication_year=1995,
+        genre="Fiction",
+        votes=1,
+        featured=True
+    )
+    book3 = Book(
+        group_id=group3.id,
+        title="Love that Dog",
+        author="Sharon Creech",
+        image="https://s3.amazonaws.com/ArchiveImages/SLJ/2016/02/000Love-That-Dog-411x600.jpg",
+        publication_year=2001,
+        genre="Fiction",
+        votes=5,
+        featured=True
+    )
+    book4 = Book(
+        group_id=group4.id,
+        title="The World According to Bob:...",
+        author="James Bowen",
+        image="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/71dmYvc5v3L._AC_UF350,350_QL50_.jpg",
+        publication_year=2013,
+        genre="Biography",
+        votes=5,
+        featured=True
+    )
+
+    book5 = Book(
+        group_id=group5.id,
+        title="Quiet: The Power of Introverts in a World That Can't Stop Talking",
+        author="Susan Cain",
+        image="https://upload.wikimedia.org/wikipedia/en/thumb/1/1e/QuietBookCover.jpg/220px-QuietBookCover.jpg",
+        publication_year=2012,
+        genre="Nonfiction",
+        votes=4,
+        featured=True
+    )
+
+    book6 = Book(
+        group_id=group6.id,
+        title="The Hitchhiker's Guide to the Galaxy",
+        author="Douglas Adams",
+        image="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/51+qSD6UwfL._SX312_BO1,204,203,200_.jpg",
+        publication_year=1979,
+        genre="Science Fiction",
+        votes=5,
+        featured=True
+    )
+
+    db.session.add_all([book1, book2, book3, book4, book5, book6])
+    db.session.commit()
+
     
     print("Seeding done!")
 

@@ -64,9 +64,28 @@ class Group(db.Model, SerializerMixin):
 
     # Set up relationship between users and groups
     memberships = db.relationship('Member', backref='group', cascade="all, delete, delete-orphan")
+    books = db.relationship('Book', backref='group', cascade="all, delete, delete-orphan")
     
     def __repr__(self):
         return f'<Group: {self.name} Host ID: {self.host_id}>'
 
+class Book(db.Model, SerializerMixin):
+
+    __tablename__ = 'books'
+
+    id = db.Column(db.Integer, primary_key=True)
+    group_id = db.Column(db.Integer, db.ForeignKey('groups.id'))
+
+    title = db.Column(db.String, nullable=False)
+    author = db.Column(db.String, nullable=False)
+    image = db.Column(db.String)
+    publication_year = db.Column(db.Integer)
+    genre = db.Column(db.String)
+    votes = db.Column(db.Integer)
+    featured = db.Column(db.Boolean)
+
+
+    def __repr__(self):
+        return f'<Title: {self.title} Author: {self.author} Genre: {self.genre} Votes: {self.votes} Featured: {self.featured}>'
 
 
