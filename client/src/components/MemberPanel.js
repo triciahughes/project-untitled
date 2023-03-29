@@ -11,7 +11,7 @@ function MemberPanel({ members }) {
     
     return (
         <div>
-            <h1>Members</h1>
+            <h2>Members</h2>
             <ul>{memberNames}</ul>
             <button>Add Member</button>
             <button>New Prompt</button>

@@ -1,9 +1,9 @@
 function BookPanel({book}) {
     return (
         <>
-            <h1>Currently Reading</h1>
+            <h2>Currently Reading</h2>
             <img src={book.image} alt={book.title}></img>
-            <h2><em>{book.title}</em> by {book.author} ({book.publication_year})</h2>
+            <h3><em>{book.title}</em> by {book.author} ({book.publication_year})</h3>
         </>
     )
 }
