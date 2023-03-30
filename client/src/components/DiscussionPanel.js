@@ -1,11 +1,17 @@
 import Prompts from "./Prompts";
 
-function DiscussionPanel({ book }) {
+function DiscussionPanel({ book, user }) {
   const prompts = book.prompts;
 
   const prompt_map = prompts?.map((data) => {
     return (
-      <Prompts key={data.id} prompts={data.prompt} comments={data.comments} />
+      <Prompts
+        key={data.id}
+        prompts={data.prompt}
+        promptId={data.id}
+        comments={data.comments}
+        user={user}
+      />
     );
   });
 

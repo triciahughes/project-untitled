@@ -3,7 +3,7 @@ from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from werkzeug.exceptions import NotFound, Unauthorized
 from config import app, db, api
-from models import User, Group, Member, Prompt
+from models import User, Group, Member, Prompt, Comment
 from flask_cors import CORS
 
 CORS(app)
@@ -231,6 +231,32 @@ class Prompts(Resource):
 
         return response
 
+class AddComments(Resource):
+
+    def post(self):
+
+        prompt_id = request.get_json()['prompt_id']
+        user_id = request.get_json()['user_id']
+        comment = request.get_json()['comment']
+        
+
+        new_comment = Comment(
+            user_id = user_id,
+            prompt_id = prompt_id,
+            comment= comment,
+        )
+
+        db.session.add(new_comment)
+        db.session.commit()
+
+        response = make_response(
+            new_comment.to_dict(),
+            201
+        )
+
+        return response
+
+
 
 @app.errorhandler(NotFound)
 def handle_not_found(e):
@@ -251,6 +277,8 @@ api.add_resource(MemberGroupDetails, '/member_group/<int:id>')
 api.add_resource(MemberEdit, '/member')
 api.add_resource(MemberById, '/member/<int:id>')
 api.add_resource(Prompts, '/prompt/<int:id>')
+api.add_resource(AddComments, '/comment')
+
 
 
 if __name__ == '__main__':
