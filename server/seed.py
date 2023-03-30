@@ -3,9 +3,9 @@ from models import db, User, Group, Member, Book, Prompt, Comment
 
 with app.app_context():
     Comment.query.delete()
-    Member.query.delete()
     Prompt.query.delete()
     Book.query.delete()
+    Member.query.delete()
     Group.query.delete()
     User.query.delete()
 
@@ -181,7 +181,8 @@ with app.app_context():
 
     db.session.add_all([prompt1, prompt2])
     db.session.commit()
-    
+
+
     print("Seeding comments...")
 
     comment1 = Comment(
@@ -194,9 +195,15 @@ with app.app_context():
         prompt_id=prompt2.id,
         comment="The development of railroads had a profound impact on social, economic, and political systems during the 19th and early 20th centuries. Railroads played a key role in facilitating urbanization and industrialization by enabling the efficient transportation of people, goods, and raw materials over long distances. This helped to create new markets and industries, and stimulated economic growth in many regions. At the same time, the railroad revolution also had negative consequences, such as the displacement of indigenous communities, the exploitation of labor, and the environmental impacts of increased industrial activity. The legacy of the railroad era continues to influence transportation and infrastructure policies today, with many countries investing in high-speed rail, urban mass transit, and other forms of public transportation as a way to reduce reliance on automobiles and address climate change."
     )
+    comment3 = Comment(
+        user_id=user7.id,
+        prompt_id=prompt2.id,
+        comment="The development of railroads was a transformative moment in history that opened up new possibilities for travel, trade, and human connection. For train enthusiasts like myself, the railroad revolution represents an exciting and romantic era of engineering innovation and adventure. Railroads created a sense of excitement and wonder, as people marveled at the speed and power of locomotives and the vast distances they could traverse. The legacy of the railroad era is something that continues to inspire and captivate people today, as evidenced by the popularity of train travel, museums, and other cultural institutions that celebrate the history and impact of railroads."
+    )
 
-    db.session.add_all([comment1, comment2])
+    db.session.add_all([comment1, comment2, comment3])
     db.session.commit()
 
+    
     print("Seeding done!")
 
