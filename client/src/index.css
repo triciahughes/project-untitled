@@ -301,14 +301,36 @@ img.currentlyReading {
 }
 
 div #discussionPanel {
-  /* display: grid; */
-  /* justify-content: center; */
-  /* align-content: right; */
-  /* float: right; */
   margin-right: 10%;
+  padding-bottom: 60px;
   width: 400px;
   border: 1px solid #57584c;
   text-align: center;
   font-size: large;
   animation: fade-in 2000ms;
+}
+
+div.prompt {
+  width: 350px;
+  margin-left: 6%;
+}
+
+.comment-info {
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+}
+
+.comment-author {
+  color: #44453c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.comment-body {
+  padding: 0 20px;
+  padding-left: 28px;
+}
+
+details {
+  cursor: pointer;
 }

@@ -8,7 +8,7 @@ function Prompts({ prompts, comments }) {
 
   return (
     <>
-      <div>{prompts}</div>
+      <div className="prompt">{prompts}</div>
       <h4></h4>
       <div>{comments_data}</div>
     </>

@@ -11,7 +11,7 @@ function DiscussionPanel({ book }) {
 
   return (
     <div id="discussionPanel">
-      <h2>Discussion Questions</h2>
+      <h2>Discussion Question</h2>
       <div>{prompt_map}</div>
     </div>
   );
