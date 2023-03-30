@@ -18,11 +18,15 @@ function MemberPanel({ members, setMembers }) {
     setAddMember(false)
   }
 
+  function handleRemoveMemberClick(id) {
+    console.log(id)
+  }
+
   const memberNames = members.map((member) => {
     const first_name = member.first_name;
     const last_initial = member.last_name[0].toUpperCase() + ".";
     const memberName = first_name + " " + last_initial;
-    return <p key={member.id}>{memberName}  <button>x</button></p>;
+    return <p key={member.id}>{memberName}  <button onClick={() => handleRemoveMemberClick(member.member_id)}>x</button></p>;
   });
 
   return (
