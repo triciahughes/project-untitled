@@ -138,8 +138,8 @@ button.sign-out {
   text-align: center;
   font-size: 14px;
   font-weight: bold;
-  right: 0;
-  bottom: 1;
+  /* right: 0;
+  bottom: 1; */
   width: 95px;
   height: 35px;
   color: #dec9bb;
@@ -336,10 +336,35 @@ details {
 }
 
 .hero-image {
-  background-image: url('Hero_Image.png');
+  background-image: url('Hero_Image_2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
-  width: 100vw;
-  height: 30vw;
+}
+
+.hero-text {
+  margin: auto;
+  width: 90%;
+  padding: 56px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hero-button {
+  margin: auto;
+  width: 10%;
+  text-align: center;
+}
+
+.hero-h1 {
+  color: #dec9bb;
+  background: #795645;
+  border-radius: 6px;
+  padding: 2%;
+  margin: auto;
+  margin-bottom: 2%;
+  width: 30%;
+  text-align: center;
 }

@@ -6,19 +6,24 @@ function Header({user, onLogout}) {
     if (user.length === 0) {
         return (
             <>
-                <h1>unTITLEd Book Club</h1>
-                <h2>Please sign up or log in to continue.</h2>
+                <div className="hero-image">
+                    <div className="hero-text">
+                            <h1 className="hero-h1">unTITLEd Book Club</h1>
+                    </div>
+                </div>
             </>
         )
     } else {
         return (
             <>
-                <div class="hero-image">
-                    <div class="hero-text">
+                <div className="hero-image">
+                    <div className="hero-text">
                         <Link exact to='/'>
-                            <h1>unTITLEd Book Club</h1>
+                            <h1 className="hero-h1">unTITLEd Book Club</h1>
                         </Link>
-                        <Logout onLogout={onLogout}/>
+                        <div className="hero-button">
+                            <Logout onLogout={onLogout}/>
+                        </div>
                     </div>
                 </div>
             </>
