@@ -21,7 +21,11 @@ function Prompts({ prompts, comments, promptId, user }) {
   return (
     <>
       <div className="prompt">{prompts}</div>
-      <div>{comments_data}</div>
+
+      <details>
+        <summary>Comments 💬</summary>
+        <div>{comments_data}</div>
+      </details>
       <div>
         <button onClick={handleAddComment}>
           {addComment ? "Close" : "Add Comment"}

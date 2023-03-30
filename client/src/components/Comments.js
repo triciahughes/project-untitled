@@ -4,15 +4,15 @@ function Comments({ comments, userData }) {
   return (
     <>
       <div className="comment-info">
-        <p className="comment-author">
-          {userData.first_name} {last_initial}
-        </p>
-      </div>
-      <summary>
-        <details className="comment-body">
+        <div className="comment-body">
+          <p className="comment-author">
+            {userData.first_name} {last_initial}
+          </p>
+          {/* <summary> */}
           <p>{comments}</p>
-        </details>
-      </summary>
+        </div>
+        {/* </summary> */}
+      </div>
     </>
   );
 }

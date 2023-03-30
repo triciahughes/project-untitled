@@ -3,9 +3,15 @@ import NewMemberForm from "./NewMemberForm";
 import NewPromptForm from "./NewPromptForm";
 import { useState } from "react";
 
-function MemberPanel({ members, setMembers }) {
+function MemberPanel({ members, setMembers, featuredBook }) {
   const [addMember, setAddMember] = useState(false);
   const [addPrompt, setAddPrompt] = useState(false);
+
+  const prompts = featuredBook.prompts;
+  console.log(prompts);
+
+  // This must stay here
+  const [promptsArray, setPromptsArray] = useState([prompts]);
 
   function handleAddMemberClick() {
     setAddMember(!addMember);
@@ -59,7 +65,13 @@ function MemberPanel({ members, setMembers }) {
         {addMember ? (
           <NewMemberForm members={members} setMembers={setMembers} />
         ) : null}
-        {addPrompt ? <NewPromptForm /> : null}
+        {addPrompt ? (
+          <NewPromptForm
+            featuredBook={featuredBook}
+            promptsArray={promptsArray}
+            setPromptsArray={setPromptsArray}
+          />
+        ) : null}
       </div>
     </div>
   );
