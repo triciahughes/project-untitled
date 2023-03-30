@@ -6,8 +6,6 @@ function Prompts({ prompts, comments }) {
     );
   });
 
-  // console.log(comments_data);
-
   return (
     <>
       <div>{prompts}</div>
