@@ -21,7 +21,6 @@ function Prompts({ prompts, comments, promptId, user }) {
   return (
     <>
       <div className="prompt">{prompts}</div>
-      <h4></h4>
       <div>{comments_data}</div>
       <div>
         <button onClick={handleAddComment}>
