@@ -49,6 +49,9 @@ function SignInForm({ setUser, fetchUser }) {
       <div className="signup">
         <img className="welcome" src={img} alt="logo"></img>
         <h3>Please Sign In</h3>
+        <Link to="/signup">
+          <h2 className="noaccount">Don't have an account? Sign up!</h2>
+        </Link>
         {error["error"] ? <p className="error">{error["error"]}</p> : null}
         <form onSubmit={formik.handleSubmit} className="signup">
           <label>
@@ -79,10 +82,8 @@ function SignInForm({ setUser, fetchUser }) {
           <br />
           <input type="submit" value="Sign In" className="signin-btn" />
           <div className="button">
-            <h2 className="noaccount">Don't have an account?</h2>
-            <Link to="/signup">
-              <button className="sign-up">Sign Up</button>
-            </Link>
+            
+
           </div>
         </form>
       </div>
