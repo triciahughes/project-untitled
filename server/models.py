@@ -8,7 +8,7 @@ from config import db, bcrypt
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    serialize_rules = ('-_password_hash', '-host_groups', '-member_groups', '-memberships')
+    serialize_rules = ('-_password_hash', '-host_groups', '-member_groups', '-memberships', '-comments')
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String, nullable=False)
@@ -21,6 +21,8 @@ class User(db.Model, SerializerMixin):
 
     # Set up relationship between users and groups
     memberships = db.relationship('Member', backref='user', cascade="all, delete, delete-orphan")
+    # Set up relationship between users and comments
+    comments = db.relationship('Comment', backref='user')
 
     @hybrid_property
     def password_hash(self):
@@ -54,19 +56,74 @@ class Member(db.Model, SerializerMixin):
 class Group(db.Model, SerializerMixin):
     __tablename__ = 'groups'
 
-    serialize_rules = ('-member_details', '-memberships', '-user')
+    serialize_rules = ('-member_details', '-memberships', '-user', '-books')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     host_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     member_details = association_proxy('memberships', 'user')
+    prompt_details = association_proxy('book', 'prompt')
 
     # Set up relationship between users and groups
     memberships = db.relationship('Member', backref='group', cascade="all, delete, delete-orphan")
+    # Set up relationship between users and books
+    books = db.relationship('Book', backref='group', cascade="all, delete, delete-orphan")
     
     def __repr__(self):
         return f'<Group: {self.name} Host ID: {self.host_id}>'
 
+class Book(db.Model, SerializerMixin):
+
+    __tablename__ = 'books'
+    serialize_rules = ('-prompts',)
+
+    id = db.Column(db.Integer, primary_key=True)
+    group_id = db.Column(db.Integer, db.ForeignKey('groups.id'))
+
+    title = db.Column(db.String, nullable=False)
+    author = db.Column(db.String, nullable=False)
+    image = db.Column(db.String)
+    publication_year = db.Column(db.Integer)
+    genre = db.Column(db.String)
+    votes = db.Column(db.Integer)
+    featured = db.Column(db.Boolean)
+
+    # Set up relationship between prompts and books
+    prompts = db.relationship('Prompt', backref='book')
+
+    
 
 
+    def __repr__(self):
+        return f'<Title: {self.title} Author: {self.author} Genre: {self.genre} Votes: {self.votes} Featured: {self.featured}>'
+
+class Prompt(db.Model, SerializerMixin):
+
+    __tablename__ = 'prompts'
+    serialize_rules = ('-comments',)
+
+    id = db.Column(db.Integer, primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey('books.id'))
+    prompt = db.Column(db.String)
+
+    # Set up relationship between comments and prompts
+    comments = db.relationship('Comment', backref='prompt')
+
+
+    def __repr__(self):
+        return f'<Title: {self.title} Author: {self.author} Genre: {self.genre} Votes: {self.votes} Featured: {self.featured}>'
+
+class Comment(db.Model, SerializerMixin):
+
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    prompt_id = db.Column(db.Integer, db.ForeignKey('prompts.id'))
+    comment = db.Column(db.String)
+
+
+
+    def __repr__(self):
+        return f'<Comment: {self.comment} User: {self.user}>'

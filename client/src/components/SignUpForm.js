@@ -50,6 +50,9 @@ function SignUpForm() {
   return (
     <>
       <h1 className="signup">Sign Up for an Account</h1>
+      <Link to="/signin">
+        <h2 className="noaccount">Already have an account? Sign In!</h2>
+      </Link>
       <form onSubmit={formik.handleSubmit} className="box">
         <label>
           First Name:
@@ -113,12 +116,6 @@ function SignUpForm() {
         </label>
         <br />
         <input type="submit" value="Sign Up" className="input-btn" />
-        <div className="button">
-          <h2 className="noaccount">Already have an account?</h2>
-          <Link to="/signin">
-            <button className="sign-up">Sign In</button>
-          </Link>
-        </div>
       </form>
     </>
   );

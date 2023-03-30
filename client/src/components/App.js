@@ -2,19 +2,24 @@ import { Route } from "react-router-dom";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import Groups from "./Groups";
+
+import HostGroup from "./HostGroup";
+import MemberGroup from "./MemberGroup";
+import Header from "./Header";
+
 import { useHistory } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 
 function App() {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
   const [hostGroups, setHostGroups] = useState([]);
-  const [memberGroups, setMemberGroups] = useState([])
+  const [memberGroups, setMemberGroups] = useState([]);
   const history = useHistory();
 
-  const userFetch = useCallback(fetchUser, [history])
+  const userFetch = useCallback(fetchUser, [history]);
 
   useEffect(() => {
-    userFetch()
+    userFetch();
   }, [userFetch]);
 
   function fetchUser() {
@@ -23,7 +28,6 @@ function App() {
         res.json().then((userData) => {
           setUser(userData);
           fetchGroups(userData);
-          history.push("/");
         });
       } else {
         setUser([]);
@@ -36,10 +40,10 @@ function App() {
     fetch(`/host/${userData.id}`)
       .then((res) => res.json())
       .then((groupData) => setHostGroups(groupData));
-    
+
     fetch(`/membership/${userData.id}`)
       .then((res) => res.json())
-      .then((groupData) => setMemberGroups(groupData))
+      .then((groupData) => setMemberGroups(groupData));
   }
 
   function handleLogout() {
@@ -48,7 +52,7 @@ function App() {
     }).then(() => {
       setUser([]);
       setHostGroups([]);
-      setMemberGroups([])
+      setMemberGroups([]);
       fetchUser();
       history.push("/signin");
     });
@@ -56,6 +60,7 @@ function App() {
 
   return (
     <>
+      <Header user={user} onLogout={handleLogout}/>
       <Route path="/signin">
         <SignInForm setUser={setUser} fetchUser={fetchUser} />
       </Route>
@@ -63,11 +68,14 @@ function App() {
         <SignUpForm />
       </Route>
       <Route exact path="/">
-        <button className="sign-out" onClick={handleLogout}>
-          Log Out
-        </button>
         <h1>Welcome, {user.first_name}!</h1>
         <Groups hostGroups={hostGroups} memberGroups={memberGroups} />
+      </Route>
+      <Route path="/host_group/:groupId">
+        <HostGroup user={user} />
+      </Route>
+      <Route path="/member_group/:groupId">
+        <MemberGroup user={user} />
       </Route>
     </>
   );

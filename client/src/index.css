@@ -14,6 +14,7 @@
 img {
   margin-left: 32%;
   image-rendering: optimizeQuality;
+  animation: fade-in 2000ms;
 }
 
 .hostimg {
@@ -61,32 +62,44 @@ code {
     monospace;
 }
 
-form {
-  margin-top: 0%;
-  margin-left: 37%;
+/* Sign In Page  */
+
+div.signup {
+  animation: fade-in 2000ms;
 }
 
-form.box {
-  animation: fade-in 1000ms;
-  opacity: 1;
+img.welcome {
+  width: 40%;
+}
+form.signup {
+  width: 100%;
+  margin: 0% 38% 62%;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover {
+  background-color: #d9d9d9;
 }
 
 input {
-  width: 40%;
+  width: 25%;
   padding: 10px 20px;
+  margin-left: 50%;
+  margin-right: 50%;
   margin: 8px 0;
-  display: flex;
+  display: block;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-sizing: border-box;
 }
+
 label {
   font-size: large;
   font-weight: bold;
   color: #57584c;
 }
 
-.input-btn {
+.signin-btn {
   text-align: center;
   font-size: 14px;
   font-weight: bold;
@@ -97,19 +110,14 @@ label {
   border-radius: 6px;
 }
 
-input[type="text"]:hover {
-  background-color: #d9d9d9;
-}
-input[type="password"]:hover {
-  background-color: #d9d9d9;
-}
 input[type="submit"]:hover {
   background-color: #8c8d7b;
 }
 
 div.button {
-  margin-top: -55px;
-  margin-left: 30%;
+  margin-left: 18%;
+  margin-top: -5%;
+  justify-content: center;
 }
 
 button.sign-up {
@@ -117,19 +125,19 @@ button.sign-up {
   text-align: center;
   font-size: 14px;
   font-weight: bold;
-  position: absolute;
   width: 95px;
   height: 35px;
   color: #dec9bb;
   background: #795645;
   border-radius: 6px;
+  margin-top: 0%;
 }
+
 button.sign-out {
   border: 0;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
-  position: absolute;
   right: 0;
   bottom: 1;
   width: 95px;
@@ -147,15 +155,6 @@ button:hover {
   background-color: #a88575;
 }
 
-h1 {
-  text-align: center;
-}
-
-h3 {
-  color: #44453c;
-  text-align: center;
-}
-
 h1.signup {
   text-align: center;
   color: #57584c;
@@ -163,6 +162,7 @@ h1.signup {
 h2.noaccount {
   margin-top: 5%;
   margin-left: -95%;
+  margin-bottom: 0.5%;
   font-size: 15px;
   text-align: center;
   color: #57584c;
@@ -170,6 +170,23 @@ h2.noaccount {
 
 p.error {
   color: #e55730;
+}
+
+/* Home Page */
+h1 {
+  text-align: center;
+}
+
+h3 {
+  color: #44453c;
+  text-align: center;
+  font-size: xx-large;
+  animation: fade-in 2000ms;
+}
+
+h3.book {
+  max-width: 412px;
+  text-overflow: wrap;
 }
 
 .grid {
@@ -201,4 +218,119 @@ p.host:hover {
   background-color: #e7e4e4;
   color: #57584c;
   font-weight: bold;
+}
+
+.hostPanels {
+  column-count: 3;
+  column-gap: 0;
+}
+
+div #memberPanel {
+  margin-left: 10%;
+  width: 300px;
+  border: 1px solid #57584c;
+  text-align: center;
+  font-size: large;
+  animation: fade-in 2000ms;
+}
+
+img.memberPanel {
+  display: block;
+  width: 60%;
+  margin-top: 4%;
+  margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p.memberName {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+button.memberPanel {
+  border: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3%;
+  width: 95px;
+  height: 35px;
+  color: #dec9bb;
+  background: #795645;
+  border-radius: 6px;
+}
+button.memberPanel:hover {
+  background-color: #a88575;
+  color: white;
+}
+
+div.memberPanel {
+  margin-top: 0px;
+}
+
+div #bookPanel {
+  width: 600px;
+  overflow-x: auto;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fade-in 2000ms;
+}
+
+h4.bookPanel {
+  text-align: center;
+  width: 70%;
+  font-size: 25px;
+}
+
+img.bookPanel {
+  width: 60%;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img.currentlyReading {
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div #discussionPanel {
+  margin-right: 10%;
+  padding-bottom: 60px;
+  width: 400px;
+  border: 1px solid #57584c;
+  text-align: center;
+  font-size: large;
+  animation: fade-in 2000ms;
+}
+
+div.prompt {
+  width: 350px;
+  margin-left: 6%;
+}
+
+.comment-info {
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+}
+
+.comment-author {
+  color: #44453c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.comment-body {
+  padding: 0 20px;
+  padding-left: 28px;
+}
+
+details {
+  cursor: pointer;
 }
