@@ -8,15 +8,15 @@ import { Link } from 'react-router-dom'
 
 function HostGroup() {
   const params = useParams();
-  const groupId = params['groupId']
+  const groupId = params["groupId"];
 
   const [selectedGroup, setSelectedGroup] = useState([]);
-  const [members, setMembers] = useState([])
+  const [members, setMembers] = useState([]);
   const [featuredBook, setFeaturedBook] = useState([]);
 
-  useEffect( () => {
-    
+  useEffect(() => {
     function setMembersandBooks(data) {
+
         const membershipArray = data['memberships']
         const updatedUserArray = membershipArray.map((member) => {
           const userObject = member.user
@@ -41,9 +41,9 @@ function HostGroup() {
       <h1>{selectedGroup.name}</h1>
       <Link exact to='/'><button>Back to Groups</button></Link>
       <div className="hostPanels">
-        <MemberPanel members={members} setMembers={setMembers}/>
+        <MemberPanel members={members} setMembers={setMembers} />
         <BookPanel book={featuredBook} />
-        <DiscussionPanel />
+        <DiscussionPanel book={featuredBook} />
       </div>
     </>
   );

@@ -14,6 +14,7 @@
 img {
   margin-left: 32%;
   image-rendering: optimizeQuality;
+  animation: fade-in 2000ms;
 }
 
 .hostimg {
@@ -61,32 +62,44 @@ code {
     monospace;
 }
 
-form {
-  margin-top: 0%;
-  margin-left: 37%;
+/* Sign In Page  */
+
+div.signup {
+  animation: fade-in 2000ms;
 }
 
-form.box {
-  animation: fade-in 1000ms;
-  opacity: 1;
+img.welcome {
+  width: 40%;
+}
+form.signup {
+  width: 100%;
+  margin: 0% 38% 62%;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover {
+  background-color: #d9d9d9;
 }
 
 input {
-  width: 40%;
+  width: 25%;
   padding: 10px 20px;
+  margin-left: 50%;
+  margin-right: 50%;
   margin: 8px 0;
-  display: flex;
+  display: block;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-sizing: border-box;
 }
+
 label {
   font-size: large;
   font-weight: bold;
   color: #57584c;
 }
 
-.input-btn {
+.signin-btn {
   text-align: center;
   font-size: 14px;
   font-weight: bold;
@@ -97,19 +110,14 @@ label {
   border-radius: 6px;
 }
 
-input[type="text"]:hover {
-  background-color: #d9d9d9;
-}
-input[type="password"]:hover {
-  background-color: #d9d9d9;
-}
 input[type="submit"]:hover {
   background-color: #8c8d7b;
 }
 
 div.button {
-  margin-top: -55px;
-  margin-left: 30%;
+  margin-left: 18%;
+  margin-top: -5%;
+  justify-content: center;
 }
 
 button.sign-up {
@@ -117,19 +125,19 @@ button.sign-up {
   text-align: center;
   font-size: 14px;
   font-weight: bold;
-  position: absolute;
   width: 95px;
   height: 35px;
   color: #dec9bb;
   background: #795645;
   border-radius: 6px;
+  margin-top: 0%;
 }
+
 button.sign-out {
   border: 0;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
-  position: absolute;
   right: 0;
   bottom: 1;
   width: 95px;
@@ -147,6 +155,24 @@ button:hover {
   background-color: #a88575;
 }
 
+h1.signup {
+  text-align: center;
+  color: #57584c;
+}
+h2.noaccount {
+  margin-top: 5%;
+  margin-left: -95%;
+  margin-bottom: 0.5%;
+  font-size: 15px;
+  text-align: center;
+  color: #57584c;
+}
+
+p.error {
+  color: #e55730;
+}
+
+/* Home Page */
 h1 {
   text-align: center;
 }
@@ -161,22 +187,6 @@ h3 {
 h3.book {
   max-width: 412px;
   text-overflow: wrap;
-}
-
-h1.signup {
-  text-align: center;
-  color: #57584c;
-}
-h2.noaccount {
-  margin-top: 5%;
-  margin-left: -95%;
-  font-size: 15px;
-  text-align: center;
-  color: #57584c;
-}
-
-p.error {
-  color: #e55730;
 }
 
 .grid {
@@ -291,14 +301,36 @@ img.currentlyReading {
 }
 
 div #discussionPanel {
-  /* display: grid; */
-  /* justify-content: center; */
-  /* align-content: right; */
-  /* float: right; */
   margin-right: 10%;
+  padding-bottom: 60px;
   width: 400px;
   border: 1px solid #57584c;
   text-align: center;
   font-size: large;
   animation: fade-in 2000ms;
+}
+
+div.prompt {
+  width: 350px;
+  margin-left: 6%;
+}
+
+.comment-info {
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+}
+
+.comment-author {
+  color: #44453c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.comment-body {
+  padding: 0 20px;
+  padding-left: 28px;
+}
+
+details {
+  cursor: pointer;
 }

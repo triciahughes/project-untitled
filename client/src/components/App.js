@@ -2,21 +2,24 @@ import { Route } from "react-router-dom";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import Groups from "./Groups";
-import HostGroup from "./HostGroup"
+
+import HostGroup from "./HostGroup";
+import MemberGroup from "./MemberGroup";
 import Header from "./Header";
+
 import { useHistory } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 
 function App() {
   const [user, setUser] = useState({});
   const [hostGroups, setHostGroups] = useState([]);
-  const [memberGroups, setMemberGroups] = useState([])
+  const [memberGroups, setMemberGroups] = useState([]);
   const history = useHistory();
 
-  const userFetch = useCallback(fetchUser, [history])
+  const userFetch = useCallback(fetchUser, [history]);
 
   useEffect(() => {
-    userFetch()
+    userFetch();
   }, [userFetch]);
 
   function fetchUser() {
@@ -37,10 +40,10 @@ function App() {
     fetch(`/host/${userData.id}`)
       .then((res) => res.json())
       .then((groupData) => setHostGroups(groupData));
-    
+
     fetch(`/membership/${userData.id}`)
       .then((res) => res.json())
-      .then((groupData) => setMemberGroups(groupData))
+      .then((groupData) => setMemberGroups(groupData));
   }
 
   function handleLogout() {
@@ -49,7 +52,7 @@ function App() {
     }).then(() => {
       setUser([]);
       setHostGroups([]);
-      setMemberGroups([])
+      setMemberGroups([]);
       fetchUser();
       history.push("/signin");
     });
@@ -69,7 +72,10 @@ function App() {
         <Groups hostGroups={hostGroups} memberGroups={memberGroups} />
       </Route>
       <Route path="/host_group/:groupId">
-        <HostGroup/>
+        <HostGroup />
+      </Route>
+      <Route path="/member_group/:groupId">
+        <MemberGroup />
       </Route>
     </>
   );

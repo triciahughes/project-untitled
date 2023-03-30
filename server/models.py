@@ -63,6 +63,7 @@ class Group(db.Model, SerializerMixin):
     host_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     member_details = association_proxy('memberships', 'user')
+    prompt_details = association_proxy('book', 'prompt')
 
     # Set up relationship between users and groups
     memberships = db.relationship('Member', backref='group', cascade="all, delete, delete-orphan")
@@ -90,6 +91,8 @@ class Book(db.Model, SerializerMixin):
 
     # Set up relationship between prompts and books
     prompts = db.relationship('Prompt', backref='book')
+
+    
 
 
     def __repr__(self):
@@ -123,4 +126,4 @@ class Comment(db.Model, SerializerMixin):
 
 
     def __repr__(self):
-        return f'<Title: {self.title} Author: {self.author} Genre: {self.genre} Votes: {self.votes} Featured: {self.featured}>'
+        return f'<Comment: {self.comment} User: {self.user}>'
