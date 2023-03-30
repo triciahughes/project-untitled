@@ -3,7 +3,7 @@ from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from werkzeug.exceptions import NotFound, Unauthorized
 from config import app, db, api
-from models import User, Group, Member
+from models import User, Group, Member, Prompt
 from flask_cors import CORS
 
 CORS(app)
@@ -133,7 +133,7 @@ class HostGroupDetails(Resource):
 
       
 
-        group_dict = group.to_dict(rules=('member_details', 'books', 'books.prompts'))
+        group_dict = group.to_dict(rules=('member_details', 'books', 'books.prompts', 'books.prompts.comments'))
 
         response = make_response(
             group_dict,
@@ -183,14 +183,14 @@ class MemberEdit(Resource):
 
         return response
       
-class Prompt(Resource):
+class Prompts(Resource):
 
     def get(self, id):
 
         prompt = Prompt.query.filter(Prompt.id == id).first()
 
         response = make_response(
-            prompt.to_dict(), 
+            prompt.to_dict(rules=('comments',)), 
             201
         )
 
@@ -214,7 +214,7 @@ api.add_resource(MemberGroups, '/membership/<int:id>')
 api.add_resource(HostGroupDetails, '/host_group/<int:id>')
 api.add_resource(MemberGroupDetails, '/member_group/<int:id>')
 api.add_resource(MemberEdit, '/member')
-api.add_resource(Prompt, '/prompt/<int:id>')
+api.add_resource(Prompts, '/prompt/<int:id>')
 
 
 if __name__ == '__main__':
