@@ -23,7 +23,10 @@ function MemberPanel({ members, setMembers }) {
       method: "DELETE",
     })
       .then((res) => res.json())
-      .then(message => console.log(message))
+      .then( () => {
+        const updatedMembers = members.filter(member => member.member_id !== id)
+        setMembers(updatedMembers)
+      })
   }
 
   const memberNames = members.map((member) => {
