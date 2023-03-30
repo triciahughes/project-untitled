@@ -334,3 +334,12 @@ div.prompt {
 details {
   cursor: pointer;
 }
+
+.hero-image {
+  background-image: url('Hero_Image.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100vw;
+  height: 30vw;
+}

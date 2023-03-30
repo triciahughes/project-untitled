@@ -13,10 +13,14 @@ function Header({user, onLogout}) {
     } else {
         return (
             <>
-                <Link exact to='/'>
-                    <h1>unTITLEd Book Club</h1>
-                </Link>
-                <Logout onLogout={onLogout}/>
+                <div class="hero-image">
+                    <div class="hero-text">
+                        <Link exact to='/'>
+                            <h1>unTITLEd Book Club</h1>
+                        </Link>
+                        <Logout onLogout={onLogout}/>
+                    </div>
+                </div>
             </>
         )
     }
