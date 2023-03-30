@@ -35,7 +35,13 @@ function NewMemberForm({ members, setMembers }) {
       })
         .then((res) => res.json())
         .then((newMember) => {
-          const updatedArray = [...members, newMember];
+          const memberships = newMember.memberships
+          console.log(memberships)
+          const memberId = memberships.filter((membership) => {
+            return membership.group_id === parseInt(groupId)
+          })[0].id
+          const updatedNewMember = {...newMember, member_id: memberId}
+          const updatedArray = [...members, updatedNewMember];
           setMembers(updatedArray);
         });
     },
