@@ -1,19 +1,16 @@
+import Prompts from "./Prompts";
+
 function DiscussionPanel({ book }) {
   const prompts = book.prompts;
 
   const prompt_map = prompts?.map((data) => {
     return (
-      <p key={data.id} id={data.id}>
-        {data.prompt}
-      </p>
+      <Prompts key={data.id} prompts={data.prompt} comments={data.comments} />
     );
   });
 
-  const comments = prompts?.map((data) => {
-    return data.comments;
-  });
-
-  console.log(comments);
+  // console.log(prompts);
+  // console.log(book);
 
   // const comments_map = comments.forEach((data) => {
   //   return data.comment;
@@ -24,7 +21,7 @@ function DiscussionPanel({ book }) {
   return (
     <div id="discussionPanel">
       <h2>Discussion Questions</h2>
-      <p>{prompt_map}</p>
+      <div>{prompt_map}</div>
       <p>comments</p>
     </div>
   );
