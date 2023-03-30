@@ -2,7 +2,7 @@ import MemberOnlyPanel from "./MemberOnlyPanel";
 import BookPanel from "./BookPanel";
 import DiscussionPanel from "./DiscussionPanel";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function MemberGroup() {
   const params = useParams();
@@ -40,6 +40,7 @@ function MemberGroup() {
   return (
     <>
       <h1>{selectedGroup.name}</h1>
+      <Link exact to='/'><button>Back to Groups</button></Link>
       <div className="hostPanels">
         <MemberOnlyPanel members={members} />
         <BookPanel book={featuredBook} />
