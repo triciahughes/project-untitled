@@ -7,13 +7,19 @@ import Member from "./Member";
 function Groups({ hostGroups, memberGroups }) {
   return (
     <>
-      <img alt="host symbol" src={hostimg} className="hostimg"></img>
-      <div>
-        <Host groups={hostGroups} />
-      </div>
-      <img alt="host symbol" src={memberimg} className="memberimg"></img>
-      <div>
-        <Member groups={memberGroups} />
+      <div className="columns">
+        <div className="column">
+          <img alt="host symbol" src={hostimg} className="hostimg"></img>
+          <div>
+            <Host groups={hostGroups} />
+          </div>
+        </div>
+        <div>
+          <img alt="host symbol" src={memberimg} className="memberimg"></img>
+          <div>
+            <Member groups={memberGroups} />
+          </div>
+        </div>
       </div>
     </>
   );

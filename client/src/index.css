@@ -26,8 +26,8 @@ img {
   width: 400px;
   position: relative;
   margin: 0 auto;
-  margin-top: 5%;
-  margin-bottom: 2%;
+  margin-top: auto;
+  margin-bottom: auto;
   animation: fade-in 2000ms;
   opacity: 1;
 }
@@ -41,7 +41,7 @@ img {
   position: relative;
   margin: 0 auto;
   margin-top: 5%;
-  margin-bottom: 3%;
+  margin-bottom: auto;
   animation: fade-in 2000ms;
   opacity: 1;
 }
@@ -69,7 +69,15 @@ div.signup {
 }
 
 img.welcome {
-  width: 40%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
+  /* width: 480px;
+  align-content: center; */
+  /* text-align: center; */
+  /* margin-left: 43%;
+  margin-right: 57%; */
 }
 form.signup {
   width: 100%;
@@ -160,12 +168,16 @@ h1.signup {
   color: #57584c;
 }
 h2.noaccount {
-  margin-top: 5%;
-  margin-left: -95%;
-  margin-bottom: 0.5%;
+  margin-top: 0%;
+  margin-left: 0%;
+  margin-bottom: 2%;
   font-size: 15px;
   text-align: center;
-  color: #57584c;
+  color: #383931;
+}
+
+h2.noaccount:hover {
+  color: #8c8d7b;
 }
 
 p.error {
@@ -190,16 +202,20 @@ h3.book {
 }
 
 .grid {
-  column-count: 4;
-  column-gap: 5%;
-  flex-flow: row wrap;
-  -webkit-column-width: 150px;
-  -moz-column-width: 150px;
-  column-width: 150px;
+  column-count: 3;
+  column-gap: 0%;
+  margin: 50px;
+  /* height: fit-content; */
+  /* max-width: 500px; */
+  /* align-content: center;
+  flex-flow: row wrap; */
+  /* -webkit-column-width: 150px; */
+  /* -moz-column-width: 150px; */
+  /* column-width: 150px; */
 }
 .grid > * {
-  margin: 0 0 1rem;
-  padding: 0.5rem;
+  /* margin: 10 10 0rem; */
+  padding: 1rem;
   background-color: white;
   border-radius: 10px;
   animation: fade-in 2000ms;
@@ -208,9 +224,10 @@ h3.book {
 p.host {
   text-align: center;
   font-size: large;
-  text-transform: auto;
-  width: 100%;
-  padding: 10px;
+  /* text-transform: auto;
+  /* margin-top: auto; */
+  width: 60%;
+  /* padding: 10px; */
   text-size-adjust: auto;
 }
 
@@ -333,4 +350,12 @@ div.prompt {
 
 details {
   cursor: cell;
+}
+
+div.columns {
+  column-count: 2;
+  column-gap: 0;
+}
+
+div.hostGroups {
 }
