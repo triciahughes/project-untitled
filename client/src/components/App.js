@@ -2,13 +2,16 @@ import { Route } from "react-router-dom";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import Groups from "./Groups";
+
 import HostGroup from "./HostGroup";
 import MemberGroup from "./MemberGroup";
+import Header from "./Header";
+
 import { useHistory } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 
 function App() {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
   const [hostGroups, setHostGroups] = useState([]);
   const [memberGroups, setMemberGroups] = useState([]);
   const history = useHistory();
@@ -25,7 +28,6 @@ function App() {
         res.json().then((userData) => {
           setUser(userData);
           fetchGroups(userData);
-          // history.push("/"); -- Had to remove this or else it would push back to the main page even when you went to a different link.
         });
       } else {
         setUser([]);
@@ -58,6 +60,7 @@ function App() {
 
   return (
     <>
+      <Header user={user} onLogout={handleLogout}/>
       <Route path="/signin">
         <SignInForm setUser={setUser} fetchUser={fetchUser} />
       </Route>
@@ -65,9 +68,6 @@ function App() {
         <SignUpForm />
       </Route>
       <Route exact path="/">
-        <button className="sign-out" onClick={handleLogout}>
-          Log Out
-        </button>
         <h1>Welcome, {user.first_name}!</h1>
         <Groups hostGroups={hostGroups} memberGroups={memberGroups} />
       </Route>
