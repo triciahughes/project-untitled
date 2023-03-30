@@ -4,7 +4,7 @@ import DiscussionPanel from "./DiscussionPanel";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
-function MemberGroup() {
+function MemberGroup({ user }) {
   const params = useParams();
   const groupId = params["groupId"];
 
@@ -44,7 +44,7 @@ function MemberGroup() {
       <div className="hostPanels">
         <MemberOnlyPanel members={members} />
         <BookPanel book={featuredBook} />
-        <DiscussionPanel book={featuredBook} />
+        <DiscussionPanel book={featuredBook} user={user} />
       </div>
     </>
   );

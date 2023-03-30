@@ -72,10 +72,10 @@ function App() {
         <Groups hostGroups={hostGroups} memberGroups={memberGroups} />
       </Route>
       <Route path="/host_group/:groupId">
-        <HostGroup />
+        <HostGroup user={user} />
       </Route>
       <Route path="/member_group/:groupId">
-        <MemberGroup />
+        <MemberGroup user={user} />
       </Route>
     </>
   );

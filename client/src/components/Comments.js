@@ -1,12 +1,4 @@
-import NewCommentForm from "./NewCommentForm";
-import { useState } from "react";
 function Comments({ comments, userData }) {
-  const [addComment, setAddComment] = useState(false);
-
-  function handleAddComment() {
-    setAddComment(!addComment);
-  }
-
   const last_initial = userData.last_name[0].toUpperCase() + ".";
 
   return (
@@ -21,12 +13,6 @@ function Comments({ comments, userData }) {
           <p>{comments}</p>
         </details>
       </summary>
-      <button onClick={handleAddComment}>
-        {addComment ? "Close" : "Add Comment"}
-      </button>
-      {addComment ? (
-        <NewCommentForm comments={comments} setcomments={setAddComment} />
-      ) : null}
     </>
   );
 }
