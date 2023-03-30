@@ -21,6 +21,7 @@ function Prompts({ prompts, comments, promptId, user }) {
   return (
     <>
       <div className="prompt">{prompts}</div>
+
       <details>
         <summary>Comments 💬</summary>
         <div>{comments_data}</div>
