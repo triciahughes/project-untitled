@@ -3,8 +3,6 @@ import BookPanel from "./BookPanel";
 import DiscussionPanel from "./DiscussionPanel";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from 'react-router-dom'
-
 
 function HostGroup({ user }) {
   const params = useParams();
@@ -16,32 +14,38 @@ function HostGroup({ user }) {
 
   useEffect(() => {
     function setMembersandBooks(data) {
+      const membershipArray = data["memberships"];
 
-        const membershipArray = data['memberships']
-        const updatedUserArray = membershipArray.map((member) => {
-          const userObject = member.user
-          userObject.member_id = member.id
-          return userObject
-        })
-        setMembers(updatedUserArray)
-        const book = data.books[0]
-        setFeaturedBook(book)
+      const updatedUserArray = membershipArray.map((member) => {
+        console.log("Member being added:", member);
+        const userObject = member.user;
+        userObject.member_id = member.id;
+        return userObject;
+      });
+      setMembers(updatedUserArray);
+
+      const book = data.books[0];
+      setFeaturedBook(book);
     }
 
     fetch(`/host_group/${groupId}`)
-        .then(res => res.json())
-        .then(groupData => {
-            setSelectedGroup(groupData);
-            setMembersandBooks(groupData)
-        })
-    }, [groupId])
+      .then((res) => res.json())
+      .then((groupData) => {
+        setSelectedGroup(groupData);
+        setMembersandBooks(groupData);
+        // checkMemberships(groupData)
+      });
+  }, [groupId]);
 
   return (
     <>
       <h1>{selectedGroup.name}</h1>
-      <Link exact to='/'><button>Back to Groups</button></Link>
       <div className="hostPanels">
-        <MemberPanel members={members} setMembers={setMembers} />
+        <MemberPanel
+          members={members}
+          setMembers={setMembers}
+          featuredBook={featuredBook}
+        />
         <BookPanel book={featuredBook} />
         <DiscussionPanel book={featuredBook} user={user} />
       </div>
