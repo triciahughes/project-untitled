@@ -1,11 +1,13 @@
 from app import app
-from models import db, User, Group, Member, Book
+from models import db, User, Group, Member, Book, Prompt, Comment
 
 with app.app_context():
+    Comment.query.delete()
+    Prompt.query.delete()
+    Book.query.delete()
     Member.query.delete()
     Group.query.delete()
     User.query.delete()
-    Book.query.delete()
 
     db.session.commit()
 
@@ -164,6 +166,42 @@ with app.app_context():
     )
 
     db.session.add_all([book1, book2, book3, book4, book5, book6])
+    db.session.commit()
+
+    print("Seeding prompt...")
+
+    prompt1 = Prompt(
+        book_id=book6.id,
+        prompt="In the book, the character Ford Prefect advises Arthur Dent to 'don't panic' when faced with unexpected or challenging situations. How does this advice reflect the larger themes of the book, such as the absurdity of the universe and the importance of adapting to change? How does this advice apply to real life situations, and what can we learn from it?"
+    )
+    prompt2 = Prompt(
+        book_id=book1.id,
+        prompt="How did the development of railroads in the United States and other countries impact social, economic, and political systems during the 19th and early 20th centuries? In what ways did the railroad revolution shape urbanization, industrialization, and globalization, and what were some of the positive and negative consequences of these changes? Finally, how does the legacy of the railroad era continue to influence transportation and infrastructure policies today?"
+    )
+
+    db.session.add_all([prompt1, prompt2])
+    db.session.commit()
+
+
+    print("Seeding comments...")
+
+    comment1 = Comment(
+        user_id=user1.id,
+        prompt_id=prompt1.id,
+        comment="Ford Prefect's advice to 'don't panic' reflects the larger themes of the book in several ways. It emphasizes the absurdity of the universe and the fact that unexpected and challenging situations can arise at any moment. At the same time, it also underscores the importance of adapting to change and not letting fear or anxiety get in the way of taking action. This advice can apply to real life situations by reminding us to stay calm and rational in the face of adversity, and to approach challenges with a flexible and open-minded attitude."
+    )
+    comment2 = Comment(
+        user_id=user2.id,
+        prompt_id=prompt2.id,
+        comment="The development of railroads had a profound impact on social, economic, and political systems during the 19th and early 20th centuries. Railroads played a key role in facilitating urbanization and industrialization by enabling the efficient transportation of people, goods, and raw materials over long distances. This helped to create new markets and industries, and stimulated economic growth in many regions. At the same time, the railroad revolution also had negative consequences, such as the displacement of indigenous communities, the exploitation of labor, and the environmental impacts of increased industrial activity. The legacy of the railroad era continues to influence transportation and infrastructure policies today, with many countries investing in high-speed rail, urban mass transit, and other forms of public transportation as a way to reduce reliance on automobiles and address climate change."
+    )
+    comment3 = Comment(
+        user_id=user7.id,
+        prompt_id=prompt2.id,
+        comment="The development of railroads was a transformative moment in history that opened up new possibilities for travel, trade, and human connection. For train enthusiasts like myself, the railroad revolution represents an exciting and romantic era of engineering innovation and adventure. Railroads created a sense of excitement and wonder, as people marveled at the speed and power of locomotives and the vast distances they could traverse. The legacy of the railroad era is something that continues to inspire and captivate people today, as evidenced by the popularity of train travel, museums, and other cultural institutions that celebrate the history and impact of railroads."
+    )
+
+    db.session.add_all([comment1, comment2, comment3])
     db.session.commit()
 
     
