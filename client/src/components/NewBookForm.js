@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-function NewBookForm({ featuredBook }) {
+function NewBookForm({}) {
   //   console.log(featuredBook);
 
   const formSchema = yup.object().shape({
