@@ -22,7 +22,7 @@ function Prompts({ prompts, comments, promptId, user }) {
     <>
       <div className="prompt">{prompts}</div>
       <details>
-        <summary>Comments</summary>
+        <summary>Comments 💬</summary>
         <div>{comments_data}</div>
       </details>
       <div>
