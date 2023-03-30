@@ -1,14 +1,16 @@
 import memberPanelImg from "../memberspanel.png";
 import NewMemberForm from "./NewMemberForm";
 import NewPromptForm from "./NewPromptForm";
+import NewBookForm from "./NewBookForm";
 import { useState } from "react";
 
 function MemberPanel({ members, setMembers, featuredBook }) {
   const [addMember, setAddMember] = useState(false);
   const [addPrompt, setAddPrompt] = useState(false);
+  const [chooseBook, setChooseBook] = useState(false);
 
   const prompts = featuredBook.prompts;
-  console.log(prompts);
+  // console.log(prompts);
 
   // This must stay here
   const [promptsArray, setPromptsArray] = useState([prompts]);
@@ -16,11 +18,18 @@ function MemberPanel({ members, setMembers, featuredBook }) {
   function handleAddMemberClick() {
     setAddMember(!addMember);
     setAddPrompt(false);
+    setChooseBook(false);
   }
 
   function handleAddPromptClick() {
     setAddPrompt(!addPrompt);
     setAddMember(false);
+    setChooseBook(false);
+  }
+  function handleChooseBookClick() {
+    setChooseBook(!chooseBook);
+    setAddMember(false);
+    setAddPrompt(false);
   }
 
   function handleRemoveMemberClick(id) {
@@ -41,12 +50,12 @@ function MemberPanel({ members, setMembers, featuredBook }) {
     const last_initial = member.last_name[0].toUpperCase() + ".";
     const memberName = first_name + " " + last_initial;
     return (
-      <p key={member.id}>
+      <div key={member.id}>
         {memberName}{" "}
         <button onClick={() => handleRemoveMemberClick(member.member_id)}>
           x
         </button>
-      </p>
+      </div>
     );
   });
 
@@ -61,7 +70,9 @@ function MemberPanel({ members, setMembers, featuredBook }) {
         <button className="memberPanel" onClick={handleAddPromptClick}>
           {addPrompt ? "Close" : "New Prompt"}
         </button>
-        <button className="memberPanel">Choose Book</button>
+        <button className="memberPanel" onClick={handleChooseBookClick}>
+          {chooseBook ? "Close" : "Choose Book"}
+        </button>
         {addMember ? (
           <NewMemberForm members={members} setMembers={setMembers} />
         ) : null}
@@ -72,6 +83,7 @@ function MemberPanel({ members, setMembers, featuredBook }) {
             setPromptsArray={setPromptsArray}
           />
         ) : null}
+        {chooseBook ? <NewBookForm featuredBook={featuredBook} /> : null}
       </div>
     </div>
   );
