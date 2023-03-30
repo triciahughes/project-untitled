@@ -13,7 +13,7 @@ function MemberOnlyPanel({ members }) {
       <img alt="members" src={memberPanelImg} className="memberPanel"></img>
       <p className="memberName">{memberNames}</p>
       <div className="memberPanel">
-        <button className="memberPanel">Suggest Book</button>
+        {/* <button className="memberPanel">Suggest Book</button> */}
       </div>
     </div>
   );
