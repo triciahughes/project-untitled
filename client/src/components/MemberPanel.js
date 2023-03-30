@@ -19,7 +19,11 @@ function MemberPanel({ members, setMembers }) {
   }
 
   function handleRemoveMemberClick(id) {
-    console.log(id)
+    fetch(`/member/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then(message => console.log(message))
   }
 
   const memberNames = members.map((member) => {
