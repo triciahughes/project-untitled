@@ -15,17 +15,11 @@ function DiscussionPanel({ book }) {
 
   console.log(comments);
 
-  const comments_map = comments.forEach((data) => {
-    return data.comment;
-  });
+  // const comments_map = comments.forEach((data) => {
+  //   return data.comment;
+  // });
 
-  console.log(comments_map);
-
-  // fetch(`/prompt/${promptId}`)
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //   });
+  // console.log(comments_map);
 
   return (
     <div id="discussionPanel">

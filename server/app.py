@@ -133,7 +133,7 @@ class HostGroupDetails(Resource):
 
       
 
-        group_dict = group.to_dict(rules=('member_details', 'books', 'books.prompts', 'books.prompts.comments'))
+        group_dict = group.to_dict(rules=('member_details', 'memberships', 'books', 'books.prompts', 'books.prompts.comments'))
 
         response = make_response(
             group_dict,
@@ -177,11 +177,46 @@ class MemberEdit(Resource):
         db.session.commit()
 
         response = make_response(
-            new_member.to_dict(), 
+            new_member.user.to_dict(),
             201
         )
 
         return response
+
+class MemberById(Resource):
+    def get(self, id):
+        member = Member.query.filter(Member.id == id).first().to_dict()
+
+        if not member:
+            pass
+
+        response = make_response(
+            member, 
+            200
+        )
+
+        return response
+
+
+    def delete(self, id):
+        member = Member.query.filter(Member.id == id).first()
+
+        if not member:
+            pass
+
+        db.session.delete(member)
+        db.session.commit()
+
+        response_body = {"message": "User successfully removed from your group."}
+
+        response = make_response(
+            response_body, 
+            200
+        )
+
+        return response
+
+        
       
 class Prompts(Resource):
 
@@ -214,6 +249,7 @@ api.add_resource(MemberGroups, '/membership/<int:id>')
 api.add_resource(HostGroupDetails, '/host_group/<int:id>')
 api.add_resource(MemberGroupDetails, '/member_group/<int:id>')
 api.add_resource(MemberEdit, '/member')
+api.add_resource(MemberById, '/member/<int:id>')
 api.add_resource(Prompts, '/prompt/<int:id>')
 
 
