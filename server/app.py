@@ -133,7 +133,7 @@ class HostGroupDetails(Resource):
 
       
 
-        group_dict = group.to_dict(rules=('member_details', 'books'))
+        group_dict = group.to_dict(rules=('member_details', 'books', 'books.prompts'))
 
         response = make_response(
             group_dict,
@@ -183,6 +183,20 @@ class MemberEdit(Resource):
 
         return response
       
+class Prompt(Resource):
+
+    def get(self, id):
+
+        prompt = Prompt.query.filter(Prompt.id == id).first()
+
+        response = make_response(
+            prompt.to_dict(), 
+            201
+        )
+
+        return response
+
+
 @app.errorhandler(NotFound)
 def handle_not_found(e):
     response = make_response(
@@ -200,6 +214,7 @@ api.add_resource(MemberGroups, '/membership/<int:id>')
 api.add_resource(HostGroupDetails, '/host_group/<int:id>')
 api.add_resource(MemberGroupDetails, '/member_group/<int:id>')
 api.add_resource(MemberEdit, '/member')
+api.add_resource(Prompt, '/prompt/<int:id>')
 
 
 if __name__ == '__main__':
