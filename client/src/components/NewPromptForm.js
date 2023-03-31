@@ -1,8 +1,7 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-function NewPromptForm({ featuredBook, promptsArray, setPromptsArray }) {
-  //   console.log(featuredBook);
+function NewPromptForm({ featuredBook, prompts, setPrompts }) {
 
   const formSchema = yup.object().shape({
     prompt: yup.string().required("Must enter prompt."),
@@ -29,8 +28,8 @@ function NewPromptForm({ featuredBook, promptsArray, setPromptsArray }) {
       })
         .then((res) => res.json())
         .then((newPrompt) => {
-          const updatedArray = [...promptsArray, newPrompt];
-          setPromptsArray(updatedArray);
+          const updatedArray = [...prompts, newPrompt];
+          setPrompts(updatedArray);
           console.log(newPrompt);
         });
     },

@@ -4,16 +4,16 @@ import NewPromptForm from "./NewPromptForm";
 import NewBookForm from "./NewBookForm";
 import { useState } from "react";
 
-function MemberPanel({ members, setMembers, featuredBook }) {
+function MemberPanel({ members, setMembers, featuredBook, prompts, setPrompts }) {
   const [addMember, setAddMember] = useState(false);
   const [addPrompt, setAddPrompt] = useState(false);
   const [chooseBook, setChooseBook] = useState(false);
 
-  const prompts = featuredBook.prompts;
+  // const prompts = featuredBook.prompts;
   // console.log(prompts);
 
   // This must stay here
-  const [promptsArray, setPromptsArray] = useState([prompts]);
+  // const [promptsArray, setPromptsArray] = useState([prompts]);
 
   function handleAddMemberClick() {
     setAddMember(!addMember);
@@ -79,8 +79,10 @@ function MemberPanel({ members, setMembers, featuredBook }) {
         {addPrompt ? (
           <NewPromptForm
             featuredBook={featuredBook}
-            promptsArray={promptsArray}
-            setPromptsArray={setPromptsArray}
+            // promptsArray={promptsArray}
+            // setPromptsArray={setPromptsArray}
+            prompts={prompts}
+            setPrompts={setPrompts}
           />
         ) : null}
         {chooseBook ? <NewBookForm featuredBook={featuredBook} /> : null}
