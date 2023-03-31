@@ -342,7 +342,7 @@ details {
 div.columns {
   column-count: 2;
   column-gap: 0;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 @media screen and (max-width: 600px) {
@@ -353,7 +353,7 @@ div.columns {
 
 section.hostGroups {
   margin-top: auto;
-  margin-bottom: 800px;
+  margin-bottom: 1000px;
   align-content: center;
   display: grid;
   justify-content: center;
@@ -361,7 +361,7 @@ section.hostGroups {
 
 section.memberGroups {
   margin-top: auto;
-  margin-bottom: 800px;
+  margin-bottom: auto;
   align-content: center;
   display: grid;
   justify-content: center;
