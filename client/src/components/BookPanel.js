@@ -7,13 +7,18 @@ function BookPanel({ book }) {
         src={currentlyReading}
         className="currentlyReading"
       ></img>
+      {/* {book ? :} */}
       <h4 className="bookPanel">
         <em>{book.title}</em>
         <br />
         by {book.author}
         <br />({book.publication_year})
       </h4>
-      <img src={book.image} alt={`Cover for '${book.title}'`} className="bookPanel"></img>
+      <img
+        src={book.image}
+        alt={`Cover for '${book.title}'`}
+        className="bookPanel"
+      ></img>
     </section>
   );
 }

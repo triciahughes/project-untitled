@@ -26,7 +26,8 @@ function HostGroup({ user }) {
 
       const book = data.books[0];
       setFeaturedBook(book);
-      setPrompts(book.prompts);
+
+      setPrompts(book?.prompts || []);
     }
 
     fetch(`/host_group/${groupId}`)
@@ -36,8 +37,6 @@ function HostGroup({ user }) {
         setMembersandBooks(groupData);
       });
   }, [groupId]);
-
-  console.log(prompts);
 
   return (
     <>

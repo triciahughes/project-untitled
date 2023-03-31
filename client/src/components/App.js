@@ -1,6 +1,7 @@
 import { Route } from "react-router-dom";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
+import NewGroupForm from "./NewGroupForm";
 import Groups from "./Groups";
 
 import HostGroup from "./HostGroup";
@@ -14,9 +15,14 @@ function App() {
   const [user, setUser] = useState({});
   const [hostGroups, setHostGroups] = useState([]);
   const [memberGroups, setMemberGroups] = useState([]);
+  const [addGroup, setAddGroup] = useState(false);
   const history = useHistory();
 
   const userFetch = useCallback(fetchUser, [history]);
+
+  function handleAddGroupClick() {
+    setAddGroup(!addGroup);
+  }
 
   useEffect(() => {
     userFetch();
@@ -60,7 +66,7 @@ function App() {
 
   return (
     <>
-      <Header user={user} onLogout={handleLogout}/>
+      <Header user={user} onLogout={handleLogout} />
       <Route path="/signin">
         <SignInForm setUser={setUser} fetchUser={fetchUser} />
       </Route>
@@ -69,6 +75,16 @@ function App() {
       </Route>
       <Route exact path="/">
         <h1>Welcome, {user.first_name}!</h1>
+        <button onClick={handleAddGroupClick} className="addNewGroup">
+          {addGroup ? "Close" : "Add Group"}
+        </button>
+        {addGroup ? (
+          <NewGroupForm
+            setHostGroups={setHostGroups}
+            hostGroups={hostGroups}
+            host={user}
+          />
+        ) : null}
         <Groups hostGroups={hostGroups} memberGroups={memberGroups} />
       </Route>
       <Route path="/host_group/:groupId">

@@ -2,9 +2,9 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 function NewCommentForm({ comments, promptId, user, setCommentsArray }) {
-  console.log(promptId);
-  console.log(user);
-  console.log(comments);
+  // console.log(promptId);
+  // console.log(user);
+  // console.log(comments);
 
   const formSchema = yup.object().shape({
     comment: yup.string().required("Must enter comment"),
@@ -33,7 +33,7 @@ function NewCommentForm({ comments, promptId, user, setCommentsArray }) {
         .then((newComment) => {
           const updatedArray = [...comments, newComment];
           setCommentsArray(updatedArray);
-          console.log(newComment);
+          // console.log(newComment);
         });
     },
   });

@@ -493,6 +493,30 @@ input.publication {
   animation: fade-in 2000ms;
 }
 
+.addNewGroup {
+  border: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  width: 95px;
+  height: 35px;
+  color: #dec9bb;
+  background: #795645;
+  border-radius: 6px;
+  margin-left: 45%;
+  /* margin: auto; */
+  margin-top: 0px;
+  margin-bottom: 20px;
+  animation: fade-in 2000ms;
+}
+
+label.addGroup {
+  font-size: large;
+  font-weight: bold;
+  color: #57584c;
+  margin-left: 43%;
+}
+
 textarea {
   width: 90%;
   height: 150px;
@@ -514,4 +538,21 @@ img.discussions {
 
 summary {
   margin-bottom: 5%;
+}
+summary:hover {
+  color: #44453c;
+  font-weight: bolder;
+}
+
+button.remove {
+  background-color: #fe7d5a;
+  border: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+button.remove:hover {
+  background-color: #f8b9a7;
 }

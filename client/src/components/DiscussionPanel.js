@@ -15,7 +15,7 @@ function DiscussionPanel({ user, prompts }) {
     );
   });
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div id="discussionPanel">
