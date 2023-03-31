@@ -26,8 +26,8 @@ img {
   width: 400px;
   position: relative;
   margin: 0 auto;
-  margin-top: 5%;
-  margin-bottom: 2%;
+  margin-top: auto;
+  margin-bottom: auto;
   animation: fade-in 2000ms;
   opacity: 1;
 }
@@ -40,15 +40,14 @@ img {
   width: 470px;
   position: relative;
   margin: 0 auto;
-  margin-top: 5%;
-  margin-bottom: 3%;
+  margin-top: 0%;
+  margin-bottom: auto;
   animation: fade-in 2000ms;
   opacity: 1;
 }
 
 body {
   background-color: #dec9bb;
-  /* text-align: center; */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -69,8 +68,12 @@ div.signup {
 }
 
 img.welcome {
-  width: 40%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
 }
+
 form.signup {
   width: 100%;
   margin: 0% 38% 62%;
@@ -138,8 +141,8 @@ button.sign-out {
   text-align: center;
   font-size: 14px;
   font-weight: bold;
-  right: 0;
-  bottom: 1;
+  /* right: 0;
+  bottom: 1; */
   width: 95px;
   height: 35px;
   color: #dec9bb;
@@ -160,12 +163,16 @@ h1.signup {
   color: #57584c;
 }
 h2.noaccount {
-  margin-top: 5%;
-  margin-left: -95%;
-  margin-bottom: 0.5%;
+  margin-top: 0%;
+  margin-left: 0%;
+  margin-bottom: 2%;
   font-size: 15px;
   text-align: center;
-  color: #57584c;
+  color: #383931;
+}
+
+h2.noaccount:hover {
+  color: #8c8d7b;
 }
 
 p.error {
@@ -175,6 +182,8 @@ p.error {
 /* Home Page */
 h1 {
   text-align: center;
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 h3 {
@@ -190,16 +199,12 @@ h3.book {
 }
 
 .grid {
-  column-count: 4;
-  column-gap: 5%;
-  flex-flow: row wrap;
-  -webkit-column-width: 150px;
-  -moz-column-width: 150px;
-  column-width: 150px;
+  display: grid;
+  width: 400px;
+  grid-column: 1;
 }
 .grid > * {
-  margin: 0 0 1rem;
-  padding: 0.5rem;
+  padding: 1rem;
   background-color: white;
   border-radius: 10px;
   animation: fade-in 2000ms;
@@ -209,8 +214,7 @@ p.host {
   text-align: center;
   font-size: large;
   text-transform: auto;
-  width: 100%;
-  padding: 10px;
+  width: auto;
   text-size-adjust: auto;
 }
 
@@ -220,14 +224,23 @@ p.host:hover {
   font-weight: bold;
 }
 
+section.panel {
+  margin-top: auto;
+  margin-bottom: auto;
+  align-content: center;
+  /* display: grid; */
+  /* justify-content: center; */
+}
+
 .hostPanels {
   column-count: 3;
   column-gap: 0;
 }
 
 div #memberPanel {
-  margin-left: 10%;
-  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
   border: 1px solid #57584c;
   text-align: center;
   font-size: large;
@@ -235,7 +248,7 @@ div #memberPanel {
 }
 
 img.memberPanel {
-  display: block;
+  /* display: block; */
   width: 60%;
   margin-top: 4%;
   margin-bottom: 0px;
@@ -274,11 +287,13 @@ div.memberPanel {
   margin-top: 0px;
 }
 
-div #bookPanel {
+section #bookPanel {
+  display: relative;
   width: 600px;
   overflow-x: auto;
-  margin-left: auto;
-  margin-right: auto;
+  /* align-content: center; */
+  /* margin-left: auto;
+  margin-right: auto; */
   animation: fade-in 2000ms;
 }
 
@@ -290,7 +305,8 @@ h4.bookPanel {
 
 img.bookPanel {
   width: 60%;
-  margin-bottom: 40px;
+  /* align-content: center; */
+  /* margin-bottom: 40px; */
   margin-left: auto;
   margin-right: auto;
 }
@@ -301,7 +317,8 @@ img.currentlyReading {
 }
 
 div #discussionPanel {
-  margin-right: 10%;
+  margin-right: auto;
+  margin-left: auto;
   padding-bottom: 60px;
   width: 400px;
   border: 1px solid #57584c;
@@ -332,5 +349,67 @@ div.prompt {
 }
 
 details {
-  cursor: pointer;
+  cursor: cell;
+}
+
+div.columns {
+  column-count: 2;
+  column-gap: 0;
+  /* flex-wrap: wrap; */
+}
+
+@media screen and (max-width: 600px) {
+  div.columns {
+    width: 100%;
+  }
+}
+
+section.hostGroups {
+  margin-top: auto;
+  margin-bottom: 1000px;
+  align-content: center;
+  display: grid;
+  justify-content: center;
+}
+
+section.memberGroups {
+  margin-top: auto;
+  margin-bottom: auto;
+  align-content: center;
+  display: grid;
+  justify-content: center;
+}
+
+.hero-image {
+  background-image: url("Hero_Image_2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-text {
+  margin: auto;
+  width: 90%;
+  padding: 56px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hero-button {
+  margin: auto;
+  width: 10%;
+  text-align: center;
+}
+
+.hero-h1 {
+  color: #dec9bb;
+  background: #795645;
+  border-radius: 6px;
+  padding: 2%;
+  margin: auto;
+  margin-bottom: 2%;
+  width: 30%;
+  text-align: center;
 }

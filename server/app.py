@@ -177,7 +177,7 @@ class MemberEdit(Resource):
         db.session.commit()
 
         response = make_response(
-            new_member.user.to_dict(),
+            new_member.user.to_dict(rules=('memberships',)),
             201
         )
 
@@ -231,6 +231,31 @@ class Prompts(Resource):
 
         return response
 
+
+
+class AddPrompts(Resource):
+
+        def post(self):
+
+            book_id = request.get_json()['book_id']
+            prompt = request.get_json()['prompt']
+
+            new_prompt = Prompt(
+                book_id= book_id,
+                prompt= prompt,
+            )
+
+            db.session.add(new_prompt)
+            db.session.commit()
+
+            response = make_response(
+                new_prompt.to_dict(),
+                201
+            )
+
+            return response
+
+
 class AddComments(Resource):
 
     def post(self):
@@ -277,6 +302,7 @@ api.add_resource(MemberGroupDetails, '/member_group/<int:id>')
 api.add_resource(MemberEdit, '/member')
 api.add_resource(MemberById, '/member/<int:id>')
 api.add_resource(Prompts, '/prompt/<int:id>')
+api.add_resource(AddPrompts, '/prompt')
 api.add_resource(AddComments, '/comment')
 
 
