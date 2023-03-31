@@ -21,7 +21,7 @@ function MemberPanel({
   // This must stay here
   // const [promptsArray, setPromptsArray] = useState([prompts]);
 
-  console.log(prompts);
+  // console.log(prompts);
 
   function handleAddMemberClick() {
     setAddMember(!addMember);
@@ -60,7 +60,10 @@ function MemberPanel({
     return (
       <div key={member.id}>
         {memberName}{" "}
-        <button onClick={() => handleRemoveMemberClick(member.member_id)}>
+        <button
+          className="remove"
+          onClick={() => handleRemoveMemberClick(member.member_id)}
+        >
           x
         </button>
       </div>

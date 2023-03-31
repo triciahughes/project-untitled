@@ -6,8 +6,6 @@ function NewMemberForm({ members, setMembers }) {
   const params = useParams();
   const groupId = params["groupId"];
 
-  // console.log(groupId);
-
   const formSchema = yup.object().shape({
     email: yup
       .string()
