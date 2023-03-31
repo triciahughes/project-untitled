@@ -53,7 +53,7 @@ function SignUpForm() {
       <Link to="/signin">
         <h2 className="noaccount">Already have an account? Sign In!</h2>
       </Link>
-      <form onSubmit={formik.handleSubmit} className="box">
+      <form onSubmit={formik.handleSubmit} className="signupform">
         <label>
           First Name:
           <input
@@ -115,7 +115,7 @@ function SignUpForm() {
           ) : null}
         </label>
         <br />
-        <input type="submit" value="Sign Up" className="input-btn" />
+        <input type="submit" value="Sign Up" className="signin-btn" />
       </form>
     </>
   );

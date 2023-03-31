@@ -40,11 +40,21 @@ function MemberGroup({ user }) {
   return (
     <>
       <h1>{selectedGroup.name}</h1>
-      <Link exact to='/'><button>Back to Groups</button></Link>
+      <Link exact to="/">
+        <button className="back">Back to Groups</button>
+      </Link>
       <div className="hostPanels">
-        <MemberOnlyPanel members={members} />
-        <BookPanel book={featuredBook} />
-        <DiscussionPanel book={featuredBook} user={user} />
+        <section className="panel">
+          <MemberOnlyPanel members={members} />
+        </section>
+        <section className="panel">
+          <div className="div">
+            <BookPanel book={featuredBook} />
+          </div>
+        </section>
+        <section className="panel">
+          <DiscussionPanel book={featuredBook} user={user} />
+        </section>
       </div>
     </>
   );
