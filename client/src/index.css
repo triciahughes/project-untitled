@@ -224,14 +224,23 @@ p.host:hover {
   font-weight: bold;
 }
 
+section.panel {
+  margin-top: auto;
+  margin-bottom: auto;
+  align-content: center;
+  /* display: grid; */
+  /* justify-content: center; */
+}
+
 .hostPanels {
   column-count: 3;
   column-gap: 0;
 }
 
 div #memberPanel {
-  margin-left: 10%;
-  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
   border: 1px solid #57584c;
   text-align: center;
   font-size: large;
@@ -239,7 +248,7 @@ div #memberPanel {
 }
 
 img.memberPanel {
-  display: block;
+  /* display: block; */
   width: 60%;
   margin-top: 4%;
   margin-bottom: 0px;
@@ -278,11 +287,13 @@ div.memberPanel {
   margin-top: 0px;
 }
 
-div #bookPanel {
+section #bookPanel {
+  display: relative;
   width: 600px;
   overflow-x: auto;
-  margin-left: auto;
-  margin-right: auto;
+  /* align-content: center; */
+  /* margin-left: auto;
+  margin-right: auto; */
   animation: fade-in 2000ms;
 }
 
@@ -294,7 +305,8 @@ h4.bookPanel {
 
 img.bookPanel {
   width: 60%;
-  margin-bottom: 40px;
+  /* align-content: center; */
+  /* margin-bottom: 40px; */
   margin-left: auto;
   margin-right: auto;
 }
@@ -305,7 +317,8 @@ img.currentlyReading {
 }
 
 div #discussionPanel {
-  margin-right: 10%;
+  margin-right: auto;
+  margin-left: auto;
   padding-bottom: 60px;
   width: 400px;
   border: 1px solid #57584c;

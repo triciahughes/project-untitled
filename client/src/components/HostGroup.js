@@ -11,7 +11,7 @@ function HostGroup({ user }) {
   const [selectedGroup, setSelectedGroup] = useState([]);
   const [members, setMembers] = useState([]);
   const [featuredBook, setFeaturedBook] = useState([]);
-  const [prompts, setPrompts] = useState([])
+  const [prompts, setPrompts] = useState([]);
 
   useEffect(() => {
     function setMembersandBooks(data) {
@@ -42,15 +42,21 @@ function HostGroup({ user }) {
       <h1>{selectedGroup.name}</h1>
       <Link exact to='/'><button>Back to Groups</button></Link>
       <div className="hostPanels">
-        <MemberPanel
-          members={members}
-          setMembers={setMembers}
-          featuredBook={featuredBook}
-          prompts={prompts}
-          setPrompts={setPrompts}
-        />
-        <BookPanel book={featuredBook} />
-        <DiscussionPanel book={featuredBook} user={user} prompts={prompts}/>
+        <section className="panel">
+          <MemberPanel
+            members={members}
+            setMembers={setMembers}
+            featuredBook={featuredBook}
+            prompts={prompts}
+            setPrompts={setPrompts}
+          />
+        </section>
+        <section className="panel">
+          <BookPanel book={featuredBook} />
+        </section>
+        <section className="panel">
+          <DiscussionPanel book={featuredBook} user={user} prompts={prompts} />
+        </section>
       </div>
     </>
   );
