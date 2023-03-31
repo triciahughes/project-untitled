@@ -61,7 +61,7 @@ function MemberPanel({ members, setMembers, featuredBook, prompts, setPrompts })
 
   return (
     <div id="memberPanel">
-      <img alt="members" src={memberPanelImg} className="memberPanel"></img>
+      <img alt="Members" src={memberPanelImg} className="memberPanel"></img>
       <p className="memberName">{memberNames}</p>
       <div className="memberPanel">
         <button className="memberPanel" onClick={handleAddMemberClick}>

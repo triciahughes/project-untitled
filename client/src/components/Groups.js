@@ -9,13 +9,13 @@ function Groups({ hostGroups, memberGroups }) {
     <>
       <div className="columns">
         <section className="hostGroups">
-          <img alt="host symbol" src={hostimg} className="hostimg"></img>
+          <img alt="Groups You Host" src={hostimg} className="hostimg"></img>
           <div>
             <Host groups={hostGroups} />
           </div>
         </section>
         <section className="memberGroups">
-          <img alt="host symbol" src={memberimg} className="memberimg"></img>
+          <img alt="Groups You Participate In" src={memberimg} className="memberimg"></img>
           <div>
             <Member groups={memberGroups} />
           </div>

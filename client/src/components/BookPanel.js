@@ -3,7 +3,7 @@ function BookPanel({ book }) {
   return (
     <section id="bookPanel" className="panel">
       <img
-        alt="currently reading"
+        alt="Currently Reading"
         src={currentlyReading}
         className="currentlyReading"
       ></img>
@@ -13,7 +13,7 @@ function BookPanel({ book }) {
         by {book.author}
         <br />({book.publication_year})
       </h4>
-      <img src={book.image} alt={book.title} className="bookPanel"></img>
+      <img src={book.image} alt={`Cover for '${book.title}'`} className="bookPanel"></img>
     </section>
   );
 }

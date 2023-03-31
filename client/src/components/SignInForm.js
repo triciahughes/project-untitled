@@ -47,7 +47,7 @@ function SignInForm({ setUser, fetchUser }) {
   return (
     <>
       <div className="signup">
-        <img className="welcome" src={img} alt="logo"></img>
+        <img className="welcome" src={img} alt="Welcome, glad you're here."></img>
         <h3>Please Sign In</h3>
         <Link to="/signup">
           <h2 className="noaccount">Don't have an account? Sign up!</h2>
@@ -82,8 +82,6 @@ function SignInForm({ setUser, fetchUser }) {
           <br />
           <input type="submit" value="Sign In" className="signin-btn" />
           <div className="button">
-            
-
           </div>
         </form>
       </div>
