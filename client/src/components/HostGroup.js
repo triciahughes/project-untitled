@@ -37,6 +37,8 @@ function HostGroup({ user }) {
       });
   }, [groupId]);
 
+  console.log(prompts);
+
   return (
     <>
       <h1>{selectedGroup.name}</h1>

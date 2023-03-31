@@ -2,7 +2,6 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 function NewPromptForm({ featuredBook, prompts, setPrompts }) {
-
   const formSchema = yup.object().shape({
     prompt: yup.string().required("Must enter prompt."),
   });
@@ -36,7 +35,7 @@ function NewPromptForm({ featuredBook, prompts, setPrompts }) {
   });
   return (
     <>
-      <h3>New Prompt Form</h3>
+      {/* <h3>New Prompt Form</h3> */}
       <form onSubmit={formik.handleSubmit}>
         <label>
           Enter New Prompt:
@@ -45,9 +44,10 @@ function NewPromptForm({ featuredBook, prompts, setPrompts }) {
             name="prompt"
             value={formik.values.prompt}
             onChange={formik.handleChange}
+            className="hostMemberPanel"
           />
         </label>
-        <input type="submit" value="Add" />
+        <input type="submit" value="Add" className="addNew" />
       </form>
     </>
   );

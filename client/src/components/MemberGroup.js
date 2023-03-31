@@ -11,13 +11,13 @@ function MemberGroup({ user }) {
   const [selectedGroup, setSelectedGroup] = useState([]);
   const [members, setMembers] = useState([]);
   const [featuredBook, setFeaturedBook] = useState([]);
+  const [prompts, setPrompts] = useState([]);
 
   useEffect(() => {
     function setMembersandBooks(data) {
       const membershipArray = data["memberships"];
 
       const updatedUserArray = membershipArray.map((member) => {
-        console.log("Member being added:", member);
         const userObject = member.user;
         userObject.member_id = member.id;
         return userObject;
@@ -26,6 +26,7 @@ function MemberGroup({ user }) {
 
       const book = data.books[0];
       setFeaturedBook(book);
+      setPrompts(book.prompts);
     }
 
     fetch(`/host_group/${groupId}`)
@@ -37,6 +38,10 @@ function MemberGroup({ user }) {
       });
   }, [groupId]);
 
+  console.log(prompts);
+  console.log(user);
+  console.log(featuredBook);
+
   return (
     <>
       <h1>{selectedGroup.name}</h1>
@@ -45,7 +50,12 @@ function MemberGroup({ user }) {
       </Link>
       <div className="hostPanels">
         <section className="panel">
-          <MemberOnlyPanel members={members} />
+          <MemberOnlyPanel
+            members={members}
+            featuredBook={featuredBook}
+            prompts={prompts}
+            setPrompts={setPrompts}
+          />
         </section>
         <section className="panel">
           <div className="div">
@@ -53,7 +63,7 @@ function MemberGroup({ user }) {
           </div>
         </section>
         <section className="panel">
-          <DiscussionPanel book={featuredBook} user={user} />
+          <DiscussionPanel book={featuredBook} user={user} prompts={prompts} />
         </section>
       </div>
     </>

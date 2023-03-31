@@ -198,6 +198,7 @@ h3 {
   text-align: center;
   font-size: xx-large;
   animation: fade-in 2000ms;
+  margin: 0%;
 }
 
 h3.book {
@@ -249,6 +250,9 @@ div #memberPanel {
   text-align: center;
   font-size: large;
   animation: fade-in 2000ms;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
 }
 
 img.memberPanel {
@@ -341,6 +345,8 @@ div.div {
 div.prompt {
   width: 350px;
   margin-left: 6%;
+  margin-bottom: 5%;
+  font-weight: 800;
 }
 
 .comment-info {
@@ -445,4 +451,67 @@ button.back {
 
 button.back:hover {
   background-color: #8c8d7b;
+}
+
+input.hostMembersPanel {
+  width: 350px;
+  margin: auto;
+  margin-top: 15px;
+  animation: fade-in 2000ms;
+}
+
+input.hostMembersBook {
+  width: 350px;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  animation: fade-in 2000ms;
+}
+
+input.publication {
+  width: 100px;
+
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  animation: fade-in 2000ms;
+}
+
+.addNew {
+  border: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  width: 95px;
+  height: 35px;
+  color: #dec9bb;
+  background: #795645;
+  border-radius: 6px;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  animation: fade-in 2000ms;
+}
+
+textarea {
+  width: 90%;
+  height: 150px;
+  padding: 12px 20px;
+  margin-top: 12px;
+  box-sizing: border-box;
+  border: 2px solid #bebdbd;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+  animation: fade-in 2000ms;
+}
+
+img.discussions {
+  margin: auto;
+  margin-bottom: 4%;
+}
+
+summary {
+  margin-bottom: 5%;
 }

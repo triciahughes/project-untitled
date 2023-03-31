@@ -1,15 +1,7 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-
-function NewCommentForm({
-  comments,
-  promptId,
-  user,
-  setCommentsArray,
-}) {
-
-
+function NewCommentForm({ comments, promptId, user, setCommentsArray }) {
   console.log(promptId);
   console.log(user);
   console.log(comments);
@@ -48,7 +40,7 @@ function NewCommentForm({
 
   return (
     <div>
-      <h3>Add Comment</h3>
+      {/* <h3>Add Comment</h3> */}
       <form onSubmit={formik.handleSubmit}>
         <label>
           New Comment:
@@ -59,7 +51,7 @@ function NewCommentForm({
             onChange={formik.handleChange}
           />
         </label>
-        <input type="submit" value="Add" />
+        <input type="submit" value="Add" className="addNew" />
       </form>
     </div>
   );
