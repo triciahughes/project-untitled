@@ -1,16 +1,14 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
-// import { useParams } from "react-router-dom";
+
 
 function NewCommentForm({
-  setAddComment,
   comments,
   promptId,
   user,
   setCommentsArray,
 }) {
-  // const params = useParams();
-  // const promptId = params["promptId"];
+
 
   console.log(promptId);
   console.log(user);
@@ -53,6 +51,7 @@ function NewCommentForm({
       <h3>Add Comment</h3>
       <form onSubmit={formik.handleSubmit}>
         <label>
+          New Comment:
           <textarea
             type="text"
             name="comment"

@@ -32,7 +32,6 @@ function Prompts({ prompts, comments, promptId, user }) {
         </button>
         {addComment ? (
           <NewCommentForm
-            addComment={addComment}
             promptId={promptId}
             user={user}
             setCommentsArray={setCommentsArray}
