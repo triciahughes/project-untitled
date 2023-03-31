@@ -9,7 +9,7 @@ function BookPanel({ book }) {
       ></img>
       {/* {book ? :} */}
       <h4 className="bookPanel">
-        <em>{book.title}</em>
+        <em>{book?.title}</em>
         <br />
         by {book.author}
         <br />({book.publication_year})
