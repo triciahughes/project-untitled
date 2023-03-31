@@ -11,13 +11,13 @@ function HostGroup({ user }) {
   const [selectedGroup, setSelectedGroup] = useState([]);
   const [members, setMembers] = useState([]);
   const [featuredBook, setFeaturedBook] = useState([]);
+  const [prompts, setPrompts] = useState([])
 
   useEffect(() => {
     function setMembersandBooks(data) {
       const membershipArray = data["memberships"];
 
       const updatedUserArray = membershipArray.map((member) => {
-        console.log("Member being added:", member);
         const userObject = member.user;
         userObject.member_id = member.id;
         return userObject;
@@ -26,6 +26,7 @@ function HostGroup({ user }) {
 
       const book = data.books[0];
       setFeaturedBook(book);
+      setPrompts(book.prompts);
     }
 
     fetch(`/host_group/${groupId}`)
@@ -33,7 +34,6 @@ function HostGroup({ user }) {
       .then((groupData) => {
         setSelectedGroup(groupData);
         setMembersandBooks(groupData);
-        // checkMemberships(groupData)
       });
   }, [groupId]);
 
@@ -45,9 +45,11 @@ function HostGroup({ user }) {
           members={members}
           setMembers={setMembers}
           featuredBook={featuredBook}
+          prompts={prompts}
+          setPrompts={setPrompts}
         />
         <BookPanel book={featuredBook} />
-        <DiscussionPanel book={featuredBook} user={user} />
+        <DiscussionPanel book={featuredBook} user={user} prompts={prompts}/>
       </div>
     </>
   );
