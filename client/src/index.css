@@ -40,7 +40,7 @@ img {
   width: 470px;
   position: relative;
   margin: 0 auto;
-  margin-top: 5%;
+  margin-top: 0%;
   margin-bottom: auto;
   animation: fade-in 2000ms;
   opacity: 1;
@@ -48,7 +48,6 @@ img {
 
 body {
   background-color: #dec9bb;
-  /* text-align: center; */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -73,12 +72,8 @@ img.welcome {
   margin-left: auto;
   margin-right: auto;
   width: 35%;
-  /* width: 480px;
-  align-content: center; */
-  /* text-align: center; */
-  /* margin-left: 43%;
-  margin-right: 57%; */
 }
+
 form.signup {
   width: 100%;
   margin: 0% 38% 62%;
@@ -146,8 +141,8 @@ button.sign-out {
   text-align: center;
   font-size: 14px;
   font-weight: bold;
-  right: 0;
-  bottom: 1;
+  /* right: 0;
+  bottom: 1; */
   width: 95px;
   height: 35px;
   color: #dec9bb;
@@ -187,6 +182,8 @@ p.error {
 /* Home Page */
 h1 {
   text-align: center;
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 h3 {
@@ -202,19 +199,11 @@ h3.book {
 }
 
 .grid {
-  column-count: 3;
-  column-gap: 0%;
-  margin: 50px;
-  /* height: fit-content; */
-  /* max-width: 500px; */
-  /* align-content: center;
-  flex-flow: row wrap; */
-  /* -webkit-column-width: 150px; */
-  /* -moz-column-width: 150px; */
-  /* column-width: 150px; */
+  display: grid;
+  width: 400px;
+  grid-column: 1;
 }
 .grid > * {
-  /* margin: 10 10 0rem; */
   padding: 1rem;
   background-color: white;
   border-radius: 10px;
@@ -224,10 +213,8 @@ h3.book {
 p.host {
   text-align: center;
   font-size: large;
-  /* text-transform: auto;
-  /* margin-top: auto; */
-  width: 60%;
-  /* padding: 10px; */
+  text-transform: auto;
+  width: auto;
   text-size-adjust: auto;
 }
 
@@ -355,7 +342,61 @@ details {
 div.columns {
   column-count: 2;
   column-gap: 0;
+  flex-wrap: wrap;
 }
 
-div.hostGroups {
+@media screen and (max-width: 600px) {
+  div.columns {
+    width: 100%;
+  }
+}
+
+section.hostGroups {
+  margin-top: auto;
+  margin-bottom: 800px;
+  align-content: center;
+  display: grid;
+  justify-content: center;
+}
+
+section.memberGroups {
+  margin-top: auto;
+  margin-bottom: 800px;
+  align-content: center;
+  display: grid;
+  justify-content: center;
+}
+
+.hero-image {
+  background-image: url("Hero_Image_2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-text {
+  margin: auto;
+  width: 90%;
+  padding: 56px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hero-button {
+  margin: auto;
+  width: 10%;
+  text-align: center;
+}
+
+.hero-h1 {
+  color: #dec9bb;
+  background: #795645;
+  border-radius: 6px;
+  padding: 2%;
+  margin: auto;
+  margin-bottom: 2%;
+  width: 30%;
+  text-align: center;
 }

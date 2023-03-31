@@ -8,18 +8,18 @@ function Groups({ hostGroups, memberGroups }) {
   return (
     <>
       <div className="columns">
-        <div className="column">
+        <section className="hostGroups">
           <img alt="host symbol" src={hostimg} className="hostimg"></img>
           <div>
             <Host groups={hostGroups} />
           </div>
-        </div>
-        <div>
+        </section>
+        <section className="memberGroups">
           <img alt="host symbol" src={memberimg} className="memberimg"></img>
           <div>
             <Member groups={memberGroups} />
           </div>
-        </div>
+        </section>
       </div>
     </>
   );
