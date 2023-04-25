@@ -21,12 +21,6 @@ npm start --prefix client
 
 ## Usage ⛯
 
-Sign in page:
-![screen recording showing a user logging into the app](https://files.slack.com/files-pri/T02MD9XTF-F051Z3TEJ6L/sign-in.gif)
-
-Sign up page:
-![screen recording showing a user signing up for an account](https://files.slack.com/files-pri/T02MD9XTF-F050V0F1VEK/sign-up2.gif)
-
 ## Roadmap 📍
 
 Future additions include:
@@ -36,4 +30,4 @@ Future additions include:
 
 ## Contributing ✍️
 
-This project was created by [Bianca Aspen](https://github.com/baspin94), [Tricia Hughes](https://github.com/triciahughes)
+This project was created by [Bianca Aspin](https://github.com/baspin94), [Tricia Hughes](https://github.com/triciahughes)
