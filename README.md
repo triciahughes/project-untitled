@@ -1,24 +1,28 @@
-# unTITLEd Book Club App!
+# unTITLEd Book Club App
 
 ## Description
 
-This app allows you to create, manage, and participate in virtual book clubs 📖💬
+This app allows users to create, manage, and participate in virtual book clubs. 📖💬
 
 ## Installation 📥
 
 To set up the frontend and backend dependencies, from the root directory, run:
-npm install --prefix client
-
-In server/ run:
-flask db upgrade
-python seed.py
-
-To start the server and to see how the React application and Flask API are interacting, you can run the Flask application in one terminal by running:
-python app.py
-
-Then open another terminal and run React:
-npm start --prefix client
-
+```
+$ npm install --prefix client
+```
+From the `server/` directory, run:
+```
+$ flask db upgrade
+$ python seed.py
+```
+To start the server and to see how the React application and Flask API are interacting, you can run the Flask application in one terminal by running the following prompt from the `server/` directory:
+```
+$ python app.py
+```
+Then open another terminal and run React from the root directory:
+```
+$ npm start --prefix client
+```
 ## Usage ⛯
 
 ### Signing In or Signing Up for an Account
