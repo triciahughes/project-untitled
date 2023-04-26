@@ -21,7 +21,7 @@ npm start --prefix client
 
 ## Usage ⛯
 
-### Sign Up/Sign In Flow
+### Signing In or Signing Up for an Account
 
 Users with an existing account will be directed to sign in by entering an email and password upon loading the app.
 
@@ -32,6 +32,7 @@ Users who don't already have an existing account can sign up for one by clicking
 ![User clicking on link that redirects them to sign up page and entering first name, last name, email, and password to sign up.](https://github.com/triciahughes/project-untitled/blob/main/assets/signup.gif)
 
 Upon logging in, users will be taken to a home page with listing the groups they host and the groups they participate in.
+
 ![View of home page upon login. The left column lists groups the user hosts, while the right column lists groups the user participates in.](https://github.com/triciahughes/project-untitled/blob/main/assets/Home%20Page.png)
 
 ### Host Actions
@@ -51,6 +52,26 @@ The host can also remove a member from the group by clicking on the 'x' button n
 The host can add a new discussion prompt by clicking the 'New Prompt' button and entering the prompt text in the field. Upon submit, the new prompt will be added to the 'Discussions' panel.
 
 ![User clicking the 'New Prompt' button, typing a prompt, and submitting. The prompt they wrote immediately shows up in the 'Discussions' panel.](https://github.com/triciahughes/project-untitled/blob/main/assets/addprompt.gif)
+
+### Participant Actions
+
+Within the 'Members' panel, group participants do not have access to any actions (i.e., adding/removing members, adding prompts), unlike the group host.
+
+![Side by side comparison of what the 'Members' panel looks like for the group host (on the left) vs. a group participant. Unlike hosts, group participants have a read-only list of members and no additional buttons for adding new members or discussion prompts.](https://github.com/triciahughes/project-untitled/blob/main/assets/Comparison.jpg)
+
+Clicking on 'Comments' beneath a given prompt will expand the view to show the comment thread for that prompt. Users can scroll through to read the entire conversation.
+
+![User clicking on 'Comments' underneath a prompt to show the whole thread and scrolling through the conversation.](https://github.com/triciahughes/project-untitled/blob/main/assets/viewcomments.gif)
+
+Clicking on the 'Add Comment' button beneath a given prompt will open an input field where users can add a new comment in that thread. Upon submit, the new comment will be added on to the end of the thread.
+
+![User clicking on 'Add Comment' button underneath a prompt, typing a comment, and submitting. The comment they wrote immediately shows up at the end of the thread.](https://github.com/triciahughes/project-untitled/blob/main/assets/addcomment.gif)
+
+### Logging Out
+
+Upon clicking the 'Log Out' button at the top of the page, the user is redirected to the 'Sign In' page.
+
+![User clicking on 'Log Out' button and being redirected to 'Sign In' page.](https://github.com/triciahughes/project-untitled/blob/main/assets/logout.gif)
 
 ## Roadmap 📍
 
