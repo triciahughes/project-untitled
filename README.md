@@ -32,6 +32,7 @@ Users who don't already have an existing account can sign up for one by clicking
 ![User clicking on link that redirects them to sign up page and entering first name, last name, email, and password to sign up.](https://github.com/triciahughes/project-untitled/blob/main/assets/signup.gif)
 
 Upon logging in, users will be taken to a home page with listing the groups they host and the groups they participate in.
+![View of home page upon login. The left column lists groups the user hosts, while the right column lists groups the user participates in.](https://github.com/triciahughes/project-untitled/blob/main/assets/Home%20Page.png)
 
 ### Host Actions
 
@@ -40,6 +41,8 @@ Upon clicking on a group they host, users will be taken to the main page for the
 ![User on app home page selecting a group they host and being redirected to the detailed page for that group.](https://github.com/triciahughes/project-untitled/blob/main/assets/hostpage.gif)
 
 The group host can add members by clicking on the 'Add Member' button and entering the email address of another registered user.
+
+![User clicking on 'Add Member' button and typing another user's email address into the field that appears. Upon submit, the new member is added to the end of the 'Members' list.](https://github.com/triciahughes/project-untitled/blob/main/assets/addmember.gif)
 
 The host can also remove a member from the group by clicking on the 'x' button next to their name.
 
