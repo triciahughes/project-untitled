@@ -21,12 +21,20 @@ npm start --prefix client
 
 ## Usage ⛯
 
+Users with an existing account will be directed to sign in by entering an email and password upon loading the app.
+
+![User entering email and password to log in to book club app.](https://github.com/triciahughes/project-untitled/blob/main/assets/signin.gif)
+
+Users who don't already have an existing account can sign up for one by clicking the link on the login page and entering their information.
+
+![User clicking on link that redirects them to sign up page and entering first name, last name, email, and password to sign up.](https://github.com/triciahughes/project-untitled/blob/main/assets/signup.gif)
+
 ## Roadmap 📍
 
 Future additions include:
-᭼ Allow particiapnts in a book club to suggest the next book, then allowing the Host to choose out of the suggestions or input their own.
-᭼ Integrate an API to be able to suggest books, and render book info easily
-᭼ Implement rating/review system
+᭼ Allow participants in a book club to suggest the next book, then allowing the Host to choose out of the suggestions or input their own.
+᭼ Integrate an API to be able to suggest books, and render book info easily.
+᭼ Implement rating/review system.
 
 ## Contributing ✍️
 
