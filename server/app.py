@@ -9,6 +9,10 @@ from flask_cors import CORS
 CORS(app)
 
 @app.route('/')
+@app.route('/member_group/<int:id>')
+@app.route('/host_group/<int:id>')
+@app.route('/signup')
+@app.route('/signin')
 @app.route('/<int:id>')
 def index(id=0):
     return render_template("index.html")
@@ -111,6 +115,7 @@ class HostGroups(Resource):
         )
 
         return response
+
     
 class MemberGroups(Resource):
     def get(self, id):
@@ -255,6 +260,28 @@ class AddPrompts(Resource):
 
             return response
 
+class AddGroup(Resource):
+
+        def post(self):
+
+            host_id = request.get_json()['host_id']
+            name = request.get_json()['name']
+
+            new_group = Group(
+                host_id= host_id,
+                name= name,
+            )
+
+            db.session.add(new_group)
+            db.session.commit()
+
+            response = make_response(
+                new_group.to_dict(),
+                201
+            )
+
+            return response
+
 
 class AddComments(Resource):
 
@@ -303,6 +330,7 @@ api.add_resource(MemberEdit, '/member')
 api.add_resource(MemberById, '/member/<int:id>')
 api.add_resource(Prompts, '/prompt/<int:id>')
 api.add_resource(AddPrompts, '/prompt')
+api.add_resource(AddGroup, '/group')
 api.add_resource(AddComments, '/comment')
 
 

@@ -1,7 +1,8 @@
+import discussionsImg from "../discussions.png";
 import Prompts from "./Prompts";
 
 function DiscussionPanel({ user, prompts }) {
-
+  // console.dir(prompts);
   const prompt_map = prompts?.map((data) => {
     return (
       <Prompts
@@ -14,9 +15,11 @@ function DiscussionPanel({ user, prompts }) {
     );
   });
 
+  // console.log(user);
+
   return (
     <div id="discussionPanel">
-      <h2>Discussion Question</h2>
+      <img alt="" src={discussionsImg} className="discussions"></img>
       <div>{prompt_map}</div>
     </div>
   );

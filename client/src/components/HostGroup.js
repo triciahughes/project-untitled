@@ -26,7 +26,8 @@ function HostGroup({ user }) {
 
       const book = data.books[0];
       setFeaturedBook(book);
-      setPrompts(book.prompts);
+
+      setPrompts(book?.prompts || []);
     }
 
     fetch(`/host_group/${groupId}`)
@@ -40,7 +41,9 @@ function HostGroup({ user }) {
   return (
     <>
       <h1>{selectedGroup.name}</h1>
-      <Link exact to='/'><button>Back to Groups</button></Link>
+      <Link exact to="/">
+        <button className="back">Back to Groups</button>
+      </Link>
       <div className="hostPanels">
         <section className="panel">
           <MemberPanel
@@ -52,7 +55,9 @@ function HostGroup({ user }) {
           />
         </section>
         <section className="panel">
-          <BookPanel book={featuredBook} />
+          <div className="div">
+            <BookPanel book={featuredBook} />
+          </div>
         </section>
         <section className="panel">
           <DiscussionPanel book={featuredBook} user={user} prompts={prompts} />

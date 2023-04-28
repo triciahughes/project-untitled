@@ -6,8 +6,6 @@ function Prompts({ prompts, comments, promptId, user }) {
   const [addComment, setAddComment] = useState(false);
   const [commentsArray, setCommentsArray] = useState(comments);
 
-  // console.dir(comments);
-
   const comments_data = commentsArray?.map((data) => {
     return (
       <Comments key={data.id} comments={data.comment} userData={data.user} />
@@ -21,13 +19,12 @@ function Prompts({ prompts, comments, promptId, user }) {
   return (
     <>
       <div className="prompt">{prompts}</div>
-
       <details>
         <summary>Comments 💬</summary>
         <div>{comments_data}</div>
       </details>
       <div>
-        <button onClick={handleAddComment}>
+        <button onClick={handleAddComment} className="addNew">
           {addComment ? "Close" : "Add Comment"}
         </button>
         {addComment ? (

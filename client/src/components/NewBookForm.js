@@ -47,7 +47,7 @@ function NewBookForm() {
 
   return (
     <>
-      <h3>Choose a New Book</h3>
+      {/* <h3>Choose a New Book</h3> */}
       <form onSubmit={formik.handleSubmit}>
         <label>
           Book Title:
@@ -56,6 +56,7 @@ function NewBookForm() {
             name="title"
             value={formik.values.title}
             onChange={formik.handleChange}
+            className="hostMembersBook"
           />
         </label>
         <label>
@@ -65,6 +66,7 @@ function NewBookForm() {
             name="author"
             value={formik.values.author}
             onChange={formik.handleChange}
+            className="hostMembersBook"
           />
         </label>
         <label>
@@ -74,6 +76,7 @@ function NewBookForm() {
             name="image"
             value={formik.values.image}
             onChange={formik.handleChange}
+            className="hostMembersBook"
           />
         </label>
         <label>
@@ -83,6 +86,7 @@ function NewBookForm() {
             name="publicationYear"
             value={formik.values.publicationYear}
             onChange={formik.handleChange}
+            className="publication"
           />
         </label>
         <label>
@@ -92,9 +96,10 @@ function NewBookForm() {
             name="genre"
             value={formik.values.genre}
             onChange={formik.handleChange}
+            className="hostMembersBook"
           />
         </label>
-        <input type="submit" value="Add" />
+        <input type="submit" value="Add" className="addNew" />
       </form>
     </>
   );

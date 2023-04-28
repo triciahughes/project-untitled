@@ -136,6 +136,13 @@ button.sign-up {
   margin-top: 0%;
 }
 
+form.signupform {
+  width: 100%;
+  margin-left: 38%;
+  margin-right: 62%;
+  animation: fade-in 2000ms;
+}
+
 button.sign-out {
   border: 0;
   text-align: center;
@@ -191,6 +198,7 @@ h3 {
   text-align: center;
   font-size: xx-large;
   animation: fade-in 2000ms;
+  margin: 0%;
 }
 
 h3.book {
@@ -225,11 +233,8 @@ p.host:hover {
 }
 
 section.panel {
-  margin-top: auto;
-  margin-bottom: auto;
-  align-content: center;
-  /* display: grid; */
-  /* justify-content: center; */
+  /* margin-top: auto;
+  margin-bottom: auto; */
 }
 
 .hostPanels {
@@ -245,6 +250,9 @@ div #memberPanel {
   text-align: center;
   font-size: large;
   animation: fade-in 2000ms;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
 }
 
 img.memberPanel {
@@ -288,26 +296,25 @@ div.memberPanel {
 }
 
 section #bookPanel {
-  display: relative;
-  width: 600px;
+  display: absolute;
+  max-width: 600px;
   overflow-x: auto;
-  /* align-content: center; */
-  /* margin-left: auto;
-  margin-right: auto; */
   animation: fade-in 2000ms;
 }
 
 h4.bookPanel {
   text-align: center;
+  margin-left: 0%;
+  margin-right: 80%;
   width: 70%;
   font-size: 25px;
 }
 
 img.bookPanel {
   width: 60%;
-  /* align-content: center; */
+
   /* margin-bottom: 40px; */
-  margin-left: auto;
+  margin-left: 4%;
   margin-right: auto;
 }
 img.currentlyReading {
@@ -320,16 +327,26 @@ div #discussionPanel {
   margin-right: auto;
   margin-left: auto;
   padding-bottom: 60px;
-  width: 400px;
+  max-width: 400px;
+  height: 700px;
   border: 1px solid #57584c;
   text-align: center;
   font-size: large;
   animation: fade-in 2000ms;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+div.div {
+  margin-left: 10%;
+  margin-right: auto;
+  width: 600px;
 }
 
 div.prompt {
   width: 350px;
   margin-left: 6%;
+  margin-bottom: 5%;
+  font-weight: 800;
 }
 
 .comment-info {
@@ -355,7 +372,7 @@ details {
 div.columns {
   column-count: 2;
   column-gap: 0;
-  /* flex-wrap: wrap; */
+  animation: fade-in 2000ms;
 }
 
 @media screen and (max-width: 600px) {
@@ -412,4 +429,130 @@ a {
   margin-bottom: 2%;
   width: 30%;
   text-align: center;
+}
+
+button.back {
+  background-color: #626455;
+  border: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  /* justify-content: center; */
+  /* flex-direction: column; */
+  margin-left: 3%;
+  margin-bottom: 1%;
+  margin-top: 0%;
+  width: 95px;
+  height: 35px;
+  color: #dec9bb;
+  border-radius: 6px;
+}
+
+button.back:hover {
+  background-color: #8c8d7b;
+}
+
+input.hostMembersPanel {
+  width: 350px;
+  margin: auto;
+  margin-top: 15px;
+  animation: fade-in 2000ms;
+}
+
+input.hostMembersBook {
+  width: 350px;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  animation: fade-in 2000ms;
+}
+
+input.publication {
+  width: 100px;
+
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  animation: fade-in 2000ms;
+}
+
+.addNew {
+  border: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  width: 95px;
+  height: 35px;
+  color: #dec9bb;
+  background: #795645;
+  border-radius: 6px;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  animation: fade-in 2000ms;
+}
+
+.addNewGroup {
+  border: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  width: 95px;
+  height: 35px;
+  color: #dec9bb;
+  background: #795645;
+  border-radius: 6px;
+  margin-left: 45%;
+  /* margin: auto; */
+  margin-top: 0px;
+  margin-bottom: 20px;
+  animation: fade-in 2000ms;
+}
+
+label.addGroup {
+  font-size: large;
+  font-weight: bold;
+  color: #57584c;
+  margin-left: 43%;
+}
+
+textarea {
+  width: 90%;
+  height: 150px;
+  padding: 12px 20px;
+  margin-top: 12px;
+  box-sizing: border-box;
+  border: 2px solid #bebdbd;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+  animation: fade-in 2000ms;
+}
+
+img.discussions {
+  margin: auto;
+  margin-bottom: 4%;
+}
+
+summary {
+  margin-bottom: 5%;
+}
+summary:hover {
+  color: #44453c;
+  font-weight: bolder;
+}
+
+button.remove {
+  background-color: #fe7d5a;
+  border: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+button.remove:hover {
+  background-color: #f8b9a7;
 }
