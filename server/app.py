@@ -9,6 +9,10 @@ from flask_cors import CORS
 CORS(app)
 
 @app.route('/')
+@app.route('/member_group/<int:id>')
+@app.route('/host_group/<int:id>')
+@app.route('/signup')
+@app.route('/signin')
 @app.route('/<int:id>')
 def index(id=0):
     return render_template("index.html")
