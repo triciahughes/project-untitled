@@ -26,7 +26,7 @@ class User(db.Model, SerializerMixin):
 
     @hybrid_property
     def password_hash(self):
-        return self._password_hash
+        raise Exception("Password hashes cannot be viewed.")
         
     @password_hash.setter
     def password_hash(self, password):
