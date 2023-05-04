@@ -29,7 +29,7 @@ function MemberGroup({ user }) {
       setPrompts(book.prompts);
     }
 
-    fetch(`/host_group/${groupId}`)
+    fetch(`/hostgroup/${groupId}`)
       .then((res) => res.json())
       .then((groupData) => {
         setSelectedGroup(groupData);
