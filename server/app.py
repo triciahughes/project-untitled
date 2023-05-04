@@ -23,27 +23,34 @@ class Signup(Resource):
 
         data = request.get_json()
 
-        new_user = User(
-            first_name=data['first_name'],
-            last_name=data['last_name'],
-            email=data['email']
-        )
+        try:
 
-        new_user.password_hash = data['password']
+            new_user = User(
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                email=data['email']
+            )
 
+            new_user.password_hash = data['password']
+
+            
+            db.session.add(new_user)
+            db.session.commit()
+
+            session['user_id'] = new_user.id
+
+            response = make_response(
+                new_user.to_dict(),
+                201
+            )
+            return response
         
-        db.session.add(new_user)
-        db.session.commit()
-
-        session['user_id'] = new_user.id
-
-        response = make_response(
-            new_user.to_dict(),
-            201
-        )
-        return response
-
-
+        except IntegrityError:
+            response = make_response(
+                {"error": "Email address already exists in system."}, 
+                422
+            )
+            return response
 
 class AuthorizedSession(Resource):
 
