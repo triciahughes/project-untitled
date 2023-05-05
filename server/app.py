@@ -80,17 +80,21 @@ class Login(Resource):
 
         user = User.query.filter(User.email == email).first()
 
-            
-        if user.authenticate(data['password']):
+        if user:
 
-            session['user_id'] = user.id
+            if user.authenticate(data['password']):
 
-            response = make_response(
-                user.to_dict(),
-                200
-            )
-            return response
-        return {'error' : "Invalid Username or Password"}, 401
+                session['user_id'] = user.id
+
+                response = make_response(
+                    user.to_dict(),
+                    200
+                )
+                return response
+        
+        else:
+
+            return {'error' : "Invalid Username or Password."}, 401
                 
 
 
