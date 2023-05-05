@@ -5,8 +5,11 @@ import img from "../welcome-logo.png";
 import { useState } from "react";
 
 function SignInForm({ setUser, fetchUser }) {
+
   const [error, setError] = useState(false);
+
   const history = useHistory();
+
   const formSchema = yup.object().shape({
     email: yup
       .string()
@@ -52,7 +55,9 @@ function SignInForm({ setUser, fetchUser }) {
         <Link to="/signup">
           <h2 className="noaccount">Don't have an account? Sign up!</h2>
         </Link>
-        {error["error"] ? <p className="error">{error["error"]}</p> : null}
+        <div className="noaccount">
+          {error["error"] ? <p className="error"><strong>{error["error"]}</strong></p> : null}
+        </div>
         <form onSubmit={formik.handleSubmit} className="signup">
           <label>
             Email:
