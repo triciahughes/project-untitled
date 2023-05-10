@@ -182,7 +182,7 @@ class MemberEdit(Resource):
         user = User.query.filter(User.email == email).first()
 
         if not user: 
-            pass
+            return {"error": "User not found."}, 404
 
         new_member = Member(
             user_id = user.id,
