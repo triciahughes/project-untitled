@@ -26,7 +26,6 @@ function NewMemberForm({ members, setMembers }) {
     onSubmit: (values, { resetForm }) => {
       setError(null)
       const submission = { ...values, group_id: groupId };
-      // console.log(submission);
       fetch(`/member`, {
         method: "POST",
         headers: {
@@ -57,7 +56,6 @@ function NewMemberForm({ members, setMembers }) {
 
   return (
     <>
-      {/* <h3>New Member Form</h3> */}
       <form onSubmit={formik.handleSubmit}>
         <label>
           Enter New Member's Email:

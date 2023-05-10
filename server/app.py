@@ -183,6 +183,15 @@ class MemberEdit(Resource):
 
         if not user: 
             return {"error": "User not found."}, 404
+        
+        # Query to get array of user ids that are already in the group.
+        group = Group.query.filter(Group.id == group_id).first()
+        member_ids = [user.user_id for user in group.memberships]
+        
+        if user.id in member_ids:
+            return {"error": "Duplicate user."}, 409
+
+        # Check whether the user id exists in that array and return an error if so.
 
         new_member = Member(
             user_id = user.id,
