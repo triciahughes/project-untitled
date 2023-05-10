@@ -149,7 +149,7 @@ class HostGroupDetails(Resource):
 
       
 
-        group_dict = group.to_dict(rules=('member_details', 'memberships', 'books', 'books.prompts', 'books.prompts.comments', 'books.prompts.comments.id'))
+        group_dict = group.to_dict(rules=('user', 'member_details', 'memberships', 'books', 'books.prompts', 'books.prompts.comments', 'books.prompts.comments.id'))
 
         response = make_response(
             group_dict,
