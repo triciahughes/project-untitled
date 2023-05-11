@@ -9,6 +9,7 @@ function MemberGroup({ user }) {
   const groupId = params["groupId"];
 
   const [selectedGroup, setSelectedGroup] = useState([]);
+  const [host, setHost] = useState(null)
   const [members, setMembers] = useState([]);
   const [featuredBook, setFeaturedBook] = useState([]);
   const [prompts, setPrompts] = useState([]);
@@ -33,6 +34,8 @@ function MemberGroup({ user }) {
       .then((res) => res.json())
       .then((groupData) => {
         setSelectedGroup(groupData);
+        const hostName = groupData.user.first_name + " " + groupData.user.last_name[0].toUpperCase() + "."
+        setHost(hostName)
         setMembersandBooks(groupData);
         // checkMemberships(groupData)
       });
@@ -51,6 +54,7 @@ function MemberGroup({ user }) {
       <div className="hostPanels">
         <section className="panel">
           <MemberOnlyPanel
+            host={host}
             members={members}
             featuredBook={featuredBook}
             prompts={prompts}
