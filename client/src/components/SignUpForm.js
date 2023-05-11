@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 // import YupPassword from "yup-password";
@@ -5,7 +6,10 @@ import { useHistory, Link } from "react-router-dom";
 // YupPassword(yup);
 
 function SignUpForm() {
+  const [error, setError] = useState(null)
+
   const history = useHistory();
+  
   const formSchema = yup.object().shape({
     first_name: yup.string().required("Must enter first name."),
     last_name: yup.string().required("Must enter last name."),
@@ -32,7 +36,7 @@ function SignUpForm() {
     validationSchema: formSchema,
     validateOnChange: false,
     validateOnBlur: false,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
       fetch("/signup", {
         method: "POST",
         headers: {
@@ -40,10 +44,17 @@ function SignUpForm() {
         },
         body: JSON.stringify(values),
       })
-        .then((res) => res.json())
-        .then((data) => console.log(data))
-        .then(history.push("/"));
-      resetForm({ values: "" });
+
+        .then((res) => {
+          if (res.ok) {
+            res.json()
+            .then((data) => console.log(data))
+            .then(history.push("/"))
+          } else {
+            res.json()
+            .then(error => setError(error['error']))
+          }
+        })
     },
   });
 
@@ -53,6 +64,12 @@ function SignUpForm() {
       <Link to="/signin">
         <h2 className="noaccount">Already have an account? Sign In!</h2>
       </Link>
+      {error 
+        ? <div className="noaccount">
+          <p className="error"><strong>Signup unsuccessful.<br/>{error}<br/>Please log in or try again.</strong></p>
+        </div> 
+        : null
+      }
       <form onSubmit={formik.handleSubmit} className="signupform">
         <label>
           First Name:

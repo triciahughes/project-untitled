@@ -23,27 +23,34 @@ class Signup(Resource):
 
         data = request.get_json()
 
-        new_user = User(
-            first_name=data['first_name'],
-            last_name=data['last_name'],
-            email=data['email']
-        )
+        try:
 
-        new_user.password_hash = data['password']
+            new_user = User(
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                email=data['email']
+            )
 
+            new_user.password_hash = data['password']
+
+            
+            db.session.add(new_user)
+            db.session.commit()
+
+            session['user_id'] = new_user.id
+
+            response = make_response(
+                new_user.to_dict(),
+                201
+            )
+            return response
         
-        db.session.add(new_user)
-        db.session.commit()
-
-        session['user_id'] = new_user.id
-
-        response = make_response(
-            new_user.to_dict(),
-            201
-        )
-        return response
-
-
+        except IntegrityError:
+            response = make_response(
+                {"error": "Email address already exists in system."}, 
+                422
+            )
+            return response
 
 class AuthorizedSession(Resource):
 
@@ -73,17 +80,21 @@ class Login(Resource):
 
         user = User.query.filter(User.email == email).first()
 
-            
-        if user.authenticate(data['password']):
+        if user:
 
-            session['user_id'] = user.id
+            if user.authenticate(data['password']):
 
-            response = make_response(
-                user.to_dict(),
-                200
-            )
-            return response
-        return {'error' : "Invalid Username or Password"}, 401
+                session['user_id'] = user.id
+
+                response = make_response(
+                    user.to_dict(),
+                    200
+                )
+                return response
+        
+        else:
+
+            return {'error' : "Invalid Username or Password."}, 401
                 
 
 
@@ -138,7 +149,7 @@ class HostGroupDetails(Resource):
 
       
 
-        group_dict = group.to_dict(rules=('member_details', 'memberships', 'books', 'books.prompts', 'books.prompts.comments', 'books.prompts.comments.id'))
+        group_dict = group.to_dict(rules=('user', 'member_details', 'memberships', 'books', 'books.prompts', 'books.prompts.comments', 'books.prompts.comments.id'))
 
         response = make_response(
             group_dict,
@@ -171,7 +182,16 @@ class MemberEdit(Resource):
         user = User.query.filter(User.email == email).first()
 
         if not user: 
-            pass
+            return {"error": "User not found."}, 404
+        
+        # Query to get array of user ids that are already in the group.
+        group = Group.query.filter(Group.id == group_id).first()
+        member_ids = [user.user_id for user in group.memberships]
+        
+        if user.id in member_ids:
+            return {"error": "Duplicate user."}, 409
+
+        # Check whether the user id exists in that array and return an error if so.
 
         new_member = Member(
             user_id = user.id,

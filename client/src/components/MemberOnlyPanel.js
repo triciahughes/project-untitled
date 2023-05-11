@@ -1,6 +1,6 @@
 import memberPanelImg from "../memberspanel.png";
 
-function MemberOnlyPanel({ members }) {
+function MemberOnlyPanel({ host, members }) {
   const memberNames = members.map((member) => {
     const first_name = member.first_name;
     const last_initial = member.last_name[0].toUpperCase() + ".";
@@ -11,6 +11,7 @@ function MemberOnlyPanel({ members }) {
   return (
     <div id="memberPanel">
       <img alt="Members" src={memberPanelImg} className="memberPanel"></img>
+      <p className="memberName"><strong>Host: {host}</strong></p>
       <p className="memberName">{memberNames}</p>
       <div className="memberPanel">
         {/* <button className="memberPanel">Suggest Book</button> */}

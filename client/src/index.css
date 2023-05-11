@@ -169,13 +169,13 @@ h1.signup {
   text-align: center;
   color: #57584c;
 }
-h2.noaccount {
+.noaccount {
   margin-top: 0%;
   margin-left: 0%;
   margin-bottom: 2%;
-  font-size: 15px;
   text-align: center;
   color: #383931;
+  font-size: 20px;
 }
 
 h2.noaccount:hover {
@@ -230,11 +230,6 @@ p.host:hover {
   background-color: #e7e4e4;
   color: #57584c;
   font-weight: bold;
-}
-
-section.panel {
-  /* margin-top: auto;
-  margin-bottom: auto; */
 }
 
 .hostPanels {

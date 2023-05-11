@@ -13,7 +13,7 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String, nullable=False)
     last_name = db.Column(db.String, nullable=False)
-    email = db.Column(db.String)
+    email = db.Column(db.String, unique=True)
     _password_hash = db.Column(db.String)
 
     host_groups = db.relationship('Group', backref='user')
@@ -26,7 +26,7 @@ class User(db.Model, SerializerMixin):
 
     @hybrid_property
     def password_hash(self):
-        return self._password_hash
+        raise Exception("Password hashes cannot be viewed.")
         
     @password_hash.setter
     def password_hash(self, password):
