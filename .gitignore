@@ -1,6 +1,8 @@
 *.pyc
 .DS_Store
 server/__pycache__
+seed.py
+seed2.py
 
 ### Node ###
 # Logs
